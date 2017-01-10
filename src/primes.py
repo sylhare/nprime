@@ -4,8 +4,6 @@ Created on Fri Jan  6 15:16:46 2017
 
 @author: sylhare
 """
-import math as m
-
 def isPrime(n):
     """
     Check if the number "n" is prime.
@@ -16,7 +14,7 @@ def isPrime(n):
         return False
         
     else:    
-        for i in range (2, int(m.sqrt(n)+1)):
+        for i in range (2, int(n**0.5+1)):
             if(n%i==0):
                 return False
         return True     
