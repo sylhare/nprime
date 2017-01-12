@@ -1,2 +1,4 @@
 # Prime
-Prime numbers algorythm in Python
+Some prime numbers algorythm
+
+Language: Python 3.5.2 
