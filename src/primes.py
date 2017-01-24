@@ -1,15 +1,35 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jan  6 17:16:46 2017
-
 @author: sylhare
+
+Here are a bit of information to understand some of the algorithms
+
+Congruence :
+------------
+ "≡" means congruent
+   a ≡ b (mod m) implies that m/(a-b), ∃ k ∈ Z that verifies a = kn + b
+   
+ which implies:
+   a ≡ 0 (mod n) <-> a = kn <-> "a" is divisible by "n" 
+
+Fermart's Theorem
+-----------------
+ if n is prime then ∀ a ∈[1, ..., n-1]
+   a^(n-1) ≡ 1 (mod n) ⇔ a^(n-1) = kn + 1
+   
 """
+
+import random
+
+
+### Primarity testing functions ###
 
 def isPrime(n):
     """
     Check if the number "n" is prime, with n >= 2.
     
-    Returns a boolean.
+    Returns a boolean, True if n is prime.
         
     """    
     for i in range(2, int(n**0.5) + 1):
@@ -18,6 +38,31 @@ def isPrime(n):
             
     return True 
 
+
+def fermatTest(n, t=10):
+    """ 
+    Probabilistic algorithm
+    Taking "t" randoms "a" and testing the Fermat's theorem on number "n" >= 2
+    
+    Prime probability is right is 1 - 1/(2^t)    
+    Returns a boolean: True if n passes the test.
+        
+    """
+      
+    for k in range(0, t):
+        a = random.randint(1, n-1, 1)
+        x = pow(a, n-1, n) #(a^(n-1)) modulo n
+        
+        if x == 1:
+            prime = True    #/!\ Probable prime
+        else:
+            prime = False
+            break
+        
+    return prime
+
+
+### Prime generating functions ###
 
 def genPrimes(upper=0):
     """
@@ -38,8 +83,8 @@ def genPrimes(upper=0):
     #if a number has no dividers, last prime[k] of loop is over n's squareroot   
         if (n**0.5 < primes[k]): 
             primes.append(n)  
-           
-    return primes  
+            
+    return primes       
 
 
 def findPrimes(lower, upper, primeTest=isPrime):
