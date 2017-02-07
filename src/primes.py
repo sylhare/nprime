@@ -18,6 +18,16 @@ Fermart's Theorem
  if n is prime then ∀ a ∈[1, ..., n-1]
    a^(n-1) ≡ 1 (mod n) ⇔ a^(n-1) = kn + 1
    
+Miller rabin
+------------ 
+  Take a random a∈{1,...,n−1} and n > 2,
+  Find d and s such as with n - 1 = 2^s * d (with d odd)
+  if (a^d)^2^r ≡ 1 mod n for all r in 0 to s-1 
+  Then n is prime.
+    
+  The test output is false of 1/4 of the "a values" possible in n, 
+  so the test is repeated t times.
+   
 """
 
 import random
@@ -27,22 +37,22 @@ import random
 
 def isPrime(n):
     """
-    Check if the number "n" is prime, with n >= 2.
+    Check if the number "n" is prime, with n > 1.
     
     Returns a boolean, True if n is prime.
         
     """    
-    for i in range(2, int(n**0.5) + 1):
+    for i in range(2, int(pow(n, 0.5)) + 1):
         if(n%i == 0):
             return False     
             
     return True 
 
 
-def fermatTest(n, t=10):
+def fermat(n, t=10):
     """ 
     Probabilistic algorithm
-    Taking "t" randoms "a" and testing the Fermat's theorem on number "n" >= 2
+    Taking "t" randoms "a" and testing the Fermat's theorem on number "n" > 1
     
     Prime probability is right is 1 - 1/(2^t)    
     Returns a boolean: True if n passes the test.
@@ -50,7 +60,7 @@ def fermatTest(n, t=10):
     """
       
     for k in range(0, t):
-        a = random.randint(1, n-1, 1)
+        a = random.randrange(1, n)
         x = pow(a, n-1, n) #(a^(n-1)) modulo n
         
         if x == 1:
@@ -61,7 +71,41 @@ def fermatTest(n, t=10):
         
     return prime
 
-
+   
+def millerRabin(n, t=10):
+    """
+    A probabilistic algorithm which determines 
+    whether a given number (n > 1) is prime or not. 
+    The millerRabin test is repeated t times to get more accurate results.
+    
+    Returns a boolean: True if n passes the test   
+    
+    """
+    if n == 2:
+        prime = True #To normalize and make the algorythm works with 2
+    else:
+        prime = False #All other even number will output false
+    
+    #Step 1: Have n-1 = 2^s * m (with m odd, and s number of twos factored)
+    d = n - 1
+    s = 0
+    while (d % 2 == 0): 
+        d //= 2 # d equals to quotient of d divided 2            
+        s += 1  # s > 1 when n is odd
+    
+    for k in range(0, t):
+        #Step 2: test (a^d)^2^r ≡ 1 mod n for all r
+        a = random.randrange(1, n)
+        for r in range(0, s):
+            x = pow(a, d * pow(2, s), n)
+            if x == 1 or x == -1:
+                prime = True        #Should be true for all a
+            else:
+                return False        #When not true, it's not prime for sure
+            
+    return prime     #/!\ Probable prime
+   
+   
 ### Prime generating functions ###
 
 def genPrimes(upper=0):
@@ -77,11 +121,11 @@ def genPrimes(upper=0):
         k = 0 
         
     #We only check if n is divided by the previous primes
-        while (primes[k] <= n**0.5 and n%primes[k] != 0):
+        while (primes[k] <= pow(n, 0.5) and n%primes[k] != 0):
             k += 1
             
     #if a number has no dividers, last prime[k] of loop is over n's squareroot   
-        if (n**0.5 < primes[k]): 
+        if (pow(n, 0.5) < primes[k]): 
             primes.append(n)  
             
     return primes       
