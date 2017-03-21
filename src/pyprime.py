@@ -110,7 +110,7 @@ def genPrimes(upper=0):
 def findPrimes(lower, upper, primeTest=isPrime):
     """
     Find the number of primes between lower and upper range.
-    It should be lower < upper with lower >= 2.
+    We should have 2 <= lower < upper.
     
     primeTest determines the function used to test the primality of the number
     primeTest is by default isPrime() and should return a boolean    
@@ -119,7 +119,7 @@ def findPrimes(lower, upper, primeTest=isPrime):
     
     """
     #assert will trigger an error if the input is not correct
-    assert lower <= upper and lower >= 2, "Should be 2 <= lower < upper"     
+    assert 2 <= lower and lower <= upper
     
     primes = []
     
