@@ -3,31 +3,6 @@
 Created on Fri Jan  6 17:16:46 2017
 @author: sylhare
 
-Here are a bit of information to understand some of the algorithms
-
-Congruence :
-------------
- "≡" means congruent
-   a ≡ b (mod m) implies that m/(a-b), ∃ k ∈ Z that verifies a = kn + b
-   
- which implies:
-   a ≡ 0 (mod n) <-> a = kn <-> "a" is divisible by "n" 
-
-Fermart's Theorem
------------------
- if n is prime then ∀ a ∈[1, ..., n-1]
-   a^(n-1) ≡ 1 (mod n) ⇔ a^(n-1) = kn + 1
-   
-Miller rabin
------------- 
-  Take a random a∈{1,...,n−1} and n > 2,
-  Find d and s such as with n - 1 = 2^s * d (with d odd)
-  if (a^d)^2^r ≡ 1 mod n for all r in 0 to s-1 
-  Then n is prime.
-    
-  The test output is false of 1/4 of the "a values" possible in n, 
-  so the test is repeated t times.
-   
 """
 
 import random
@@ -111,6 +86,7 @@ def millerRabin(n, t=10):
 def genPrimes(upper=0):
     """
     Generate a list of primes from 2 to a set limit
+    It reuses the sieve of Eratosthenes
     
     Returns a list of integer.
         
