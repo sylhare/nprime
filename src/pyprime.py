@@ -6,7 +6,8 @@ Created on Fri Jan  6 17:16:46 2017
 """
 
 import random
-
+import math
+import matplotlib.pyplot as plt
 
 ### Primarity testing functions ###
 
@@ -16,7 +17,7 @@ def isPrime(n):
     
     Returns a boolean, True if n is prime.
         
-    """    
+    """        
     for i in range(2, int(pow(n, 0.5)) + 1):
         if(n%i == 0):
             return False     
@@ -81,6 +82,7 @@ def millerRabin(n, t=10):
     return prime     #/!\ Probable prime
    
    
+   
 ### Prime generating functions ###
 
 def genPrimes(upper=0):
@@ -110,7 +112,7 @@ def genPrimes(upper=0):
 def findPrimes(lower, upper, primeTest=isPrime):
     """
     Find the number of primes between lower and upper range.
-    We should have 2 <= lower < upper.
+    We should have 1 < lower < upper.
     
     primeTest determines the function used to test the primality of the number
     primeTest is by default isPrime() and should return a boolean    
@@ -118,8 +120,7 @@ def findPrimes(lower, upper, primeTest=isPrime):
     Returns a list of integer.
     
     """
-    #assert will trigger an error if the input is not correct
-    assert 2 <= lower and lower <= upper
+    assert 1 < lower and lower <= upper, "We should have 1 < lower < upper"
     
     primes = []
     
@@ -128,3 +129,135 @@ def findPrimes(lower, upper, primeTest=isPrime):
             primes.append(n)
             
     return primes  
+
+
+
+### Other functions ###
+def pyprime(n, function=isPrime):
+    """
+    Function that will encapsulate and test n before doing function(n)
+    It is mostly to encapsulate the primality testing functions 
+    Basically making sure that:
+        n is a number
+        n > 1
+    
+    """
+    #assert will trigger an error if the input is not correct
+    assert isinstance(n, int), "n should be an integer"
+    
+    if n > 1:
+        return function(n)
+    else:
+        return False
+        
+       
+       
+### Grphical Prime functions ###   
+def sacks(upper=1000, primeTest=pyprime):
+    """
+    Generate the sack diagram values up to a set limit (upper)
+    
+    primeTest determines the function used to test the primality of the number
+    primeTest is by default isPrime() and should return a boolean    
+    
+    Returns tho lists:
+        1- The none prime polar coordinates: coord
+        2- The prime polar coordinates: pricoo
+    
+    """   
+    coord=[] #Normal numbers' polar value
+    pricoo=[] #Prime numbers' polar value
+    
+    for i in range (0, upper): #A rotation is made for each perfect square,
+        theta = math.sqrt(i) * 2 * math.pi  #i=1 theta= 2pi for a given i, angle=(i*theta)/1 
+        r = math.sqrt(i) 
+        
+        if primeTest(i) == True:
+            pricoo.append((theta,r))  
+        else:
+            coord.append((theta,r))
+    return coord, pricoo       
+
+def sacksPlot(upper=10000, primeTest=pyprime):
+    """
+    Render the sacksPlot from the sacks function.
+    Use more for the example
+    
+    Return a polar plot of the sacks' diagram    
+    
+    """
+    coord, pricoo = sacks(upper, primeTest)
+            
+    plt.figure()
+    axes = plt.subplot(111, polar=True, axisbg='white')
+    axes.spines['polar'].set_visible(False)
+    plt.title('Sacks\' Diagram', loc='right')
+    plt.polar(*zip(*coord), "w+", markersize=1)
+    plt.polar(*zip(*pricoo), "ko", markersize=2)
+    plt.show     
+    
+    
+def ulam(upper=1000, edge=4, primeTest=pyprime):
+    """
+    Ulam's spiral aim to represent the primes and none primes in a spiral way 
+    
+    edge (edge>3) determines the polygone size by the number of edges,
+    3 triangle, 4 rectangle, 5 Pentagone ...
+    For odd number of edge, the spiral gets misaligned
+    
+    primeTest determines the function used to test the primality of the number
+    primeTest is by default isPrime() and should return a boolean   
+
+   Returns tho lists:
+        1- The none prime polar coordinates: coord
+        2- The prime polar coordinates: pricoo
+    """
+    theta = 0 #Keep track of the spiral rotation
+    psi = math.radians(360/edge) #Angle of the polygone's corner
+    
+    turn = 3 #Threshold that indicates to turn at the end of each edge's length
+    length = 0 #length of the edge, gets bigger as it spirals
+    spiral = 2 #Threshold that indicates when to increase the length of an edge
+    spiral_increment = int(edge/2) #when the edge length has to go up to spiral
+    
+    coord =[(0,0)]  #Other numbers' coordinates
+    pricoo=[]      #Primes' coordintes
+    x = 0
+    y = 0
+    
+    for i in range(2,upper):
+        if i == spiral:
+            length += 1
+            spiral = length * spiral_increment  + i
+            
+        if i == turn:
+            theta += psi
+            turn = i + length
+        
+        x += math.cos(theta)
+        y += math.sin(theta)
+        
+        if primeTest(i):
+            pricoo.append((x,y))
+        else:
+            coord.append((x,y))  
+            
+    return coord, pricoo
+            
+            
+def ulamPlot(upper=10000, edge=4, primeTest=pyprime):
+    """
+    Render the sacksPlot from the ulam function.
+    Use more for the example
+    
+    Return a polar plot of the ulam's spiral   
+    
+    """
+    coord, pricoo = ulam(upper, edge, primeTest)
+            
+    plt.figure()
+    plt.title('Ulam\'s sprial', loc='right')
+    plt.plot(*zip(*coord), 'w+' ,markersize=1)
+    plt.plot(*zip(*pricoo), 'ko' ,markersize=2)
+    plt.grid(True)
+    plt.show 

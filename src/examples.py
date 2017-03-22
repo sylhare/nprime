@@ -16,3 +16,7 @@ print(p.millerRabin(7))
 #Demo of the Prime generating functions
 print(p.genPrimes(7))
 print(p.findPrimes(2, 7, p.fermat))
+
+#Demo of Grphical Prime functions
+p.sacksPlot()
+p.ulamPlot()
