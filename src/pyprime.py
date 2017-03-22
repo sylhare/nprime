@@ -172,7 +172,7 @@ def sacks(upper=1000, primeTest=pyprime):
         theta = math.sqrt(i) * 2 * math.pi  #i=1 theta= 2pi for a given i, angle=(i*theta)/1 
         r = math.sqrt(i) 
         
-        if primeTest(i) == True:
+        if primeTest(i):
             pricoo.append((theta,r))  
         else:
             coord.append((theta,r))
