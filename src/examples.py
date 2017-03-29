@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 21 13:23:52 2017
+Created on Tue Mar 21 17:23:52 2017
 
 @author: sylhare
 
@@ -8,6 +8,7 @@ Created on Tue Mar 21 13:23:52 2017
 
 import pyprime as p
 import unit_test as ut
+import toolbox as tb
 
 #Demo of Grphical Prime functions
 p.sacksPlot()
@@ -23,5 +24,8 @@ print(p.genPrimes(7))
 print(p.findPrimes(2, 7, p.fermat))
 
 #Demo of the unit_test functions
-print(ut.carmiTest(p.isPrime))
-print(ut.ppTest(p.isPrime))
+print(ut.unit_test(p.isPrime))
+
+tb.save(ut.unit_test(p.isPrime), "test")
+for x in tb.read("test_2017-03-28.txt"):
+    print (x, end='')

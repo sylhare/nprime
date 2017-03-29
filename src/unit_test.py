@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Feb 14 11:34:49 2017
+Created on Tue Feb 14 18:34:49 2017
 
 @author: Sylhare
 
@@ -19,6 +19,25 @@ __pseudoPrimes = {2: [2047, 3277, 4033, 4681, 8321],
                   7: [25, 325, 703, 2101, 2353, 4525],
                   8: [9, 65, 481, 511, 1417, 2047],
                   9: [91, 121, 671, 703, 1541, 1729]}
+                  
+#### Testing functions ####
+                  
+def unit_test (function):
+    """
+    Perform all of the tests
+    
+    Return a string with all of the results    
+    
+    """
+    status = "\n----- Unit Tests -----\n"
+    
+    status += ppTest(function)
+    status += carmiTest(function)
+        
+    status += "\n\n----------------------\n"
+    
+    return status
+
 
 def ppTest(function):
     """
@@ -54,6 +73,9 @@ def carmiTest(function):
     status += "[" + passTest(results) + "]: Carmichael" 
     
     return status  
+    
+    
+#### Sub fonctions to create the tests ####
     
 def functionTest(function, src):
     """
