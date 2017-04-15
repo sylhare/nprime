@@ -27,5 +27,5 @@ print(p.findPrimes(2, 7, p.fermat))
 print(ut.unit_test(p.isPrime))
 
 tb.save(ut.unit_test(p.isPrime), "test")
-for x in tb.read("test_2017-03-28.txt"):
+for x in tb.read("../src/test_2017-03-28.txt"):
     print (x, end='')
