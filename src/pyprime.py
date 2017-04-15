@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jan  6 17:16:46 2017
+
 @author: sylhare
 
 """
 
 import random
 import math
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg') #On Spyder matplotlib is preloaded
 import matplotlib.pyplot as plt
 
 ### Primarity testing functions ###
