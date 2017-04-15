@@ -21,6 +21,8 @@ def save(string, name="prime"):
     file.write(string)
     file.close()
     
+    return os.path.realpath(file.name)
+    
     
 def read(path, n=0):
     """

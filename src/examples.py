@@ -26,6 +26,6 @@ print(p.findPrimes(2, 7, p.fermat))
 #Demo of the unit_test functions
 print(ut.unit_test(p.isPrime))
 
-tb.save(ut.unit_test(p.isPrime), "test")
-for x in tb.read("../src/test_2017-03-28.txt"):
+filepath = tb.save(ut.unit_test(p.isPrime), "test")
+for x in tb.read(filepath):
     print (x, end='')
