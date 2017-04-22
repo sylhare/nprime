@@ -21,9 +21,9 @@ script:
   - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 tooldbox.py"
   - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 unit_test.py"
   
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
     
 after_success:
   - echo "Success!"
