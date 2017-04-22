@@ -7,14 +7,32 @@
 
 pylint --disable=C0303 src/pyprime.py #Removes trailing-whitespace error
 
-status=$?     # Catch exit status before it changes
 
-if [ $status = 0 ]      # Means it worked well
-then echo $status: it worked perfectly
+function pylint {
 
-elsif [ $(( $status & 3 )) != 0 ]   # Pylint error link above
-then echo $status: a fatal or error message was sent
-else echo $status: it sort of worked mostly
-fi
+    pylint --disable=C0303 $1
+    
+    status=$?     # Catch exit status before it changes
+
+    if [ $status = 0 ]      # Means it worked well
+    then 
+        echo "$status: it worked perfectly"
+
+    elif [ $(( $status & 3 )) != 0 ]   # Pylint error link above
+    then 
+        echo "$status: a fatal or error message was sent"
+    else 
+        echo "$status: it sort of worked mostly"
+    fi
+}
+
+
+for f in src/pyprime.py src/toolbox.py src/unit_test.py
+do
+    
+    echo "------- $f processing ------"
+    pylint $f
+
+done
 
 exit 0
