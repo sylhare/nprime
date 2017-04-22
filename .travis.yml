@@ -17,9 +17,9 @@ install: "pip install -r requirements.txt"
 # command to run tests
 script: 
   - "python src/examples.py"
-  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 pyprime.py"
-  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 tooldbox.py"
-  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 unit_test.py"
+  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 src/pyprime.py"
+  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 src/tooldbox.py"
+  - "pylint --disable=RP0401 --disable=RP0001 --disable=RP0002 --disable=RP0003 --disable=RP0101 --disable=RP0101 --disable=RP0701 src/unit_test.py"
   
 branches:
   only:
