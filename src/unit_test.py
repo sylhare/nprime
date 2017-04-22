@@ -9,21 +9,21 @@ Created on Tue Feb 14 18:34:49 2017
 import pyprime as p
 
 #Carmichael number often trigger false positive for the fermat algorithm
-__carmichael = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
+_carmichael = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
 
 #The key is the base, the list is the pseudoprimes of that base
-__pseudoPrimes = {2: [2047, 3277, 4033, 4681, 8321], 
-                  3: [121, 703, 1891, 3281, 8401, 8911],
-                  4: [341, 1387, 2047, 3277, 4033, 4371],
-                  5: [781, 1541, 5461, 5611, 7813],
-                  6: [217, 481, 1111, 1261, 2701],
-                  7: [25, 325, 703, 2101, 2353, 4525],
-                  8: [9, 65, 481, 511, 1417, 2047],
-                  9: [91, 121, 671, 703, 1541, 1729]}
+_pseudoPrimes = {2: [2047, 3277, 4033, 4681, 8321], 
+                 3: [121, 703, 1891, 3281, 8401, 8911],
+                 4: [341, 1387, 2047, 3277, 4033, 4371],
+                 5: [781, 1541, 5461, 5611, 7813],
+                 6: [217, 481, 1111, 1261, 2701],
+                 7: [25, 325, 703, 2101, 2353, 4525],
+                 8: [9, 65, 481, 511, 1417, 2047],
+                 9: [91, 121, 671, 703, 1541, 1729]}
                   
 #### Testing functions ####
                   
-def unit_test (function):
+def unit_test(function):
     """
     Perform all of the tests
     
@@ -52,8 +52,8 @@ def ppTest(function):
     results = {}
     status = "\nPseudo Primes Test:\n"
 
-    for key in __pseudoPrimes:
-        results[key] = functionTest(function, __pseudoPrimes[key])
+    for key in _pseudoPrimes:
+        results[key] = functionTest(function, _pseudoPrimes[key])
         status += "[" + passTest(results[key]) + "]: PseudoPrime #" \
                   + str(key) + "\n"
         
@@ -70,7 +70,7 @@ def carmiTest(function):
         False - fails the test
         
     """
-    results = functionTest(function, __carmichael)
+    results = functionTest(function, _carmichael)
     status = "\nCarmichael Test:\n"
     status += "[" + passTest(results) + "]: Carmichael" 
     

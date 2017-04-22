@@ -52,4 +52,4 @@ A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a
 # Travis
 
 Travis will automatically run the examples.py file in which there are a couple of tests from unit_test.py
-It will also run [pylint](https://www.pylint.org/) on unit_test.py, toolbox.py and pyprime.py
+It will also run [pylint](https://www.pylint.org/) on toolbox.py and pyprime.py

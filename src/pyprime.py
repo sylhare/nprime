@@ -10,7 +10,7 @@ import random
 import math
 import os
 import matplotlib as mpl
-if os.environ.get('DISPLAY','') == '':
+if os.environ.get('DISPLAY', '') == '':
     print('no display found. Using non-interactive Agg backend')
     mpl.use('Agg') #On Spyder matplotlib is preloaded
 import matplotlib.pyplot as plt
@@ -20,12 +20,12 @@ import matplotlib.pyplot as plt
 def isPrime(n):
     """
     Check if the number "n" is prime, with n > 1.
-    
+
     Returns a boolean, True if n is prime.
         
     """        
     for i in range(2, int(pow(n, 0.5)) + 1):
-        if(n%i == 0):
+        if n%i == 0:
             return False     
             
     return True 
@@ -40,7 +40,6 @@ def fermat(n, t=10):
     Returns a boolean: True if n passes the test.
         
     """
-      
     for k in range(0, t):
         a = random.randrange(1, n)
         x = pow(a, n-1, n) #(a^(n-1)) modulo n
@@ -71,7 +70,7 @@ def millerRabin(n, t=10):
     #Step 1: Have n-1 = 2^s * m (with m odd, and s number of twos factored)
     d = n - 1
     s = 0
-    while (d % 2 == 0): 
+    while d % 2 == 0: 
         d //= 2 # d equals to quotient of d divided 2            
         s += 1  # s > 1 when n is odd
     
@@ -99,17 +98,17 @@ def genPrimes(upper=0):
     Returns a list of integer.
         
     """
-    primes=[2] 
+    primes = [2] 
         
     for n in range(3, upper + 1):    
         k = 0 
         
     #We only check if n is divided by the previous primes
-        while (primes[k] <= pow(n, 0.5) and n%primes[k] != 0):
+        while primes[k] <= pow(n, 0.5) and n%primes[k] != 0:
             k += 1
             
     #if a number has no dividers, last prime[k] of loop is over n's squareroot   
-        if (pow(n, 0.5) < primes[k]): 
+        if pow(n, 0.5) < primes[k]: 
             primes.append(n)  
             
     return primes       
@@ -171,17 +170,17 @@ def sacks(upper=1000, primeTest=pyprime):
         2- The prime polar coordinates: pricoo
     
     """   
-    coord=[] #Normal numbers' polar value
-    pricoo=[] #Prime numbers' polar value
+    coord = [] #Normal numbers' polar value
+    pricoo = [] #Prime numbers' polar value
     
-    for i in range (0, upper): #A rotation is made for each perfect square,
+    for i in range(0, upper): #A rotation is made for each perfect square,
         theta = math.sqrt(i) * 2 * math.pi  #i=1 theta= 2pi for a given i, angle=(i*theta)/1 
         r = math.sqrt(i) 
         
         if primeTest(i):
-            pricoo.append((theta,r))  
+            pricoo.append((theta, r))  
         else:
-            coord.append((theta,r))
+            coord.append((theta, r))
     return coord, pricoo       
 
 def sacksPlot(upper=10000, primeTest=pyprime):
@@ -226,12 +225,12 @@ def ulam(upper=1000, edge=4, primeTest=pyprime):
     spiral = 2 #Threshold that indicates when to increase the length of an edge
     spiral_increment = int(edge/2) #when the edge length has to go up to spiral
     
-    coord =[(0,0)]  #Other numbers' coordinates
-    pricoo=[]      #Primes' coordintes
+    coord = [(0, 0)]  #Other numbers' coordinates
+    pricoo = []      #Primes' coordintes
     x = 0
     y = 0
     
-    for i in range(2,upper):
+    for i in range(2, upper):
         if i == spiral:
             length += 1
             spiral = length * spiral_increment  + i
@@ -244,9 +243,9 @@ def ulam(upper=1000, edge=4, primeTest=pyprime):
         y += math.sin(theta)
         
         if primeTest(i):
-            pricoo.append((x,y))
+            pricoo.append((x, y))
         else:
-            coord.append((x,y))  
+            coord.append((x, y))  
             
     return coord, pricoo
             
@@ -263,7 +262,8 @@ def ulamPlot(upper=10000, edge=4, primeTest=pyprime):
             
     plt.figure()
     plt.title('Ulam\'s sprial', loc='right')
-    plt.plot(*zip(*coord), 'w+' ,markersize=1)
-    plt.plot(*zip(*pricoo), 'ko' ,markersize=2)
+    plt.plot(*zip(*coord), 'w+', markersize=1)
+    plt.plot(*zip(*pricoo), 'ko', markersize=2)
     plt.grid(True)
     plt.show 
+    

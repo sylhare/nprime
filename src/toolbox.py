@@ -17,7 +17,7 @@ def save(string, name="prime"):
     """
     os.getcwd()
     
-    file = open(str(name) +  "_" + str(time.strftime('%Y-%m-%d')) + '.txt','w') 
+    file = open(str(name) +  "_" + str(time.strftime('%Y-%m-%d')) + '.txt', 'w') 
     file.write(string)
     file.close()
     
@@ -31,7 +31,7 @@ def read(path, n=0):
     
     Return a list of string
     """
-    with open(path,'r') as file:
+    with open(path, 'r') as file:
         content = []
         content = file.readlines()
         
