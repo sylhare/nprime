@@ -47,3 +47,9 @@ Miller rabin
 Strong Pseudoprime
 -------------------
 A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a base `a` is an odd composite number `n` with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r) = -1(mod n)` for some `r = 0, 1, ..., s-1` </br>
+
+
+# Travis
+
+Travis will automatically run the examples.py file in which there are a couple of tests from unit_test.py
+It will also run [pylint](https://www.pylint.org/) on unit_test.py, toolbox.py and pyprime.py
