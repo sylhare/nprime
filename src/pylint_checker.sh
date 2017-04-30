@@ -9,7 +9,7 @@
 
 function my_pylint () {
 
-    pylint --disable=C0303 $1   #Removes trailing-whitespace error
+    pylint $1   #--disable=C0303 Removes trailing-whitespace error
     
     status=$?     # Catch exit status before it changes
 
@@ -17,8 +17,8 @@ function my_pylint () {
     then 
         echo "$status: it worked perfectly"
 
-    elif [ $(($status > 3 )) ]   # pylint return 1 is fatal error, return 2 is error 
-    #elif [ $status -gt 3 ]      # Same as above
+    #elif [ $(($status > 3 )) ]   # pylint return 1 is fatal error, return 2 is error 
+    elif [ $status -gt 3 ]      # Same as above
     then 
         echo "$status: a fatal or error message was sent"
     else 

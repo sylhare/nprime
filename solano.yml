@@ -1,0 +1,6 @@
+python:
+  python_version: '3.5.0'
+  pip_requirements_file: requirements.txt
+
+tests:
+  - python src/examples.py
