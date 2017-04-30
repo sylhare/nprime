@@ -1,4 +1,4 @@
-# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime)
+# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54)](https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/PyPrime&amp;utm_campaign=Badge_Grade) [![Code Issues](https://www.quantifiedcode.com/api/v1/project/f4025e061bb64a60a9531443ca26d25f/badge.svg)](https://www.quantifiedcode.com/app/project/f4025e061bb64a60a9531443ca26d25f)
 ---
 [![forthebadge](http://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/built-with-science.svg)](http://forthebadge.com)
 
