@@ -1,15 +1,17 @@
-machine:
+#machine:
 # For Python 3.6
 #  pre:
 #    - cd /opt/circleci/.pyenv; git pull
 
-python:
-  version: 3.5.0
-#  version: 3.6.0
+# Should be already pre-installed
+#python:
+#  version: 3.5
 
-dependencies:
-  override:
-    - "pip install -r requirements.txt"
+# Should be done automatically
+#dependencies:
+#  pre:
+#    - "pip install -r requirements.txt"
+
 
 test:
   override:
