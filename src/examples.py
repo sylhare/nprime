@@ -28,4 +28,7 @@ print(ut.unit_test(p.isPrime))
 
 filepath = tb.save(ut.unit_test(p.isPrime), "test")
 for x in tb.read(filepath):
-    print(x, end='') #So there's no '\n' after each print
+    try:
+        print(x, end='') #So there's no '\n' after each print
+    except SyntaxError:
+        print(x)
