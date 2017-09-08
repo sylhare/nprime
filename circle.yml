@@ -1,18 +1,12 @@
-#machine:
-# For Python 3.6
-#  pre:
-#    - cd /opt/circleci/.pyenv; git pull
-
-# Should be already pre-installed
-#python:
-#  version: 3.5
-
-# Should be done automatically
-#dependencies:
-#  pre:
-#    - "pip install -r requirements.txt"
-
-
-test:
-  override:
-    - "python src/examples.py"
+# https://circleci.com/docs/2.0/hello-world/
+version: 2
+jobs:
+   build:
+     docker:
+       - image: circleci/python:3.5.3
+     steps:
+      - checkout
+      - run:
+          name: Install Python dependencies
+          command: pip install -r requirements/dev.txt
+       - run: python src/examples.py
