@@ -9,7 +9,7 @@
 
 function my_pylint () {
 
-    pylint $1   #--disable=C0303 Removes trailing-whitespace error
+    pylint "$1"   #--disable=C0303 Removes trailing-whitespace error
     
     status=$?     # Catch exit status before it changes
 
