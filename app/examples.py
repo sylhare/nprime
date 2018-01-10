@@ -6,9 +6,9 @@ Created on Tue Mar 21 17:23:52 2017
 
 """
 from __future__ import print_function #To make the end='' works in the print()
-import pyprime as p
-import unit_test as ut
-import toolbox as tb
+import app.pyprime as p
+import test.unit_test as ut
+import app.toolbox as tb
 
 #Demo of Grphical Prime functions
 p.sacksPlot()
