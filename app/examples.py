@@ -5,30 +5,29 @@ Created on Tue Mar 21 17:23:52 2017
 @author: sylhare
 
 """
-from __future__ import print_function #To make the end='' works in the print()
 import app.pyprime as p
 import test.unit_test as ut
-import app.toolbox as tb
 
-#Demo of Grphical Prime functions
-p.sacksPlot()
-p.ulamPlot()
 
-#Demo of the Primarity testing functions
-print(p.isPrime(7))
-print(p.fermat(7))
-print(p.millerRabin(7))
 
-#Demo of the Prime generating functions
-print(p.genPrimes(7))
-print(p.findPrimes(2, 7, p.fermat))
+def main():
 
-#Demo of the unit_test functions
-print(ut.unit_test(p.isPrime))
+    # Demo of the Primary testing functions
+    print(p.is_prime(7))
+    print(p.fermat(7))
+    print(p.miller_rabin(7))
 
-filepath = tb.save(ut.unit_test(p.isPrime), "test")
-for x in tb.read(filepath):
-    try:
-        print(x, end='') #So there's no '\n' after each print
-    except SyntaxError:
-        print(x)
+    # Demo of the Prime generating functions
+    print(p.generate_primes(7))
+    print(p.find_primes(2, 7, p.fermat))
+
+    # Demo of the unit_test functions
+    print(ut.unit_test(p.is_prime))
+
+    # Demo of Graphical Prime functions
+    p.sacks_plot()
+    p.ulam_plot()
+
+
+if __name__ == '__main__':
+    main()

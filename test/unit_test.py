@@ -5,13 +5,14 @@ Created on Tue Feb 14 18:34:49 2017
 @author: Sylhare
 
 """
+from __future__ import print_function # To make the end='' works in the print()
+import app.pyprime as p
+import app.toolbox as tb
 
-import pyprime as p
-
-#Carmichael number often trigger false positive for the fermat algorithm
+# Carmichael number often trigger false positive for the fermat algorithm
 CARMICHAEL = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
 
-#The key is the base, the list is the pseudoprimes of that base
+# The key is the base, the list is the pseudoprimes of that base
 PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  3: [121, 703, 1891, 3281, 8401, 8911],
                  4: [341, 1387, 2047, 3277, 4033, 4371],
@@ -21,8 +22,9 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  8: [9, 65, 481, 511, 1417, 2047],
                  9: [91, 121, 671, 703, 1541, 1729]}
 
-#### Testing functions ####
-def unit_test(function):
+
+# -- Testing functions -- #
+def unit_test(func):
     """
     Perform all of the tests
 
@@ -31,15 +33,15 @@ def unit_test(function):
     """
     status = "\n----- Unit Tests -----\n"
 
-    status += ppTest(function)
-    status += carmiTest(function)
+    status += pseudoprime_test(func)
+    status += carmicael_test(func)
 
     status += "\n\n----------------------\n"
 
     return status
 
 
-def ppTest(function):
+def pseudoprime_test(func):
     """
     Test the function on a couple of pseudo primes numbers
 
@@ -52,54 +54,54 @@ def ppTest(function):
     status = "\nPseudo Primes Test:\n"
 
     for key in PSEUDO_PRIMES:
-        results[key] = functionTest(function, PSEUDO_PRIMES[key])
-        status += "[" + passTest(results[key]) + "]: PseudoPrime #" \
+        results[key] = function_tests(func, PSEUDO_PRIMES[key])
+        status += "[" + pass_test(results[key]) + "]: PseudoPrime #" \
                   + str(key) + "\n"
 
     return status
 
 
-def carmiTest(function):
+def carmicael_test(func):
     """
     Test the function on the carmichael numbers
-    Fermat and millerRabin usually fail this test
+    Fermat and miller_rabin usually fail this test
 
     Returns a string with the result
         True - passes the test
         False - fails the test
 
     """
-    results = functionTest(function, CARMICHAEL)
+    results = function_tests(func, CARMICHAEL)
     status = "\nCarmichael Test:\n"
-    status += "[" + passTest(results) + "]: Carmichael"
+    status += "[" + pass_test(results) + "]: Carmichael"
 
     return status
 
 
-def isUniform(lower=2, upper=1000):
+def is_uniform(lower=2, upper=1000):
     """
     For all the fonction of pyprime, check if they generate the same
-    prime numbers as the isPrime function
+    prime numbers as the is_prime function
 
     Returns True or the results if False
 
     """
-    results = {'ref2':[], 'fermat':[], 'millerRabin':[]}
-    ref1 = p.findPrimes(lower, upper)
-    ref2 = p.genPrimes(upper)
-    fermat = p.findPrimes(lower, upper, p.fermat)
-    millerRabin = p.findPrimes(lower, upper, p.millerRabin)
+    results = {'ref2':[], 'fermat':[], 'miller_rabin':[]}
+    ref1 = p.find_primes(lower, upper)
+    ref2 = p.generate_primes(upper)
+    fermat = p.find_primes(lower, upper, p.fermat)
+    millerRabin = p.find_primes(lower, upper, p.miller_rabin)
 
-    #Testing if we have the same primes from ref1 in all other functions
+    # Testing if we have the same primes from ref1 in all other functions
     for n in ref1:
         if n not in ref2:
             results['ref2'].append(n)
         if n not in fermat:
             results['fermat'].append(n)
         if n not in millerRabin:
-            results['millerRabin'].append(n)
+            results['miller_rabin'].append(n)
 
-    #Making sure there's more detected primes than in ref1
+    # Making sure there's more detected primes than in ref1
     for key in results:
         results[key].append(len(results[key]))
 
@@ -109,9 +111,8 @@ def isUniform(lower=2, upper=1000):
     return True
 
 
-
-#### Sub fonctions to create the tests ####
-def functionTest(function, src):
+# -- Sub functions to create the tests -- #
+def function_tests(func, src):
     """
     Take a function and a source list of numbers to test on the function
 
@@ -120,12 +121,12 @@ def functionTest(function, src):
     """
     results = []
     for n in src:
-        results.append((n, function(n)))
+        results.append((n, func(n)))
 
     return results
 
 
-def passTest(results):
+def pass_test(results):
     """
     For Prime testing functions, in order to pass the test,
     the results should be a list of False
@@ -138,3 +139,12 @@ def passTest(results):
             return "FAIL"
 
     return " OK "
+
+
+def print_test_result(func):
+    file_path = tb.save(unit_test(func), "test")
+    for x in tb.read(file_path):
+        try:
+            print(x, end='')  # So there's no '\n' after each print
+        except SyntaxError:
+            print(x)

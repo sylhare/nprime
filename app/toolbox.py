@@ -8,7 +8,8 @@ Created on Mon 27 17:43:39 2017
 import time
 import os
 
-#### FILE ####
+
+# --- FILE --- #
 def save(string, name="prime"):
     """
     Write the string into a text file
@@ -31,22 +32,22 @@ def read(path, n=0):
 
     Return a list of string
     """
+    content = []
     with open(path, 'r') as file:
-        content = []
         content = file.readlines()
 
     return content[n:]
 
 
-#### TIME ####
-def timEx(function, *param):
+# --- TIME --- #
+def timex(func, *param):
     """
     Calculates the time a function takes to run
 
     Return the function's time
     """
     t = time.time()
-    function(*param)
+    func(*param)
     t = time.time()- t
 
     return t
