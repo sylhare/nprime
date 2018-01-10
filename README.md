@@ -1,4 +1,4 @@
-# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54)](https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/PyPrime&amp;utm_campaign=Badge_Grade) [![Ebert](https://ebertapp.io/github/Sylhare/PyPrime.svg)](https://ebertapp.io/github/Sylhare/PyPrime)
+# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54)](https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/PyPrime&amp;utm_campaign=Badge_Grade) 
 
 [![forthebadge](http://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/built-with-science.svg)](http://forthebadge.com)
 
@@ -61,8 +61,7 @@ Here are a bit of information to help understand some of the algorithms
   so the test is repeated t times.
 
 
-Strong Pseudoprime
--------------------
-A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a base `a` is an odd composite number `n` with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r) = -1(mod n)` for some `r = 0, 1, ..., s-1` </br>
+### Strong Pseudoprime
 
-
+A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a base `a` is an odd composite number `n` 
+with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r) = -1(mod n)` for some `r = 0, 1, ..., s-1` </br>
