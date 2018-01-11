@@ -9,6 +9,12 @@ from __future__ import print_function # To make the end='' works in the print()
 import app.pyprime as p
 import app.toolbox as tb
 
+# First primes that the function should succeed at finding
+FIRST_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
+
+# First non prime that the function should confirm as not prime
+FIRST_NOT_PRIMES = [1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28]
+
 # Carmichael number often trigger false positive for the fermat algorithm
 CARMICHAEL = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
 

@@ -18,18 +18,17 @@ Algorithm developped :
 
 - Language: Python **3.5.2** 
 - Package:
-	- Basic python packages were priviledged
-	- Matplotlib - graph and math
-	- Pylint - code quality checks
+	- Basic python packages were preferred
+	- Matplotlib v2.0 - graph and math
 
 #### Continuous integration
 
-Travis, Solano and Circle CI will automatically run the examples.py file in which there are a couple of tests from `unit_test.py`.
+Travis will be used to run the tests automatically.
 
 #### Code Quality
 
-It will also run [pylint](https://www.pylint.org/) on `toolbox.py `and `pyprime.py`.
-PyLint is also run by some other review tool integrated to this repo ([codacity](https://www.codacy.com/app/Sylhare/PyPrime/dashboard), [erbert](https://ebertapp.io/github/Sylhare/PyPrime), ...)
+Ensured with PEP-8 (for the language format) and [Pylint](https://www.pylint.org/) (for the code quality).
+PyLint is now only run by an other review tool integrated to this repo ([codacity](https://www.codacy.com/app/Sylhare/PyPrime/dashboard), [erbert](https://ebertapp.io/github/Sylhare/PyPrime), ...)
 
 ## Math
 

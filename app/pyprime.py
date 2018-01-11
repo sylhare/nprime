@@ -253,7 +253,7 @@ def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):
 
     plt.figure()
     plt.title('Ulam\'s sprial', loc='right')
-    plt.plot(*zip(*coord), 'yo', markersize=1)
+    plt.plot(*zip(*coord), 'w+', markersize=1)
     plt.plot(*zip(*pricoo), 'ko', markersize=2)
     plt.grid(True)
     plt.show()

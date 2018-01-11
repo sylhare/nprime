@@ -6,8 +6,7 @@ Created on Tue Mar 21 17:23:52 2017
 
 """
 import app.pyprime as p
-import test.unit_test as ut
-
+import test.custom_unit_test as ut
 
 
 def main():
