@@ -16,7 +16,7 @@ install: "pip install -r requirements.txt"
 
 # command to run tests
 script: 
-  - "python src/examples.py"
+  - "python test/test_pyprime.py"
   
 branches:
   only:
