@@ -9,11 +9,6 @@ from __future__ import print_function # To make the end='' works in the print()
 import app.pyprime as p
 import app.toolbox as tb
 
-# First primes that the function should succeed at finding
-FIRST_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
-
-# First non prime that the function should confirm as not prime
-FIRST_NOT_PRIMES = [1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28]
 
 # Carmichael number often trigger false positive for the fermat algorithm
 CARMICHAEL = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
@@ -29,10 +24,10 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  9: [91, 121, 671, 703, 1541, 1729]}
 
 
-# -- Testing functions -- #
-def unit_test(func):
+# -- custom unit test function -- #
+def custom_test(func):
     """
-    Perform all of the tests
+    Perform all of the tests of the test case
 
     Return a string with all of the results
 
@@ -47,6 +42,7 @@ def unit_test(func):
     return status
 
 
+# -- Testing functions -- #
 def pseudoprime_test(func):
     """
     Test the function on a couple of pseudo primes numbers
@@ -96,7 +92,7 @@ def is_uniform(lower=2, upper=1000):
     ref1 = p.find_primes(lower, upper)
     ref2 = p.generate_primes(upper)
     fermat = p.find_primes(lower, upper, p.fermat)
-    millerRabin = p.find_primes(lower, upper, p.miller_rabin)
+    miller_rabin = p.find_primes(lower, upper, p.miller_rabin)
 
     # Testing if we have the same primes from ref1 in all other functions
     for n in ref1:
@@ -104,7 +100,7 @@ def is_uniform(lower=2, upper=1000):
             results['ref2'].append(n)
         if n not in fermat:
             results['fermat'].append(n)
-        if n not in millerRabin:
+        if n not in miller_rabin:
             results['miller_rabin'].append(n)
 
     # Making sure there's more detected primes than in ref1
@@ -148,7 +144,7 @@ def pass_test(results):
 
 
 def print_test_result(func):
-    file_path = tb.save(unit_test(func), "test")
+    file_path = tb.save(custom_test(func), "test")
     for x in tb.read(file_path):
         try:
             print(x, end='')  # So there's no '\n' after each print

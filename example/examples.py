@@ -20,8 +20,8 @@ def main():
     print(p.generate_primes(7))
     print(p.find_primes(2, 7, p.fermat))
 
-    # Demo of the unit_test functions
-    print(ut.unit_test(p.is_prime))
+    # Demo of the custom_test functions
+    print(ut.custom_test(p.is_prime))
 
     # Demo of Graphical Prime functions
     p.sacks_plot()

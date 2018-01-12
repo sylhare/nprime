@@ -22,7 +22,6 @@ def is_prime(n):
     for i in range(2, int(pow(n, 0.5)) + 1):
         if n % i == 0:
             return False
-
     return True
 
 
@@ -140,12 +139,13 @@ def pyprime(n, func=is_prime):
 
     """
     # assert will trigger an error if the input is not correct
-    assert isinstance(n, int), "n should be an integer"
-
-    if n > 1:
-        return func(n)
+    if type(n) is int:
+        if n > 1:
+            return func(n)
+        else:
+            return False
     else:
-        return False
+        raise TypeError("n should be an integer")
 
 
 # Graphical Prime functions #
