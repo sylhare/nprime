@@ -20,3 +20,4 @@ script:
 
 after_success:
   - echo "Success!"
+  
