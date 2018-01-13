@@ -16,11 +16,7 @@ install: "pip install -r requirements.txt"
 
 # command to run tests
 script: 
-  - "python test/test_pyprime.py"
-  
-branches:
-  only:
-    - master
+  - "python pyprime/test/test_pyprime.py"
     
 after_success:
   - echo "Success!"
