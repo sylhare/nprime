@@ -6,5 +6,5 @@ setup(name='Pyprime',
       author='',
       author_email='',
       url='',
-      packages=find_packages(exclude=['app', 'tests*']),
+      packages=find_packages(exclude=['app', 'test']),
      )
