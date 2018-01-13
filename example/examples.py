@@ -5,7 +5,8 @@ Created on Tue Mar 21 17:23:52 2017
 @author: sylhare
 
 """
-from pyprime import app as p, test as ut
+import app as p
+from app import test as ut
 
 
 def main():

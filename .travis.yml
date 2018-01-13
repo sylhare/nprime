@@ -10,7 +10,6 @@ python:
   
 before_install:
 - "pip install -U pip"
-- "echo $PYTHONPATH"
 
 # command to install dependencies
 install: "pip install -r requirements.txt"

@@ -6,8 +6,8 @@ Created on Tue Feb 14 18:34:49 2017
 
 """
 from __future__ import print_function # To make the end='' works in the print()
-from pyprime import app as p
-import pyprime.app.toolbox as tb
+import app as p
+import app.toolbox as tb
 
 
 # Carmichael number often trigger false positive for the fermat algorithm
