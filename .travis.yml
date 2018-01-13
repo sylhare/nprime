@@ -16,7 +16,7 @@ install: "pip install -r requirements.txt"
 
 # command to run tests
 script: 
-  - "python app/test/test_pyprime.py"
+  - "python test/test_pyprime.py"
 
 after_success:
   - echo "Success!"
