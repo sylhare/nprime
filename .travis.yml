@@ -10,6 +10,7 @@ python:
   
 before_install:
 - "pip install -U pip"
+- "export PYTHONPATH=$PYTHONPATH:$(pwd)"
 
 # command to install dependencies
 install: "pip install -r requirements.txt"
@@ -18,9 +19,9 @@ install: "pip install -r requirements.txt"
 script: 
   - "python test/test_pyprime.py"
   
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
     
 after_success:
   - echo "Success!"
