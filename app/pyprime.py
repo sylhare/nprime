@@ -34,7 +34,7 @@ def fermat(n, t=10):
     Returns a boolean: True if n passes the test.
 
     """
-    for k in range(0, t):
+    for _ in range(0, t):
         a = random.randrange(1, n)
         x = pow(a, n-1, n) # (a^(n-1)) modulo n
 
@@ -71,7 +71,7 @@ def miller_rabin(n, t=10):
     for k in range(0, t):
         #  Step 2: test (a^d)^2^r ≡ 1 mod n for all r
         a = random.randrange(1, n)
-        for r in range(0, s):
+        for _ in range(0, s):
             x = pow(a, d * pow(2, s), n)
             if x == 1 or x == -1:
                 prime = True        # Should be true for all a
@@ -117,7 +117,8 @@ def find_primes(lower, upper, prime_test_function=is_prime):
     Returns a list of integer.
 
     """
-    assert 1 < lower and lower <= upper, "We should have 1 < lower < upper"
+    if 1 > lower >= upper:
+        raise ValueError("We should have 1 < lower < upper")
 
     primes = []
 
