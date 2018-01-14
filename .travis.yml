@@ -2,8 +2,8 @@ language: python
 
 sudo: false
 
-#notifications:
-#   email: false
+notifications:
+   email: false
     
 python:
   - "3.5"
