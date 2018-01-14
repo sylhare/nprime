@@ -2,15 +2,15 @@ language: python
 
 sudo: false
 
-#notifications:
-#   email: false
+notifications:
+   email: false
     
 python:
   - "3.5"
   
 before_install:
 - "pip install -U pip"
-- "export PYTHONPATH=$PYTHONPATH:$(pwd)"
+- "python setup.py install"
 
 # command to install dependencies
 install: "pip install -r requirements.txt"
