@@ -5,11 +5,15 @@ Created on Mon 27 17:43:39 2017
 @author: sylhare
 
 """
+import io
 import time
 import os
 
 
 # --- FILE --- #
+here = os.path.abspath(os.path.dirname(__file__))
+
+
 def save(string, name="prime"):
     """
     Write the string into a text file
@@ -37,6 +41,16 @@ def read(path, n=0):
         content = file.readlines()
 
     return content[n:]
+
+
+def read_advance(*filenames, **kwargs):
+    encoding = kwargs.get('encoding', 'utf-8')
+    sep = kwargs.get('sep', '\n')
+    buffer = []
+    for filename in filenames:
+        with io.open(filename, encoding=encoding) as f:
+            buffer.append(f.read())
+    return sep.join(buffer)
 
 
 # --- TIME --- #
