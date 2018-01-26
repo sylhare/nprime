@@ -6,19 +6,21 @@ notifications:
    email: false
     
 python:
-  - "3.5"
+  - 3.5
   
 before_install:
-- "pip install -U pip"
-# - "python setup.py install"
+  - pip install -U pip
+#  - python setup.py install
 
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install:
+  - pip install -r requirements.txt
+#  - travis_retry python setup.py develop
 
 # command to run tests
-script: 
-  - "python test/test_pyprime.py"
-  - "coverage run test/test_pyprime.py"
+script:
+  - python tests/test_pyprime.py
+  - coverage run tests/test_pyprime.py
   
 #branches:
 #  only:

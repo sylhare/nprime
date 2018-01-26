@@ -5,8 +5,8 @@ Created on Tue Mar 21 17:23:52 2017
 @author: sylhare
 
 """
-import app.pyprime as p
-import test.custom_unit_test as ut
+import pyprime as p
+from tests import custom_unit_test as ut
 
 
 def main():

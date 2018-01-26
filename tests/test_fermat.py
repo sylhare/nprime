@@ -1,6 +1,5 @@
 import unittest
-import app.pyprime as p
-import test.test_pyprime as t
+from pyprime import pyprime as p
 
 
 class TestFermat(unittest.TestCase):

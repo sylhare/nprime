@@ -5,7 +5,7 @@ import sys
 
 import pyprime
 
-long_description = read_advance('README.md')
+LONG_DESCRIPTION = read_advance('README.md')
 
 
 class PyTest(TestCommand):
@@ -19,10 +19,11 @@ class PyTest(TestCommand):
         errcode = pytest.main(self.test_args)
         sys.exit(errcode)
 
+
 setup(name='pyprime',
       version='0.1.1',
       description='Python library for primes',
-      long_description=long_description,
+      long_description=LONG_DESCRIPTION,
       author='sylhare',
       author_email='sylhare@outlook.com',
       url='https://github.com/Sylhare/PyPrime',
@@ -32,7 +33,8 @@ setup(name='pyprime',
       license='GNU',
       packages=find_packages(),
       platforms='any',
-      test_suite='.pyprime.test.test_pyprime',
+      zip_safe=False,
+      test_suite='.pyprime.tests.test_pyprime',
       classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",

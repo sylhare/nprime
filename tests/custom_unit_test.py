@@ -6,8 +6,8 @@ Created on Tue Feb 14 18:34:49 2017
 
 """
 from __future__ import print_function # To make the end='' works in the print()
-import app.pyprime as p
-import app.toolbox as tb
+from pyprime import pyprime as p
+import toolbox as tb
 
 
 # Carmichael number often trigger false positive for the fermat algorithm
@@ -24,10 +24,10 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  9: [91, 121, 671, 703, 1541, 1729]}
 
 
-# -- custom unit test function -- #
+# -- custom unit tests function -- #
 def custom_test(func):
     """
-    Perform all of the tests of the test case
+    Perform all of the tests of the tests case
 
     Return a string with all of the results
 
@@ -48,8 +48,8 @@ def pseudoprime_test(func):
     Test the function on a couple of pseudo primes numbers
 
     Returns a string with all the results
-        True - passes the test
-        False - fails the test
+        True - passes the tests
+        False - fails the tests
 
     """
     results = {}
@@ -66,11 +66,11 @@ def pseudoprime_test(func):
 def carmicael_test(func):
     """
     Test the function on the carmichael numbers
-    Fermat and miller_rabin usually fail this test
+    Fermat and miller_rabin usually fail this tests
 
     Returns a string with the result
-        True - passes the test
-        False - fails the test
+        True - passes the tests
+        False - fails the tests
 
     """
     results = function_tests(func, CARMICHAEL)
@@ -116,7 +116,7 @@ def is_uniform(lower=2, upper=1000):
 # -- Sub functions to create the tests -- #
 def function_tests(func, src):
     """
-    Take a function and a source list of numbers to test on the function
+    Take a function and a source list of numbers to tests on the function
 
     Returns a list of tuples (the number tested, it's own result)
 
@@ -130,10 +130,10 @@ def function_tests(func, src):
 
 def pass_test(results):
     """
-    For Prime testing functions, in order to pass the test,
+    For Prime testing functions, in order to pass the tests,
     the results should be a list of False
 
-    Return OK when pass the test, FAIL otherwise
+    Return OK when pass the tests, FAIL otherwise
 
     """
     for n in results:
@@ -144,7 +144,7 @@ def pass_test(results):
 
 
 def print_test_result(func):
-    file_path = tb.save(custom_test(func), "test")
+    file_path = tb.save(custom_test(func), "tests")
     for x in tb.read(file_path):
         try:
             print(x, end='')  # So there's no '\n' after each print

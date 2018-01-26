@@ -5,8 +5,12 @@ Created on Mon 27 17:43:39 2017
 @author: sylhare
 
 """
+import codecs
 import time
+import io
 import os
+
+HERE = os.path.abspath(os.path.dirname(__file__))
 
 
 # --- FILE --- #
@@ -37,6 +41,23 @@ def read(path, n=0):
         content = file.readlines()
 
     return content[n:]
+
+
+def read_with_codecs(*parts):
+    """Return multiple read calls to different readable objects as a single
+    string."""
+    # intentionally *not* adding an encoding option to open
+    return codecs.open(os.path.join(HERE, *parts), 'r').read()
+
+
+def read_advance(*filenames, **kwargs):
+    encoding = kwargs.get('encoding', 'utf-8')
+    sep = kwargs.get('sep', '\n')
+    buf = []
+    for filename in filenames:
+        with io.open(filename, encoding=encoding) as f:
+            buf.append(f.read())
+    return sep.join(buf)
 
 
 # --- TIME --- #

@@ -1,5 +1,5 @@
 import unittest
-import app.pyprime as p
+from pyprime import pyprime as p
 
 # First primes that the function should succeed at finding
 FIRST_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]

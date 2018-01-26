@@ -1,4 +1,6 @@
 matplotlib
 setuptools
 codecov
-pytest
+coverage==4.1
+pytest==2.9.2
+pytest-cov==2.3.0

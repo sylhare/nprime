@@ -31,7 +31,7 @@ def fermat(n, t=10):
     Taking "t" randoms "a" and testing the Fermat's theorem on number "n" > 1
 
     Prime probability is right is 1 - 1/(2^t)
-    Returns a boolean: True if n passes the test.
+    Returns a boolean: True if n passes the tests.
 
     """
     for _ in range(0, t):
@@ -51,9 +51,9 @@ def miller_rabin(n, t=10):
     """
     A probabilistic algorithm which determines
     whether a given number (n > 1) is prime or not.
-    The miller_rabin test is repeated t times to get more accurate results.
+    The miller_rabin tests is repeated t times to get more accurate results.
 
-    Returns a boolean: True if n passes the test
+    Returns a boolean: True if n passes the tests
 
     """
     if n == 2:
@@ -111,7 +111,7 @@ def find_primes(lower, upper, prime_test_function=is_prime):
     Find the number of primes between lower and upper range.
     We should have 1 < lower < upper.
 
-    primeTest determines the function used to test the primality of the number
+    primeTest determines the function used to tests the primality of the number
     primeTest is by default is_prime() and should return a boolean
 
     Returns a list of integer.
@@ -132,7 +132,7 @@ def find_primes(lower, upper, prime_test_function=is_prime):
 # Other functions #
 def pyprime(n, func=is_prime):
     """
-    Function that will encapsulate and test n before doing function(n)
+    Function that will encapsulate and tests n before doing function(n)
     It is mostly to encapsulate the primality testing functions
     Basically making sure that:
         n is a number
@@ -154,7 +154,7 @@ def sacks(upper=1000, prime_test_function=pyprime):
     """
     Generate the sack diagram values up to a set limit (upper)
 
-    primeTest determines the function used to test the primality of the number
+    primeTest determines the function used to tests the primality of the number
     primeTest is by default is_prime() and should return a boolean
 
     Returns tho lists:
@@ -201,7 +201,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):
     edge (edge>3) determines the polygone size by the number of edges, 3 triangle, 4 rectangle, 5 Pentagone ...
     For odd number of edge, the spiral gets misaligned
 
-    primeTest determines the function used to test the primality of the number
+    primeTest determines the function used to tests the primality of the number
     primeTest is by default is_prime() and should return a boolean
 
     Returns tho lists:
