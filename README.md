@@ -1,12 +1,13 @@
-# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54)](https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/PyPrime&amp;utm_campaign=Badge_Grade) 
+# PyPrime  [![Build Status](https://travis-ci.org/Sylhare/PyPrime.svg?branch=master)](https://travis-ci.org/Sylhare/PyPrime) [![codecov](https://codecov.io/gh/Sylhare/PyPrime/branch/master/graph/badge.svg)](https://codecov.io/gh/Sylhare/PyPrime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54)](https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/PyPrime&amp;utm_campaign=Badge_Grade) 
 
 [![forthebadge](http://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/built-with-science.svg)](http://forthebadge.com)
 
+
 ## Introduction
 
-Some algorythm on prime numbers. 
+Some algorithm on prime numbers. 
 
-Algorithm developped : 
+Algorithm developed : 
 
 - Native one (prime through divisions)
 - Eratosthenes sieve based
