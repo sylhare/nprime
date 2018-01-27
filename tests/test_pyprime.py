@@ -1,5 +1,6 @@
 import unittest
-from pyprime import pyprime as p
+
+from app import pyprime
 
 # First primes that the function should succeed at finding
 FIRST_PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
@@ -41,46 +42,46 @@ class TestPyPrime(unittest.TestCase):
 
     def test_is_zero_not_prime(self):
         """Is zero correctly determined not to be prime?"""
-        self.assertFalse(p.pyprime(0))
+        self.assertFalse(pyprime.pyprime(0))
 
     def test_is_two_prime(self):
         """Is two correctly determined to be prime?"""
-        self.assertTrue(p.pyprime(2), msg='Two is prime!')
+        self.assertTrue(pyprime.pyprime(2), msg='Two is prime!')
 
     def test_is_four_not_prime(self):
         """Is four correctly determined not to be prime?"""
-        self.assertFalse(p.pyprime(4), msg='Four is not prime!')
+        self.assertFalse(pyprime.pyprime(4), msg='Four is not prime!')
 
     def test_negative_number(self):
         """Is a negative number correctly determined not to be prime?"""
         for index in range(-1, -10, -1):
-            self.assertFalse(p.pyprime(index), msg='{} should not be determined to be prime'.format(index))
+            self.assertFalse(pyprime.pyprime(index), msg='{} should not be determined to be prime'.format(index))
 
     def test_first_primes_prime(self):
         for n in FIRST_PRIMES:
-            self.assertTrue(p.pyprime(n))
+            self.assertTrue(pyprime.pyprime(n))
 
     def test_first_non_primes_not_prime(self):
         for n in FIRST_NOT_PRIMES:
-            self.assertFalse(p.pyprime(n))
+            self.assertFalse(pyprime.pyprime(n))
 
     def test_pseudoprimes_not_prime(self):
         for _, value in PSEUDO_PRIMES.items():
             for n in value:
-                self.assertFalse(p.pyprime(n))
+                self.assertFalse(pyprime.pyprime(n))
 
     def test_carmichael_numbers_not_prime(self):
         for n in CARMICHAEL:
-            self.assertFalse(p.pyprime(n))
+            self.assertFalse(pyprime.pyprime(n))
 
     def test_float_return_error_message(self):
-        self.assertRaises(TypeError, p.pyprime, 3.8)
+        self.assertRaises(TypeError, pyprime.pyprime, 3.8)
 
     def test_bool_return_error_message(self):
-        self.assertRaises(TypeError, p.pyprime, True)
+        self.assertRaises(TypeError, pyprime.pyprime, True)
 
     def test_string_return_error_message(self):
-        self.assertRaises(TypeError, p.pyprime, "three")
+        self.assertRaises(TypeError, pyprime.pyprime, "three")
 
     def tearDown(self):
         pass

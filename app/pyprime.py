@@ -6,6 +6,7 @@ Created on Fri Jan  6 17:16:46 2017
 
 """
 
+
 import random
 import math
 import matplotlib.pyplot as plt

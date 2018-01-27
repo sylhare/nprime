@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
-from pyprime.toolbox import read_advance
+from app.toolbox import read_advance
 import sys
 
-import pyprime
+import app
 
 LONG_DESCRIPTION = read_advance('README.md')
 
@@ -20,7 +20,7 @@ class PyTest(TestCommand):
         sys.exit(errcode)
 
 
-setup(name='pyprime',
+setup(name='app',
       version='0.1.1',
       description='Python library for primes',
       long_description=LONG_DESCRIPTION,
@@ -34,7 +34,7 @@ setup(name='pyprime',
       packages=find_packages(),
       platforms='any',
       zip_safe=False,
-      test_suite='.pyprime.tests.test_pyprime',
+      test_suite='.app.tests.test_pyprime',
       classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",

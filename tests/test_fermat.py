@@ -1,5 +1,5 @@
 import unittest
-from pyprime import pyprime as p
+from app import pyprime as p
 
 
 class TestFermat(unittest.TestCase):
@@ -54,6 +54,7 @@ class TestFermat(unittest.TestCase):
 
     def tearDown(self):
         pass
+
 
 if __name__ == '__main__':
     unittest.main()

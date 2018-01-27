@@ -6,8 +6,8 @@ Created on Tue Feb 14 18:34:49 2017
 
 """
 from __future__ import print_function # To make the end='' works in the print()
-from pyprime import pyprime as p
-import toolbox as tb
+from app import pyprime as p
+from app import toolbox as tb
 
 
 # Carmichael number often trigger false positive for the fermat algorithm
@@ -82,7 +82,7 @@ def carmicael_test(func):
 
 def is_uniform(lower=2, upper=1000):
     """
-    For all the fonction of pyprime, check if they generate the same
+    For all the fonction of app, check if they generate the same
     prime numbers as the is_prime function
 
     Returns True or the results if False
