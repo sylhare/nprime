@@ -34,7 +34,7 @@ setup(name='app',
       packages=find_packages(),
       platforms='any',
       zip_safe=False,
-      test_suite='.app.tests.test_pyprime',
+      test_suite='tests.test_pyprime',
       classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
