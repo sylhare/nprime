@@ -6,7 +6,7 @@ Created on Tue Mar 21 17:23:52 2017
 
 """
 
-from app import pyprime as p
+from nprime import pyprime as p
 from tests import custom_unit_test as ut
 
 

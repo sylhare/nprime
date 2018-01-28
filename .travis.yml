@@ -22,7 +22,7 @@ script:
 #  - python -m unittest tests.test_pyprime  # Basic way to see if the test are working
   - coverage run -m unittest tests.test_pyprime
 #  - coverage run -m unittest discover -s tests/ # to run all tests of test folder
-  - coverage run --source=app setup.py test
+#  - coverage run --source=app setup.py test
 #  - coverage run --source setup.py -m py.test # to be run with pytest
   - coverage report -m
 

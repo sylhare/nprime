@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
-from app.toolbox import read_advance
+from nprime.toolbox import read_advance
 import sys
 
-import app
+import nprime
 
 LONG_DESCRIPTION = read_advance('README.md')
 
