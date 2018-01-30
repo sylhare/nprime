@@ -1,5 +1,7 @@
-nprime |PyPI version| |Build Status| |codecov| |Codacy Badge|
-=============================================================
+nprime
+======
+
+|PyPI version| |Build Status| |codecov| |Codacy Badge|
 
 Installation
 ------------

@@ -9,10 +9,10 @@ notifications:
 addons:
   apt_packages:
     - pandoc
-    
+
 python:
   - 3.5
-  
+
 before_install:
   - pip install -U pip
 #  - python -c \"from pypandoc import download_pandoc as dp; dp(targetfolder='~/bin/');\" # To install pandoc
@@ -35,12 +35,16 @@ script:
 #  - coverage run --source setup.py -m py.test # to be run with pytest
   - coverage report -m
 
-
-  
 #branches:
 #  only:
 #    - master
-    
+
+deploy:
+  provider: pypi
+  user: sylhare
+  password:
+    secure: TjqnI1YA8s+9ObCGhPo+ZxpHclrOqZlI0GGU8IGpnWdevoYJugVTgjQ8rohGTG74Ned82Lha/lT5zxBdk5cV4GwrnlyTIEy6V+XnLkxGtIxD8pNz+LimQOcdeE8ubkDkGGw4uIaX6mgbzZNLIbwAJc5B3avU6bDiLHENCGM2kLV9QiYN1zkLP1p3Cqs40PejqOPCaShSqcDF2mRrb65gLf41twv5LuPOiH34z2oJBwi3P1qqJPVdbWLHoB3qFc9sScqmxrvC9wCCABB7lcUFF46fLP8WttROXF9P02XfkE3pECi4DpsQXCEhBEVIaJMYZmBpNd3HKZBMVHY63zDihtmVE3IUvWimhWBJ4DyPw2DpMMDgMw2KkLc4PpNhKNxj2/ZSJMQtSoQG5mPzhBLPuosfulDhfSDyACTQdZnw2tz5ufxKyaAxXiJ6ZOcjeA9EiWLdJJ3uL2ytNYnekiotQZUXi7lgnjoSaJcqmRrp6HCTahKGDctffOatJICjgtD3CJyeXlZqD+X9mDnodZN38V9ALv26uzjoT7RExgrDUFfsAvOXAQH2P31mpsM3UXktBf7AQ4oMAbMf3gbDGHfP8c2eI1me//efoOd3hlUGRNMrgA6XXSuMuGENHuCoz6aZL2oNlZ9sEGhjdU0V4NCxJnfhTIFOxjxMS+LjkkcI0l0=
+
 after_success:
   - pip install nprime
   - codecov
