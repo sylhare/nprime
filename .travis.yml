@@ -4,12 +4,19 @@ sudo: false
 
 notifications:
    email: false
+
+#For Pypandoc can work, pandoc needs to be installed
+addons:
+  apt_packages:
+    - pandoc
     
 python:
   - 3.5
   
 before_install:
   - pip install -U pip
+#  - python -c \"from pypandoc import download_pandoc as dp; dp(targetfolder='~/bin/');\" # To install pandoc
+#  - export PATH=~/bin:$PATH
 
 # command to install dependencies
 install:

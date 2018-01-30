@@ -247,7 +247,7 @@ def pass_test(results):
 
 def print_test_result(func):
     file_path = tb.save(custom_test(func), "tests")
-    for x in tb.read(file_path):
+    for x in tb.read_into_lines_list(file_path):
         try:
             print(x, end='')  # So there's no '\n' after each print
         except SyntaxError:

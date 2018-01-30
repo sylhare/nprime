@@ -10,7 +10,7 @@ import time
 import io
 import os
 import pypandoc
-import sys
+
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -31,7 +31,7 @@ def save(string, name="prime"):
     return os.path.realpath(file.name)
 
 
-def read(path, n=0):
+def read_into_lines_list(path, n=0):
     """
     Take a file and store all of its content into a list
     The n allow to skip the n number of lines
@@ -46,7 +46,7 @@ def read(path, n=0):
 
 
 def read_with_codecs(*parts):
-    """Return multiple read calls to different readable objects as a single
+    """Return multiple read_into_lines_list calls to different readable objects as a single
     string."""
     # intentionally *not* adding an encoding option to open
     return codecs.open(os.path.join(HERE, *parts), 'r').read()
@@ -78,5 +78,6 @@ def timex(func, *param):
 
 def convert(markdowm_filepath):
     """Convert a Markdown file to a reStructuredText file with the pypandoc"""
-    output = pypandoc.convert(markdowm_filepath, 'rst', outputfile="README.rst")
+    pypandoc.convert(markdowm_filepath, 'rst', outputfile="README.rst")
+    output = pypandoc.convert(markdowm_filepath, 'rst')
     return output
