@@ -29,7 +29,7 @@ install:
 # command to run tests
 script:
 #  - python -m unittest tests.test_pyprime  # Basic way to see if the test are working
-  - coverage run -m unittest tests.test_pyprime
+  - coverage run --source=nprime -m unittest tests.test_pyprime
 #  - coverage run -m unittest discover -s tests/ # to run all tests of test folder
 #  - coverage run --source=app setup.py test
 #  - coverage run --source setup.py -m py.test # to be run with pytest
@@ -43,7 +43,7 @@ deploy:
   provider: pypi
   user: sylhare
   password:
-    secure: TjqnI1YA8s+9ObCGhPo+ZxpHclrOqZlI0GGU8IGpnWdevoYJugVTgjQ8rohGTG74Ned82Lha/lT5zxBdk5cV4GwrnlyTIEy6V+XnLkxGtIxD8pNz+LimQOcdeE8ubkDkGGw4uIaX6mgbzZNLIbwAJc5B3avU6bDiLHENCGM2kLV9QiYN1zkLP1p3Cqs40PejqOPCaShSqcDF2mRrb65gLf41twv5LuPOiH34z2oJBwi3P1qqJPVdbWLHoB3qFc9sScqmxrvC9wCCABB7lcUFF46fLP8WttROXF9P02XfkE3pECi4DpsQXCEhBEVIaJMYZmBpNd3HKZBMVHY63zDihtmVE3IUvWimhWBJ4DyPw2DpMMDgMw2KkLc4PpNhKNxj2/ZSJMQtSoQG5mPzhBLPuosfulDhfSDyACTQdZnw2tz5ufxKyaAxXiJ6ZOcjeA9EiWLdJJ3uL2ytNYnekiotQZUXi7lgnjoSaJcqmRrp6HCTahKGDctffOatJICjgtD3CJyeXlZqD+X9mDnodZN38V9ALv26uzjoT7RExgrDUFfsAvOXAQH2P31mpsM3UXktBf7AQ4oMAbMf3gbDGHfP8c2eI1me//efoOd3hlUGRNMrgA6XXSuMuGENHuCoz6aZL2oNlZ9sEGhjdU0V4NCxJnfhTIFOxjxMS+LjkkcI0l0=
+    secure: h60Fn0vqYbAQP24h/AdTKoqxxgtSrHPtZaRo5r7g87HQbPie741ZvB2olNYm4RjRKLaFgA0gZdCsPmN1LhXEIfVtKZGql7E1Rb1feKCMu+uXnQ0yC5kd+JGuhiceZCR6k8sBsZplDmHXeHDG1ZQT0FsorHniM1uxxIGhfZuB62F23dGR7Go+j62tnLD779UzegaNn6vcWFfPoWwQRVhSONHaGzP+2QNxzRhDSQ8Vo2ABYPIQCueTHsdhkaDS38hzMY7dSBRRkxRLMDXzVs4ZxU4pb0hkvoHbGzpkdiCq5QR94HxuWqwxIWD4z0PkFL/bGG9AEb3QLbvgJgvCt+6Y/ZaPG1IP/4gqDr8GaZ1YbjoSpa6AZd4U2usm2gNFwyQnINkk2kXgj++3pcLB4K6VnGf8jdM3JNGVsneGanSkcXtfJtOFlyfKVcvEbJ9/AlsLr/3ZmfSaGTa4/dfBEnOEAN7MkQCGVuPLmc9E8mzW4evTmICe8nr2so9HcQnFhXnvlWTc5mc/j3xnvp6PKmewQQCO98LAebLvbugM9qFUokIk1bmsyexZC66kJV1ksDQlPRXrVSsLNf/9mYl1MNtOykDr5gr3arTYD3iPui798ZUzNL2i3tiAakMP0WAlsgPHKpvCnCeaPu1oWlEp6i2VA5AXQ1c3LQ/5MWWcIXQ1QcA=
 
 after_success:
   - pip install nprime
