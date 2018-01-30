@@ -9,6 +9,8 @@ import codecs
 import time
 import io
 import os
+import pypandoc
+import sys
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -72,3 +74,9 @@ def timex(func, *param):
     t = time.time()- t
 
     return t
+
+
+def convert(markdowm_filepath):
+    """Convert a Markdown file to a reStructuredText file with the pypandoc"""
+    output = pypandoc.convert(markdowm_filepath, 'rst')
+    return output

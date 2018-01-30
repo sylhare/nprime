@@ -1,27 +1,12 @@
 from setuptools import setup, find_packages
-from setuptools.command.test import test as TestCommand
 from nprime.toolbox import read_advance
-import sys
-
-import nprime
-
-LONG_DESCRIPTION = read_advance('README.md')
+from nprime.toolbox import convert
 
 
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-        errcode = pytest.main(self.test_args)
-        sys.exit(errcode)
-
+LONG_DESCRIPTION = convert("README.md")
 
 setup(name='nprime',
-      version='0.0.1',
+      version='0.0.2',
       description='Python library for primes',
       long_description=LONG_DESCRIPTION,
       author='sylhare',

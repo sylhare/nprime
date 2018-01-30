@@ -28,11 +28,11 @@ Algorithm developed :
 	- Basic python packages were preferred
 	- Matplotlib v2.0 - graph and math
 
-#### Continuous integration
+### Continuous integration
 
 Travis will be used to run the tests automatically.
 
-#### Code Quality
+### Code Quality
 
 Ensured with PEP-8 (for the language format) and [Pylint](https://www.pylint.org/) (for the code quality).
 PyLint is now only run by an other review tool integrated to this repo ([codacity](https://www.codacy.com/app/Sylhare/PyPrime/dashboard), [erbert](https://ebertapp.io/github/Sylhare/PyPrime), ...)

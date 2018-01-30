@@ -33,5 +33,6 @@ script:
 #    - master
     
 after_success:
+  - pip install nprime
   - codecov
   - echo "Success!"
