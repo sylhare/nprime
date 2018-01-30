@@ -1,8 +1,6 @@
 nprime |PyPI version| |Build Status| |codecov| |Codacy Badge|
 =============================================================
 
-|forthebadge| |forthebadge|
-
 Installation
 ------------
 
@@ -95,13 +93,9 @@ for some ``r = 0, 1, ..., s-1``
 
 .. |PyPI version| image:: https://badge.fury.io/py/nprime.svg
    :target: https://badge.fury.io/py/nprime
-.. |Build Status| image:: https://travis-ci.org/Sylhare/PyPrime.svg?branch=master
-   :target: https://travis-ci.org/Sylhare/PyPrime
+.. |Build Status| image:: https://travis-ci.org/Sylhare/nprime.svg?branch=master
+   :target: https://travis-ci.org/Sylhare/nprime
 .. |codecov| image:: https://codecov.io/gh/Sylhare/PyPrime/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/Sylhare/PyPrime
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/e5a9dd6a55fb4709becbb84b8c538d54
    :target: https://www.codacy.com/app/Sylhare/PyPrime?utm_source=github.com&utm_medium=referral&utm_content=Sylhare/PyPrime&utm_campaign=Badge_Grade
-.. |forthebadge| image:: http://forthebadge.com/images/badges/made-with-python.svg
-   :target: http://forthebadge.com
-.. |forthebadge| image:: http://forthebadge.com/images/badges/built-with-science.svg
-   :target: http://forthebadge.com

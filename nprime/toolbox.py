@@ -78,5 +78,5 @@ def timex(func, *param):
 
 def convert(markdowm_filepath):
     """Convert a Markdown file to a reStructuredText file with the pypandoc"""
-    output = pypandoc.convert(markdowm_filepath, 'rst')
+    output = pypandoc.convert(markdowm_filepath, 'rst', outputfile="README.rst")
     return output

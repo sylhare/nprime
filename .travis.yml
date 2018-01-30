@@ -10,11 +10,13 @@ python:
   
 before_install:
   - pip install -U pip
-  - python setup.py install
 
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - python setup.py install
+#  - python setup.py check --restructuredtext -s  # # Checking readme.rst formatting
+#  - python setup.py checkdocs  # Checking readme.rst formatting
 #  - travis_retry python setup.py develop
 
 # command to run tests
