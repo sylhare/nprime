@@ -26,6 +26,14 @@ def is_prime(n):
     return True
 
 
+def eratosthenes(n):
+    """
+    :return: a boolean, True if n is prime
+    """
+
+    return False
+
+
 def fermat(n, t=10):
     """
     Probabilistic algorithm

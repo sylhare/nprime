@@ -46,7 +46,7 @@ def read_into_lines_list(path, n=0):
 
 
 def read_with_codecs(*parts):
-    """Return multiple read_into_lines_list calls to different readable objects as a single
+    """Return multiple read calls to different readable objects as a single
     string."""
     # intentionally *not* adding an encoding option to open
     return codecs.open(os.path.join(HERE, *parts), 'r').read()
@@ -76,8 +76,13 @@ def timex(func, *param):
     return t
 
 
-def convert(markdowm_filepath):
+def convert(markdown_path):
     """Convert a Markdown file to a reStructuredText file with the pypandoc"""
-    pypandoc.convert(markdowm_filepath, 'rst', outputfile="README.rst")
-    output = pypandoc.convert(markdowm_filepath, 'rst')
+    try:
+        import pypandoc
+        output = pypandoc.convert(markdown_path, 'rst')
+        # pypandoc.convert(markdown_path, 'rst', outputfile="README.rst") # Create the rst file
+    except(IOError, ImportError):
+        output = open(markdown_path).read()
+
     return output
