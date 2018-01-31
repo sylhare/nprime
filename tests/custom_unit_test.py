@@ -246,6 +246,10 @@ def pass_test(results):
 
 
 def print_test_result(func):
+    """
+
+    :param func:
+    """
     file_path = tb.save(custom_test(func), "tests")
     for x in tb.read_into_lines_list(file_path):
         try:

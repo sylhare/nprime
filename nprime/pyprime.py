@@ -6,7 +6,6 @@ Created on Fri Jan  6 17:16:46 2017
 
 """
 
-
 import random
 import math
 import matplotlib.pyplot as plt
@@ -45,10 +44,10 @@ def fermat(n, t=10):
     """
     for _ in range(0, t):
         a = random.randrange(1, n)
-        x = pow(a, n-1, n) # (a^(n-1)) modulo n
+        x = pow(a, n - 1, n)  # (a^(n-1)) modulo n
 
         if x == 1:
-            prime = True    # /!\ Probable prime
+            prime = True  # /!\ Probable prime
         else:
             prime = False
             break
@@ -66,15 +65,15 @@ def miller_rabin(n, t=10):
 
     """
     if n == 2:
-        prime = True # To normalize and make the algorythm works with 2
+        prime = True  # To normalize and make the algorythm works with 2
     else:
-        prime = False # All other even number will output false
+        prime = False  # All other even number will output false
 
     # Step 1: Have n-1 = 2^s * m (with m odd, and s number of twos factored)
     d = n - 1
     s = 0
     while d % 2 == 0:
-        d //= 2 # d equals to quotient of d divided 2
+        d //= 2  # d equals to quotient of d divided 2
         s += 1  # s > 1 when n is odd
 
     for k in range(0, t):
@@ -83,11 +82,11 @@ def miller_rabin(n, t=10):
         for _ in range(0, s):
             x = pow(a, d * pow(2, s), n)
             if x == 1 or x == -1:
-                prime = True        # Should be true for all a
+                prime = True  # Should be true for all a
             else:
-                return False        # When not true, it's not prime for sure
+                return False  # When not true, it's not prime for sure
 
-    return prime     # /!\ Probable prime
+    return prime  # /!\ Probable prime
 
 
 # Prime generating functions #
@@ -104,11 +103,11 @@ def generate_primes(upper=0):
     for n in range(3, upper + 1):
         k = 0
 
-    # We only check if n is divided by the previous primes
-        while primes[k] <= pow(n, 0.5) and n%primes[k] != 0:
+        # We only check if n is divided by the previous primes
+        while primes[k] <= pow(n, 0.5) and n % primes[k] != 0:
             k += 1
 
-    # if a number has no dividers, last prime[k] of loop is over n's square root
+        # if a number has no dividers, last prime[k] of loop is over n's square root
         if pow(n, 0.5) < primes[k]:
             primes.append(n)
 
@@ -185,6 +184,7 @@ def sacks(upper=1000, prime_test_function=pyprime):
     return coord, pricoo
 
 
+# noinspection PyCompatibility
 def sacks_plot(upper=10000, prime_test_function=pyprime):
     """
     Render the sacks_plot from the sacks function.
@@ -198,6 +198,7 @@ def sacks_plot(upper=10000, prime_test_function=pyprime):
     plt.figure()
     ax = plt.subplot(111, projection='polar', facecolor='white')
     plt.title('Sacks\' Diagram', loc='right')
+    # noinspection PyCompatibility
     ax.plot(*zip(*coord), "w+", markersize=1)
     ax.plot(*zip(*pricoo), "ko", markersize=2)
     plt.show()
@@ -218,23 +219,23 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):
         2- The prime polar coordinates: pricoo
 
     """
-    theta = 0                       # Keep track of the spiral rotation
-    psi = math.radians(360/edge)    # Angle of the polygone's corner
+    theta = 0  # Keep track of the spiral rotation
+    psi = math.radians(360 / edge)  # Angle of the polygone's corner
 
-    turn = 3                        # Threshold that indicates to turn at the end of each edge's length
-    length = 0                      # length of the edge, gets bigger as it spirals
-    spiral = 2                      # Threshold that indicates when to increase the length of an edge
-    spiral_increment = int(edge/2)  # when the edge length has to go up to spiral
+    turn = 3  # Threshold that indicates to turn at the end of each edge's length
+    length = 0  # length of the edge, gets bigger as it spirals
+    spiral = 2  # Threshold that indicates when to increase the length of an edge
+    spiral_increment = int(edge / 2)  # when the edge length has to go up to spiral
 
-    coord = [(0, 0)]                # Other numbers' coordinates
-    pricoo = []                     # Primes' coordinates
+    coord = [(0, 0)]  # Other numbers' coordinates
+    pricoo = []  # Primes' coordinates
     x = 0
     y = 0
 
     for i in range(2, upper):
         if i == spiral:
             length += 1
-            spiral = length * spiral_increment  + i
+            spiral = length * spiral_increment + i
 
         if i == turn:
             theta += psi

@@ -6,11 +6,9 @@ Created on Mon 27 17:43:39 2017
 
 """
 import codecs
-import time
 import io
 import os
-import pypandoc
-
+import time
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -24,7 +22,7 @@ def save(string, name="prime"):
     """
     os.getcwd()
 
-    file = open(str(name) +  "_" + str(time.strftime('%Y-%m-%d')) + '.txt', 'w')
+    file = open(str(name) + "_" + str(time.strftime('%Y-%m-%d')) + '.txt', 'w')
     file.write(string)
     file.close()
 
@@ -53,6 +51,12 @@ def read_with_codecs(*parts):
 
 
 def read_advance(*filenames, **kwargs):
+    """
+
+    :param filenames:
+    :param kwargs:
+    :return:
+    """
     encoding = kwargs.get('encoding', 'utf-8')
     sep = kwargs.get('sep', '\n')
     buf = []
@@ -71,7 +75,7 @@ def timex(func, *param):
     """
     t = time.time()
     func(*param)
-    t = time.time()- t
+    t = time.time() - t
 
     return t
 

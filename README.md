@@ -49,7 +49,7 @@ Here are a bit of information to help understand some of the algorithms
 
     a ≡ 0 (mod n) <-> a = kn <-> "a" is divisible by "n" 
 
-### Fermart's Theorem
+### Fermat's Theorem
 
  if `n` is prime then `∀ a ∈[1, ..., n-1]`
 
