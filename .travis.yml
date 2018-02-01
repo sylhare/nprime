@@ -34,9 +34,6 @@ script:
   - coverage run --source=nprime -m unittest tests.test_pyprime
   - coverage xml # For Codacy
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
 deploy:
   provider: pypi
   user: sylhare
@@ -45,5 +42,6 @@ deploy:
 
 after_success:
   - pip install nprime
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - codecov
   - python-codacy-coverage -r coverage.xml
