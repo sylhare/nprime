@@ -126,6 +126,20 @@ PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
           7841, 7853, 7867, 7873, 7877, 7879, 7883, 7901, 7907, 7919]
 
 
+# -- custom assertions -- #
+class CustomAssertions():
+    """assertTrue and assertFalse method for lists,
+    keeping the unittest.TestCase CamelCase format"""
+
+    def assertTrueList(self, list_to_test):
+        for n in list_to_test:
+            self.assertTrue(n)
+
+    def assertFalseList(self, list_to_test):
+        for n in list_to_test:
+            self.assertFalse(n)
+
+
 # -- custom unit tests function -- #
 def custom_test(func):
     """

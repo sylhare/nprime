@@ -35,7 +35,7 @@ class TestFermat(unittest.TestCase):
             self.assertFalse(p.pyprime(n))
 
     def test_pseudoprimes_not_prime(self):
-        for base, value in t.PSEUDO_PRIMES.items():
+        for _, value in t.PSEUDO_PRIMES.items():
             for n in value:
                 self.assertFalse(p.pyprime(n))
 

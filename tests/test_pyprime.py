@@ -22,19 +22,6 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  9: [91, 121, 671, 703, 1541, 1729]}
 
 
-class CustomAssertions():
-    """assertTrue and assertFalse method for lists,
-    keeping the unittest.TestCase CamelCase format"""
-
-    def assertTrueList(self, list_to_test):
-        for n in list_to_test:
-            self.assertTrue(n)
-
-    def assertFalseList(self, list_to_test):
-        for n in list_to_test:
-            self.assertFalse(n)
-
-
 class TestPyPrime(unittest.TestCase):
 
     def setUp(self):

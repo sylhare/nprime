@@ -76,7 +76,7 @@ def miller_rabin(n, t=10):
         d //= 2  # d equals to quotient of d divided 2
         s += 1  # s > 1 when n is odd
 
-    for k in range(0, t):
+    for _ in range(0, t):
         #  Step 2: test (a^d)^2^r ≡ 1 mod n for all r
         a = random.randrange(1, n)
         for _ in range(0, s):

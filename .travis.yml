@@ -13,6 +13,10 @@ addons:
 python:
   - 3.5
 
+env:
+  global:
+    secure: UkXMWiCMn2B4deXOVISAEAKjMm+KgPN+HGicPHNoMqo+h09WBUX081F+AW1eab06NWgDiGB6h+2lAsPbcmVtQ7Xu1mHGrIT6EU7iFMAvG7qwAdTD8npJNoGKlCxzy1R2iN74MBVMp+QpBAdgz9Xu147WQfinfy38RJW5Nspz/Kpte3QII0VITlCp2il9wRxKe4/tWVg8sUEHfzbJdJNvuAwjOPV6o5dHA6uKfbPFQ02qHMJKb1pimwrj4bRi35Ssk6ysYqdfDqveqtqBwlfZZhnfxrqz0uCkl9/9KRi2VupGnsbT7gzehsVLs99wrWGVL5rztmLEJ4D29nEkXSCLj6OVC8eXrTw29HuDS28IWSZerrVTAlPlyWQ+vuWk1K9WX3x+Li7tiKjallUMDP4B6VBFJxEtxqBO5pDBtAKRe8M8UC26ZkLSz6wA1bS1D1sLycvyL7iVh1bbu/ExF+FhUKm0RcJJ+gQxIgK0V/xMkduyv9JB9jebarh4LDSCriykTAg+nw06iLZuaOsU6XVr5zMC449kphxe0Fh67AnMS46qm1wf75X7LwmqPyQBUa+3Y9a/3BScWITXqw5bqY9IyOrQ6s3pG8r9WwaIle46PAqOzfYEZdL1xI9N6NWnvbDET33G5/IE0eJiIKnOsQHQDBuWwOzAnQDcNYUL0x/WQaE=
+
 before_install:
   - pip install -U pip
 
@@ -24,7 +28,7 @@ install:
 # commands to run tests
 script:
   - coverage run --source=nprime -m unittest tests.test_pyprime
-  - coverage report -m
+  - coverage xml # For Codacy
 
 deploy:
   provider: pypi
@@ -35,3 +39,4 @@ deploy:
 after_success:
   - pip install nprime
   - codecov
+  - python-codacy-coverage -r coverage.xml
