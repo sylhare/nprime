@@ -9,7 +9,6 @@ import codecs
 import io
 import os
 import time
-import sys
 import random
 
 HERE = os.path.abspath(os.path.dirname(__file__))

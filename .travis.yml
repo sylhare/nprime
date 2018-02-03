@@ -31,7 +31,7 @@ install:
 
 # commands to run tests
 script:
-  - coverage run --source=nprime -m unittest tests.test_pyprime
+  - coverage run --source=nprime -m unittest tests.test_pyprime tests.test_findprimes
   - coverage xml # For Codacy
 
 deploy:

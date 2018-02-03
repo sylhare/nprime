@@ -11,7 +11,7 @@ import math
 import matplotlib.pyplot as plt
 
 
-# -- Primarity testing functions -- #
+# -- Prime testing functions -- #
 def is_prime(n):
     """
     Check if the number "n" is prime, with n > 1.
@@ -119,13 +119,13 @@ def find_primes(lower, upper, prime_test_function=is_prime):
     Find the number of primes between lower and upper range.
     We should have 1 < lower < upper.
 
-    primeTest determines the function used to tests the primality of the number
+    primeTest determines the function used to tests the prime of the number
     primeTest is by default is_prime() and should return a boolean
 
-    Returns a list of integer.
+    Returns a list of prime integer.
 
     """
-    if 1 > lower >= upper:
+    if upper <= lower or lower <= 1:
         raise ValueError("We should have 1 < lower < upper")
 
     primes = []
