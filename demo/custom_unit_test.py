@@ -2,13 +2,13 @@
 """
 Created on Tue Feb 14 18:34:49 2017
 
-@author: Sylhare
+__author__=Sylhare
 
 """
-from __future__ import print_function # To make the end='' works in the print()
+from __future__ import print_function  # To make the end='' works in the print()
+from unittest import TestCase
 from nprime import pyprime as p
 from nprime import toolbox as tb
-
 
 # Carmichael number often trigger false positive for the fermat algorithm
 CARMICHAEL = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]
@@ -127,15 +127,23 @@ PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
 
 
 # -- custom assertions -- #
-class CustomAssertions():
+class CustomAssertions(TestCase):
     """assertTrue and assertFalse method for lists,
     keeping the unittest.TestCase CamelCase format"""
 
     def assertTrueList(self, list_to_test):
+        """
+
+        :param list_to_test:
+        """
         for n in list_to_test:
             self.assertTrue(n)
 
     def assertFalseList(self, list_to_test):
+        """
+
+        :param list_to_test:
+        """
         for n in list_to_test:
             self.assertFalse(n)
 
@@ -204,7 +212,7 @@ def is_uniform(lower=2, upper=1000):
     Returns True or the results if False
 
     """
-    results = {'ref2':[], 'fermat':[], 'miller_rabin':[]}
+    results = {'ref2': [], 'fermat': [], 'miller_rabin': []}
     ref1 = p.find_primes(lower, upper)
     ref2 = p.generate_primes(upper)
     fermat = p.find_primes(lower, upper, p.fermat)
@@ -261,6 +269,8 @@ def pass_test(results):
 
 def print_test_result(func):
     """
+
+    print test results
 
     :param func:
     """

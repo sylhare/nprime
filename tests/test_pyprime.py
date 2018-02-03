@@ -1,5 +1,5 @@
 import unittest
-
+from tests import prime_testcase
 from nprime import pyprime
 
 # First primes that the function should succeed at finding
@@ -22,9 +22,12 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
                  9: [91, 121, 671, 703, 1541, 1729]}
 
 
-class TestPyPrime(unittest.TestCase):
+class TestPyPrime(prime_testcase.make_test_case(pyprime.pyprime)):
+    """ test Case for pyprime """
 
     def setUp(self):
+        """ Set up of the tests """
+        print("set up")
         pass
 
     def test_is_zero_not_prime(self):
@@ -45,32 +48,40 @@ class TestPyPrime(unittest.TestCase):
             self.assertFalse(pyprime.pyprime(index), msg='{} should not be determined to be prime'.format(index))
 
     def test_first_primes_prime(self):
+        """ test if true for the first known primes """
         for n in FIRST_PRIMES:
             self.assertTrue(pyprime.pyprime(n))
 
     def test_first_non_primes_not_prime(self):
+        """ test false for the first non primes """
         for n in FIRST_NOT_PRIMES:
             self.assertFalse(pyprime.pyprime(n))
 
     def test_pseudoprimes_not_prime(self):
+        """ test False for pseudo primes """
         for _, value in PSEUDO_PRIMES.items():
             for n in value:
                 self.assertFalse(pyprime.pyprime(n))
 
     def test_carmichael_numbers_not_prime(self):
+        """ Test false for carmichael numbers """
         for n in CARMICHAEL:
             self.assertFalse(pyprime.pyprime(n))
 
     def test_float_return_error_message(self):
+        """ An error message is raised for a float """
         self.assertRaises(TypeError, pyprime.pyprime, 3.8)
 
     def test_bool_return_error_message(self):
+        """ An error message is raised for a bool """
         self.assertRaises(TypeError, pyprime.pyprime, True)
 
     def test_string_return_error_message(self):
+        """ An error message is raised for a String"""
         self.assertRaises(TypeError, pyprime.pyprime, "three")
 
     def tearDown(self):
+        """ tear down of the tests """
         pass
 
 

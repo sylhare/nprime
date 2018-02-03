@@ -42,6 +42,6 @@ deploy:
 
 after_success:
   - pip install nprime
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - codecov
-  - python-codacy-coverage -r coverage.xml
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT    # Code Climate code coverage
+  - codecov                                                           # Codecov code coverage
+  - python-codacy-coverage -r coverage.xml                            # Codacy code coverage
