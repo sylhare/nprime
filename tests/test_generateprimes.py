@@ -6,7 +6,6 @@ from nprime.pyprime import generate_primes
 
 class TestGeneratesPrimes(unittest.TestCase):
     """ Tests for generate prime function """
-    pass
 
     def test_is_there_2_in_list_of_first_prime(self):
         """ there should only be 2 in the list, if limit is set to 2 """
@@ -16,7 +15,7 @@ class TestGeneratesPrimes(unittest.TestCase):
         """ No prime should be generated if upper is inferior to 2"""
         self.assertTrue(generate_primes(1) == [])
 
-    def test_are_first_prime_all_discovered(self):
+    def test_are_first_prime_all_generated(self):
         output = generate_primes(70)
         for n in range(0, len(output)):
             self.assertTrue(output[n] == FIRST_PRIMES[n], msg='Missing - {} - in generated prime list '.format(n))
