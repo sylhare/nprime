@@ -25,14 +25,6 @@ def is_prime(n):
     return True
 
 
-def eratosthenes(n):
-    """
-    :return: a boolean, True if n is prime
-    """
-
-    return False
-
-
 def fermat(n, t=100):
     """
     Probabilistic algorithm
@@ -93,7 +85,7 @@ def miller_rabin(n, t=100):
 def generate_primes(upper=0):
     """
     Generate a list of primes from 2 to a set limit
-    It reuses the sieve of Eratosthenes
+    It re-uses the sieve of Eratosthenes, but does not tag composites
 
     Returns a list of integer.
 
@@ -115,6 +107,35 @@ def generate_primes(upper=0):
 
     else:
         primes = []
+
+    return primes
+
+
+def sieve_eratosthenes(upper):
+    """
+    Implementation of the sieve of erathostenes that discover the primes and their composite up to a limit.
+
+    :return: a dictionary,
+                the key are the primes up to n
+                the value is the list of composites of these primes up to n
+    """
+
+    if isinstance(upper, int) and upper >= 2:
+        primes = {2: []}
+
+        for n in range(3, upper):
+            prime = True
+
+            for key in primes:
+                if n % key == 0:
+                    primes[key].append(n)
+                    prime = False
+
+            if prime:
+                primes[n] = []
+
+    else:
+        raise ValueError(" Input must be an integer > 2")
 
     return primes
 

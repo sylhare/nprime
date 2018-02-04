@@ -4,7 +4,7 @@ from nprime.toolbox import convert
 LONG_DESCRIPTION = convert("README.md")
 
 setup(name='nprime',
-      version='0.1.6',
+      version='0.1.7',
       description='Python library for primes algorithms',
       long_description=LONG_DESCRIPTION,
       author='sylhare',

@@ -45,9 +45,15 @@ Here are a bit of information to help understand some of the algorithms
 
     a ≡ 0 (mod n) <-> a = kn <-> "a" is divisible by "n" 
     
+### Strong Pseudoprime
+
+A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a base `a` is an odd composite number `n` 
+with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r) = -1(mod n)` for some `r = 0, 1, ..., s-1` </br>
+    
 ### Erathostene's Sieve
 
-For `n ∈ N` and for `∀ a ∈[1, ..., √n]` then `n/a ∉ N` is true.
+This sieve mark as composite the multiple of each primes. It is an efficient way to find primes.
+For `n ∈ N` with `n > 2` and for `∀ a ∈[2, ..., √n]` then `n/a ∉ N` is true.
 
 [![Erathostene example](https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif)](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 
@@ -70,9 +76,3 @@ Then `n` is prime.
 
 The test output is false of 1/4 of the "a values" possible in `n`, 
 so the test is repeated t times.
-
-
-### Strong Pseudoprime
-
-A strong [pseudoprime](http://mathworld.wolfram.com/StrongPseudoprime.html) to a base `a` is an odd composite number `n` 
-with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r) = -1(mod n)` for some `r = 0, 1, ..., s-1` </br>
