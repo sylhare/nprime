@@ -20,11 +20,8 @@ class TestEratosthenes(unittest.TestCase):
         self.assertTrue(sieve(10) == {2: [4, 6, 8], 3: [6, 9], 5: [], 7: []})
 
     def test_004_are_all_keys_primes(self):
-        """ """
-        output = list(sieve(70))
-        for n in range(0, len(output)):
-            self.assertTrue(output[n] == FIRST_PRIMES[n],
-                            msg='Missing - {} - in generated prime list '.format(FIRST_PRIMES[n]))
+        """ Making sure that all keys from the sieve are prime  """
+        self.assertTrue(list(sieve(70)) == FIRST_PRIMES)
 
 
 if __name__ == '__main__':
