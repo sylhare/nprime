@@ -4,7 +4,7 @@ import unittest
 # from nprime import pyprime
 
 
-class TestGeneratesPrimes(unittest):
+class TestGeneratesPrimes(unittest.TestCase):
     """ Tests for generate prime function """
     pass
 

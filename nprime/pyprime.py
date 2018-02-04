@@ -33,7 +33,7 @@ def eratosthenes(n):
     return False
 
 
-def fermat(n, t=10):
+def fermat(n, t=100):
     """
     Probabilistic algorithm
     Taking "t" randoms "a" and testing the Fermat's theorem on number "n" > 1
@@ -55,7 +55,7 @@ def fermat(n, t=10):
     return prime
 
 
-def miller_rabin(n, t=10):
+def miller_rabin(n, t=100):
     """
     A probabilistic algorithm which determines
     whether a given number (n > 1) is prime or not.
