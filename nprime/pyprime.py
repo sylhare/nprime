@@ -184,7 +184,7 @@ def pyprime(n, func=is_prime):
 
 
 # Graphical Prime functions #
-def sacks(upper=1000, prime_test_function=pyprime):
+def sacks(upper=1000, prime_test_function=pyprime): # pragma: no cover
     """
     Generate the sack diagram values up to a set limit (upper)
 
@@ -210,7 +210,6 @@ def sacks(upper=1000, prime_test_function=pyprime):
     return coord, pricoo
 
 
-# noinspection PyCompatibility
 def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     """
     Render the sacks_plot from the sacks function.
@@ -224,13 +223,12 @@ def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     plt.figure()
     ax = plt.subplot(111, projection='polar', facecolor='white')
     plt.title('Sacks\' Diagram', loc='right')
-    # noinspection PyCompatibility
     ax.plot(*zip(*coord), "w+", markersize=1)
     ax.plot(*zip(*pricoo), "ko", markersize=2)
     plt.show()
 
 
-def ulam(upper=1000, edge=4, prime_test_function=pyprime):
+def ulam(upper=1000, edge=4, prime_test_function=pyprime): # pragma: no cover
     """
     Ulam's spiral aim to represent the primes and none primes in a spiral way
 

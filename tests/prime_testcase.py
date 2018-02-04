@@ -33,31 +33,31 @@ def make_test_case(prime_function):
     :return:
     """
     class PrimeTestCase(unittest.TestCase):
-        def test_is_two_prime(self):
+        def test_001_is_two_prime(self):
             """Is two correctly determined to be prime?"""
             self.assertTrue(prime_function(2), msg='Two is prime!')
 
-        def test_first_primes_prime(self):
+        def test_002_first_primes_prime(self):
             """ test if true for the first known primes """
             for n in FIRST_PRIMES:
                 self.assertTrue(prime_function(n))
 
-        def test_is_four_not_prime(self):
+        def test_003_is_four_not_prime(self):
             """Is four correctly determined not to be prime?"""
             self.assertFalse(prime_function(4), msg='Four is not prime!')
 
-        def test_first_non_primes_not_prime(self):
+        def test_004_first_non_primes_not_prime(self):
             """ test false for the first non primes """
             for n in FIRST_NOT_PRIMES:
                 self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
 
-        def test_pseudoprimes_numbers_not_prime(self):
+        def test_005_pseudoprimes_numbers_not_prime(self):
             """ test False for pseudo primes """
             for _, value in PSEUDO_PRIMES.items():
                 for n in value:
                     self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
 
-        def test_carmichael_numbers_not_prime(self):
+        def test_006_carmichael_numbers_not_prime(self):
             """ Test false for carmichael numbers """
             for n in CARMICHAEL:
                 self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
