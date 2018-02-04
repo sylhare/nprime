@@ -17,6 +17,10 @@ class TestPyPrime(unittest.TestCase):
         """Is four correctly determined not to be prime?"""
         self.assertFalse(pyprime(1), msg='Four is not prime!')
 
+    def test_is_three_prime(self):
+        """Is two correctly determined to be prime?"""
+        self.assertTrue(pyprime(3), msg='Three is prime!')
+
     def test_negative_number_not_prime(self):
         """Is a negative number correctly determined not to be prime?"""
         for index in range(-1, -10, -1):

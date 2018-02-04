@@ -98,18 +98,23 @@ def generate_primes(upper=0):
     Returns a list of integer.
 
     """
-    primes = [2]
 
-    for n in range(3, upper + 1):
-        k = 0
+    if upper >= 2:
+        primes = [2]
 
-        # We only check if n is divided by the previous primes
-        while primes[k] <= pow(n, 0.5) and n % primes[k] != 0:
-            k += 1
+        for n in range(3, upper + 1):
+            k = 0
 
-        # if a number has no dividers, last prime[k] of loop is over n's square root
-        if pow(n, 0.5) < primes[k]:
-            primes.append(n)
+            # We only check if n is divided by the previous primes
+            while primes[k] <= pow(n, 0.5) and n % primes[k] != 0:
+                k += 1
+
+            # if a number has no dividers, last prime[k] of loop is over n's square root
+            if pow(n, 0.5) < primes[k]:
+                primes.append(n)
+
+    else:
+        primes = []
 
     return primes
 
@@ -185,7 +190,7 @@ def sacks(upper=1000, prime_test_function=pyprime):
 
 
 # noinspection PyCompatibility
-def sacks_plot(upper=10000, prime_test_function=pyprime):
+def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     """
     Render the sacks_plot from the sacks function.
     By default the coord is plot in white and the pricoo in black
@@ -252,7 +257,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):
     return coord, pricoo
 
 
-def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):
+def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
     Render the sacks_plot from the ulam function.
     By default the coord is plot in white and the pricoo in black

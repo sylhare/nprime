@@ -10,7 +10,6 @@ import io
 import os
 import time
 import random
-from unittest import TestCase
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -100,25 +99,3 @@ def timex(func, *param):
     t = time.time() - t
 
     return t
-
-
-# -- CUSTOM ASSERTIONS -- #
-class CustomAssertions(TestCase):
-    """assertTrue and assertFalse method for lists,
-    keeping the unittest.TestCase CamelCase format"""
-
-    def assertTrueList(self, list_to_test):
-        """
-
-        :param list_to_test:
-        """
-        for n in list_to_test:
-            self.assertTrue(n)
-
-    def assertFalseList(self, list_to_test):
-        """
-
-        :param list_to_test:
-        """
-        for n in list_to_test:
-            self.assertFalse(n)

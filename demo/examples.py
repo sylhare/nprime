@@ -11,9 +11,7 @@ from demo import custom_unit_test as ut
 
 
 def main():
-    """
-
-    """
+    """ example of the prime function and custom tests """
     # Demo of the Primary testing functions
     print(p.is_prime(7))
     print(p.fermat(7))
