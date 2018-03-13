@@ -1,2 +1,5 @@
-# Include the license file
-include LICENSE.txt
+include LICENSE README.rst requirements.txt
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * *.orig
