@@ -2,7 +2,7 @@
 """
 Created on Tue Feb 14 18:34:49 2017
 
-__author__=Sylhare
+__author__= Sylhare
 
 """
 from __future__ import print_function  # To make the end='' works in the print()

@@ -223,8 +223,8 @@ def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     plt.figure()
     ax = plt.subplot(111, projection='polar', facecolor='white')
     plt.title('Sacks\' Diagram', loc='right')
-    ax.plot(*zip(*coord), "w+", markersize=1)
-    ax.plot(*zip(*pricoo), "ko", markersize=2)
+    ax.plot(zip(*coord), "w+", markersize=1)
+    ax.plot(zip(*pricoo), "ko", markersize=2)
     plt.show()
 
 
@@ -288,7 +288,7 @@ def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):  # pragma: no c
 
     plt.figure()
     plt.title('Ulam\'s sprial', loc='right')
-    plt.plot(*zip(*coord), 'w+', markersize=1)
-    plt.plot(*zip(*pricoo), 'ko', markersize=2)
+    plt.plot(zip(*coord), 'w+', markersize=1)
+    plt.plot(zip(*pricoo), 'ko', markersize=2)
     plt.grid(True)
     plt.show()
