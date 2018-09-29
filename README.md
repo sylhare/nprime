@@ -1,6 +1,10 @@
 # nprime 
 
- [![Generic badge](https://img.shields.io/badge/github-nprime-blue.svg)](https://github.com/Sylhare/nprime) [![PyPI version](https://badge.fury.io/py/nprime.svg)](https://badge.fury.io/py/nprime) [![Build Status](https://travis-ci.org/Sylhare/nprime.svg?branch=master)](https://travis-ci.org/Sylhare/nprime) [![codecov](https://codecov.io/gh/Sylhare/nprime/branch/master/graph/badge.svg)](https://codecov.io/gh/Sylhare/nprime) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f1889b9069645faa6ec38cb4b117b1d)](https://www.codacy.com/app/Sylhare/nprime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sylhare/nprime&amp;utm_campaign=Badge_Grade)
+ [![Generic badge](https://img.shields.io/badge/github-nprime-blue.svg)](https://github.com/sylhare/nprime) 
+ [![PyPI version](https://badge.fury.io/py/nprime.svg)](https://badge.fury.io/py/nprime) 
+ [![Build Status](https://travis-ci.org/sylhare/nprime.svg?branch=master)](https://travis-ci.org/sylhare/nprime) 
+ [![codecov](https://codecov.io/gh/sylhare/nprime/branch/master/graph/badge.svg)](https://codecov.io/gh/sylhare/nprime) 
+ [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f1889b9069645faa6ec38cb4b117b1d)](https://www.codacy.com/app/sylhare/nprime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sylhare/nprime&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
