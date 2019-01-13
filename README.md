@@ -15,7 +15,7 @@ To install the package use pip:
 
 ## Introduction
 
-Some algorithm on prime numbers. 
+Some algorithm on prime numbers. You can find all the functions in the file `nprime/pryprime.py`
 
 Algorithm developed : 
 
@@ -56,6 +56,23 @@ with `n-1 = d·2^s` (for d odd) for which either `a^d = 1(mod n)` or `a^(d·2^r)
     
 ### Erathostene's Sieve
 
+#### How to use
+
+Implementation of the sieve of erathostenes that discover the primes and their composite up to a limit.
+It returns a dictionary:
+  - the key are the primes up to n
+  - the value is the list of composites of these primes up to n
+
+```python
+from nprime.pyprime import sieve_eratosthenes
+
+# With as a parameter the upper limit
+sieve_eratosthenes(10)
+>> {2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}
+```
+
+#### Theory
+
 This sieve mark as composite the multiple of each primes. It is an efficient way to find primes.
 For `n ∈ N` with `n > 2` and for `∀ a ∈[2, ..., √n]` then `n/a ∉ N` is true.
 
@@ -63,6 +80,21 @@ For `n ∈ N` with `n > 2` and for `∀ a ∈[2, ..., √n]` then `n/a ∉ N` is
 
 
 ### Fermat's Theorem
+
+#### How to use
+
+A Probabilistic algorithm taking `t` randoms numbers `a` and testing the Fermat's theorem on number `n > 1`
+Prime probability is right is `1 - 1/(2^t)`
+Returns a boolean: True if `n` passes the tests.
+
+```python
+from nprime.pyprime import fermat
+
+# With n the number you want to test
+fermat(n)
+```
+
+#### Theory
 
 If `n` is prime then `∀ a ∈[1, ..., n-1]`
 
@@ -72,6 +104,20 @@ If `n` is prime then `∀ a ∈[1, ..., n-1]`
    
 ### Miller rabin
 
+#### How to use
+
+A probabilistic algorithm which determines whether a given number (n > 1) is prime or not.
+The miller_rabin tests is repeated `t` times to get more accurate results.
+Returns a boolean: True if `n` passes the tests.
+
+```python
+from nprime.pyprime import miller_rabin
+
+# With n the number you want to test
+miller_rabin(n)
+```
+
+#### Theory
 For `n ∈ N` and `n > 2`, </br>
 Take a random `a ∈ {1,...,n−1}` </br>
 Find `d` and `s` such as with `n - 1 = 2^s * d` (with d odd) </br>
