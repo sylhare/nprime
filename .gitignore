@@ -67,3 +67,4 @@ ENV/
 
 # MacOS files
 .DS_Store
+/nprime/to_groom.py
