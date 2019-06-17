@@ -23,6 +23,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -38,11 +39,10 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .coverage
+*.xml
 .coverage.*
 .cache
-nosetests.xml
-coverage.xml
-*,cover
+*.cover
 .hypothesis/
 
 # Translations
