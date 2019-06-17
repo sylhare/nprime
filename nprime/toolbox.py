@@ -8,8 +8,8 @@ Created on Mon 27 17:43:39 2017
 import codecs
 import io
 import os
-import time
 import random
+import time
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -46,8 +46,8 @@ def read_into_lines_list(path, n=0):
     Return a list of string
     """
     content = []
-    with open(path, 'r') as file:
-        content = file.readlines()
+    with open(path, 'r') as f:
+        content = f.readlines()
 
     return content[n:]
 

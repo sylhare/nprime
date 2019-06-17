@@ -194,42 +194,42 @@ def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
 
     Returns tho lists:
         1- The none prime polar coordinates: coord
-        2- The prime polar coordinates: pricoo
+        2- The prime polar coordinates: prime_coord
 
     """
     coord = []  # Normal numbers' polar value
-    pricoo = []  # Prime numbers' polar value
+    prime_coord = []  # Prime numbers' polar value
 
     for i in range(0, upper):  # A rotation is made for each perfect square,
         theta = math.sqrt(i) * 2 * math.pi  # i=1 theta= 2pi for a given i, angle=(i*theta)/1
         r = math.sqrt(i)
 
         if prime_test_function(i):
-            pricoo.append((theta, r))
+            prime_coord.append((theta, r))
         else:
             coord.append((theta, r))
-    return coord, pricoo
+    return coord, prime_coord
 
 
 def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     """
     Render the sacks_plot from the sacks function.
-    By default the coord is plot in white and the pricoo in black
+    By default the coord is plot in white and the prime_coord in black
 
     Return a polar plot of the sacks' diagram
 
     """
-    coord, pricoo = sacks(upper, prime_test_function)
+    coord, prime_coord = sacks(upper, prime_test_function)
 
     plt.figure()
     ax = plt.subplot(111, projection='polar', facecolor='white')
     plt.title('Sacks\' Diagram', loc='right')
     ax.plot(zip(*coord), "w+", markersize=1)
-    ax.plot(zip(*pricoo), "ko", markersize=2)
+    ax.plot(zip(*prime_coord), "ko", markersize=2)
     plt.show()
 
 
-def ulam(upper=1000, edge=4, prime_test_function=pyprime): # pragma: no cover
+def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
     Ulam's spiral aim to represent the primes and none primes in a spiral way
 
@@ -241,7 +241,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime): # pragma: no cover
 
     Returns tho lists:
         1- The none prime polar coordinates: coord
-        2- The prime polar coordinates: pricoo
+        2- The prime polar coordinates: prime_coord
 
     """
     theta = 0  # Keep track of the spiral rotation
@@ -253,7 +253,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime): # pragma: no cover
     spiral_increment = int(edge / 2)  # when the edge length has to go up to spiral
 
     coord = [(0, 0)]  # Other numbers' coordinates
-    pricoo = []  # Primes' coordinates
+    prime_coord = []  # Primes' coordinates
     x = 0
     y = 0
 
@@ -270,26 +270,26 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime): # pragma: no cover
         y += math.sin(theta)
 
         if prime_test_function(i):
-            pricoo.append((x, y))
+            prime_coord.append((x, y))
         else:
             coord.append((x, y))
 
-    return coord, pricoo
+    return coord, prime_coord
 
 
 def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
     Render the sacks_plot from the ulam function.
-    By default the coord is plot in white and the pricoo in black
+    By default the coord is plot in white and the prime_coord in black
 
     Return a polar plot of the ulam's spiral
 
     """
-    coord, pricoo = ulam(upper, edge, prime_test_function)
+    coord, prime_coord = ulam(upper, edge, prime_test_function)
 
     plt.figure()
     plt.title('Ulam\'s sprial', loc='right')
     plt.plot(zip(*coord), 'w+', markersize=1)
-    plt.plot(zip(*pricoo), 'ko', markersize=2)
+    plt.plot(zip(*prime_coord), 'ko', markersize=2)
     plt.grid(True)
     plt.show()
