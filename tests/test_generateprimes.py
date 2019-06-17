@@ -1,7 +1,7 @@
-
 import unittest
-from tests.prime_testcase import FIRST_PRIMES
+
 from nprime.pyprime import generate_primes
+from tests.prime_testcase import FIRST_PRIMES
 
 
 class TestGeneratesPrimes(unittest.TestCase):

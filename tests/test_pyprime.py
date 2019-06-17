@@ -1,4 +1,5 @@
 import unittest
+
 from nprime.pyprime import pyprime
 
 

@@ -1,7 +1,7 @@
-
 import unittest
-from tests.prime_testcase import make_test_case
+
 from nprime import pyprime
+from tests.prime_testcase import make_test_case
 
 
 class TestIsPrime(make_test_case(pyprime.is_prime)):

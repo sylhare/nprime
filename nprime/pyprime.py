@@ -6,8 +6,9 @@ Created on Fri Jan  6 17:16:46 2017
 
 """
 
-import random
 import math
+import random
+
 import matplotlib.pyplot as plt
 
 
@@ -184,7 +185,7 @@ def pyprime(n, func=is_prime):
 
 
 # Graphical Prime functions #
-def sacks(upper=1000, prime_test_function=pyprime): # pragma: no cover
+def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
     """
     Generate the sack diagram values up to a set limit (upper)
 

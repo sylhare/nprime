@@ -27,11 +27,8 @@ PSEUDO_PRIMES = {2: [2047, 3277, 4033, 4681, 8321],
 
 
 def make_test_case(prime_function):
-    """
+    """Make prime test case"""
 
-    :param prime_function:
-    :return:
-    """
     class PrimeTestCase(unittest.TestCase):
         def test_001_is_two_prime(self):
             """Is two correctly determined to be prime?"""

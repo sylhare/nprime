@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+
 from nprime.toolbox import convert
 
 LONG_DESCRIPTION = convert("README.md")

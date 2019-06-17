@@ -6,8 +6,8 @@ Created on Tue Mar 21 17:23:52 2017
 
 """
 
-from nprime import pyprime as p
 from demo import custom_unit_testing as ut
+from nprime import pyprime as p
 
 
 def main():

@@ -1,7 +1,7 @@
-
 import unittest
-from tests.prime_testcase import FIRST_PRIMES
+
 from nprime.pyprime import sieve_eratosthenes as sieve
+from tests.prime_testcase import FIRST_PRIMES
 
 
 class TestEratosthenes(unittest.TestCase):

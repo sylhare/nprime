@@ -1,5 +1,5 @@
-
 import unittest
+
 from nprime.pyprime import find_primes
 from tests.prime_testcase import FIRST_PRIMES
 
