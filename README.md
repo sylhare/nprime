@@ -29,7 +29,7 @@ Algorithm developed :
 - Language: Python **3.5.2** 
 - Package:
 	- Basic python packages were preferred
-	- Matplotlib v2.0 - graph and math
+	- Matplotlib v2.1 - graph and math
 
 ### Integration and pipeline
 
