@@ -68,8 +68,10 @@ from nprime.pyprime import sieve_eratosthenes
 
 # With as a parameter the upper limit
 sieve_eratosthenes(10)
->> {2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}
+>> {2: [4, 6, 8, 10], 3: [9], 5: [], 7: []}
 ```
+
+The previous behaviour can be called using the `trial_division` which uses the [Trial Division](https://en.wikipedia.org/wiki/Trial_division) algorithm
 
 #### Theory
 
