@@ -120,6 +120,24 @@ def sieve_eratosthenes(upper):
                 the key are the primes up to n
                 the value is the list of composites of these primes up to n
     """
+    primes = {}
+    composites = set()
+    for p in range(2, upper + 1):
+        if p not in composites:
+            primes[p] = range(p * p, upper + 1, p)
+            composites.update(primes[p])
+
+    return primes
+
+
+def trial_division(upper):
+    """
+    Implementation of the trial division that discover the primes and all their divider up to a limit.
+
+    :return: a dictionary,
+                the key are the primes up to n
+                the value is the list of composites of these primes up to n
+    """
 
     if isinstance(upper, int) and upper >= 2:
         primes = {2: []}
