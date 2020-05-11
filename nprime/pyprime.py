@@ -124,7 +124,7 @@ def sieve_eratosthenes(upper):
     composites = set()
     for p in range(2, upper + 1):
         if p not in composites:
-            primes[p] = range(p * p, upper + 1, p)
+            primes[p] = list(range(p * p, upper + 1, p))
             composites.update(primes[p])
 
     return primes
