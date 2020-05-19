@@ -1,6 +1,7 @@
 # nprime 
 
  [![Generic badge](https://img.shields.io/badge/github-nprime-blue.svg)](https://github.com/sylhare/nprime) 
+ [![PyPI downloads](https://img.shields.io/pypi/dm/nprime.svg)](https://pypistats.org/packages/nprime)
  [![PyPI version](https://badge.fury.io/py/nprime.svg)](https://badge.fury.io/py/nprime) 
  [![Build Status](https://travis-ci.org/sylhare/nprime.svg?branch=master)](https://travis-ci.org/sylhare/nprime) 
  [![codecov](https://codecov.io/gh/sylhare/nprime/branch/master/graph/badge.svg)](https://codecov.io/gh/sylhare/nprime) 
@@ -64,7 +65,7 @@ It returns a dictionary:
   - the value is the list of composites of these primes up to n
 
 ```python
-from nprime.pyprime import sieve_eratosthenes
+from nprime import sieve_eratosthenes
 
 # With as a parameter the upper limit
 sieve_eratosthenes(10)
@@ -90,7 +91,7 @@ Prime probability is right is `1 - 1/(2^t)`
 Returns a boolean: True if `n` passes the tests.
 
 ```python
-from nprime.pyprime import fermat
+from nprime import fermat
 
 # With n the number you want to test
 fermat(n)
@@ -113,7 +114,7 @@ The miller_rabin tests is repeated `t` times to get more accurate results.
 Returns a boolean: True if `n` passes the tests.
 
 ```python
-from nprime.pyprime import miller_rabin
+from nprime import miller_rabin
 
 # With n the number you want to test
 miller_rabin(n)

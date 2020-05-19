@@ -7,14 +7,15 @@ Created on Tue Mar 21 17:23:52 2017
 """
 
 from demo import custom_unit_testing as ut
-from nprime import pyprime as p
+import nprime.pyprime as p      # import from pyprime file
+from nprime import is_prime     # import from main package
 from nprime.plot import sacks_plot, ulam_plot
 
 
 def main():
     """ example of the prime function and custom tests """
     # Demo of the Primary testing functions
-    print(p.is_prime(7))
+    print(is_prime(7))
     print(p.fermat(7))
     print(p.miller_rabin(7))
 
