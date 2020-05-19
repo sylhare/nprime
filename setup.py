@@ -1,11 +1,13 @@
+""" nprime package """
 from setuptools import setup, find_packages
 
+import nprime
 from nprime.toolbox import convert
 
 LONG_DESCRIPTION = convert("README.md")
 
 setup(name='nprime',
-      version='1.1.1',
+      version=nprime.__version__,
       description='Python library for primes algorithms',
       long_description=LONG_DESCRIPTION,
       author='sylhare',

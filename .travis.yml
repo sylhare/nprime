@@ -5,7 +5,7 @@ sudo: false
 notifications:
   email: false
 
-#For Pypandoc can work, pandoc needs to be installed
+# For Pypandoc to work, it needs pandoc to be installed
 addons:
   apt_packages:
     - pandoc
