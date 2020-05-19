@@ -17,6 +17,13 @@ def is_prime(n):
 
     Returns a boolean, True if n is prime.
 
+    Example:
+        >>> is_prime(101)
+        True
+        >>> is_prime(102)
+        False
+        >>> is_prime(103)
+        True
     """
     for i in range(2, int(pow(n, 0.5)) + 1):
         if n % i == 0:
@@ -32,6 +39,14 @@ def fermat(n, t=100):
     Prime probability is right is 1 - 1/(2^t)
     Returns a boolean: True if n passes the tests.
 
+    Example:
+        >>> # xdoctest: +IGNORE_WANT
+        >>> fermat(101)
+        True
+        >>> fermat(102)
+        False
+        >>> fermat(103)
+        True
     """
     for _ in range(0, t):
         a = random.randrange(1, n)
@@ -54,6 +69,14 @@ def miller_rabin(n, t=100):
 
     Returns a boolean: True if n passes the tests
 
+    Example:
+        >>> # xdoctest: +IGNORE_WANT
+        >>> miller_rabin(101)
+        True
+        >>> miller_rabin(102)
+        False
+        >>> miller_rabin(103)
+        True
     """
     if n == 2:
         prime = True  # To normalize and make the algorythm works with 2
@@ -88,22 +111,28 @@ def generate_primes(upper=0):
 
     Returns a list of integer.
 
+    Example:
+        >>> upper = 50
+        >>> primes = list(generate_primes(upper))
+        >>> print(primes)
+        [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
     """
 
     if upper >= 2:
         primes = [2]
 
         for n in range(3, upper + 1):
-            k = 0
-
             # We only check if n is divided by the previous primes
-            while primes[k] <= pow(n, 0.5) and n % primes[k] != 0:
-                k += 1
-
-            # if a number has no dividers, last prime[k] of loop is over n's square root
-            if pow(n, 0.5) < primes[k]:
-                primes.append(n)
-
+            sqrt_n = pow(n, 0.5)
+            divisor = None
+            for p in primes:
+                if sqrt_n < p:
+                    break
+                if n % p == 0:
+                    divisor = p
+                    break  # not prime
+            if divisor is None:
+                primes.append(n)  # must be prime
     else:
         primes = []
 
@@ -117,6 +146,10 @@ def sieve_eratosthenes(upper):
     :return: a dictionary,
                 the key are the primes up to n
                 the value is the list of composites of these primes up to n
+
+    Example:
+        >>> upper = 100
+        >>> sieve_eratosthenes(upper)
     """
     primes = {}
     composites = set()
@@ -135,6 +168,10 @@ def trial_division(upper):
     :return: a dictionary,
                 the key are the primes up to n
                 the value is the list of composites of these primes up to n
+
+    Example:
+        >>> upper = 100
+        >>> trial_division(upper)
     """
 
     if isinstance(upper, int) and upper >= 2:
@@ -167,6 +204,10 @@ def find_primes(lower, upper, prime_test_function=is_prime):
 
     Returns a list of prime integer.
 
+    Example:
+        >>> upper = 100
+        >>> lower = 2
+        >>> find_primes(lower, upper)
     """
     if upper <= lower or lower <= 1:
         raise ValueError("We should have 1 < lower < upper")
@@ -212,6 +253,10 @@ def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
         1- The none prime polar coordinates: coord
         2- The prime polar coordinates: prime_coord
 
+    Example:
+        >>> coord, prime_coord = sacks(100)
+        >>> assert len(prime_coord) == 25
+        >>> assert len(coord) == 75
     """
     coord = []  # Normal numbers' polar value
     prime_coord = []  # Prime numbers' polar value
@@ -241,6 +286,10 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
         1- The none prime polar coordinates: coord
         2- The prime polar coordinates: prime_coord
 
+    Example:
+        >>> coord, prime_coord = sacks(100)
+        >>> assert len(prime_coord) == 25
+        >>> assert len(coord) == 75
     """
     theta = 0  # Keep track of the spiral rotation
     psi = math.radians(360 / edge)  # Angle of the polygone's corner
