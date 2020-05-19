@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-
 from nprime.pyprime import sacks, pyprime, ulam
 
 
@@ -11,6 +9,7 @@ def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover
     Return a polar plot of the sacks' diagram
 
     """
+    import matplotlib.pyplot as plt
     coord, prime_coord = sacks(upper, prime_test_function)
 
     plt.figure()
@@ -29,6 +28,7 @@ def ulam_plot(upper=10000, edge=4, prime_test_function=pyprime):  # pragma: no c
     Return a polar plot of the ulam's spiral
 
     """
+    import matplotlib.pyplot as plt
     coord, prime_coord = ulam(upper, edge, prime_test_function)
 
     plt.figure()
