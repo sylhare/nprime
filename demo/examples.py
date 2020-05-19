@@ -8,6 +8,7 @@ Created on Tue Mar 21 17:23:52 2017
 
 from demo import custom_unit_testing as ut
 from nprime import pyprime as p
+from nprime.plot import sacks_plot, ulam_plot
 
 
 def main():
@@ -25,8 +26,8 @@ def main():
     print(ut.custom_test(p.is_prime))
 
     # Demo of Graphical Prime functions
-    p.sacks_plot()
-    p.ulam_plot()
+    sacks_plot()
+    ulam_plot()
 
 
 if __name__ == '__main__':
