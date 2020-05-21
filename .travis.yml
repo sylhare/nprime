@@ -31,8 +31,8 @@ install:
 
 # commands to run tests
 script:
-  - coverage run --source=nprime.pyprime -m unittest
-  - coverage xml # For Codacy
+  - coverage run --source=nprime.pyprime -m xdoctest nprime
+  - pytest --xdoctest --cov=nprime --cov-report xml nprime tests # xml for Codacy
 
 deploy:
   provider: pypi
