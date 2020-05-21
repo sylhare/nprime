@@ -9,3 +9,4 @@ codecov
 codacy-coverage
 xdoctest
 pytest-cov
+pytest
