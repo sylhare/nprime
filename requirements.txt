@@ -3,10 +3,10 @@ matplotlib==2.1.1
 #-- Dev Dependencies --#
 setuptools
 pypandoc
-pytest==2.9.2
+pytest==3.7.3
 coverage==4.1
+pytest-cov==2.8.1
 codecov
 codacy-coverage
 xdoctest
-pytest-cov
-pytest
+
