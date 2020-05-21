@@ -40,7 +40,6 @@ def fermat(n, t=100):
     Returns a boolean: True if n passes the tests.
 
     Example:
-        >>> # xdoctest: +IGNORE_WANT
         >>> fermat(101)
         True
         >>> fermat(102)
@@ -70,7 +69,6 @@ def miller_rabin(n, t=100):
     Returns a boolean: True if n passes the tests
 
     Example:
-        >>> # xdoctest: +IGNORE_WANT
         >>> miller_rabin(101)
         True
         >>> miller_rabin(102)
@@ -148,8 +146,9 @@ def sieve_eratosthenes(upper):
                 the value is the list of composites of these primes up to n
 
     Example:
-        >>> upper = 100
+        >>> upper = 10
         >>> sieve_eratosthenes(upper)
+        {2: [4, 6, 8, 10], 3: [9], 5: [], 7: []}
     """
     primes = {}
     composites = set()
@@ -170,8 +169,9 @@ def trial_division(upper):
                 the value is the list of composites of these primes up to n
 
     Example:
-        >>> upper = 100
+        >>> upper = 10
         >>> trial_division(upper)
+        {2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}
     """
 
     if isinstance(upper, int) and upper >= 2:
@@ -208,6 +208,7 @@ def find_primes(lower, upper, prime_test_function=is_prime):
         >>> upper = 100
         >>> lower = 2
         >>> find_primes(lower, upper)
+        [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     """
     if upper <= lower or lower <= 1:
         raise ValueError("We should have 1 < lower < upper")
@@ -230,6 +231,11 @@ def pyprime(n, func=is_prime):
         n is a number
         n > 1
 
+    Example:
+        >>> pyprime(0, is_prime)
+        False
+        >>> pyprime(29, is_prime)
+        True
     """
     # assert will trigger an error if the input is not correct
     if type(n) is int:
