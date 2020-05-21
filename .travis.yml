@@ -12,6 +12,7 @@ addons:
 
 python:
   - 3.5
+  - 3.7
 
 env:
   global:
@@ -32,7 +33,8 @@ install:
 # commands to run tests
 script:
   - coverage run --source=nprime.pyprime -m xdoctest nprime
-  - pytest --xdoctest --cov=nprime --cov-report xml nprime tests # xml for Codacy
+  # xml for Codacy
+  - pytest --xdoctest --cov=nprime --cov-report xml nprime tests || py.test --xdoctest --cov=nprime --cov-report xml nprime tests || coverage run --source=nprime.pyprime -m unittest && coverage xml
 
 deploy:
   provider: pypi
