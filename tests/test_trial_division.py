@@ -17,7 +17,7 @@ class TestTrialDivision(unittest.TestCase):
 
     def test_003_is_trial_division_showing_primes_and_composite(self):
         """ The trial_division should work for the first 10 numbers"""
-        self.assertEquals({2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}, trial_division(10))
+        self.assertEqual({2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}, trial_division(10))
 
     def test_004_are_all_keys_primes(self):
         """ Making sure that all keys from the trial_division are prime  """

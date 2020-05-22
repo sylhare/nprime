@@ -13,11 +13,11 @@ class TestEratosthenes(unittest.TestCase):
 
     def test_002_is_inferior_to_two_return_error(self):
         """ there should only be 2 in the list, if limit is set to 2 """
-        self.assertEquals({}, sieve(-1))
+        self.assertEqual({}, sieve(-1))
 
     def test_003_is_sieve_showing_primes_and_composite(self):
         """ The sieve should work for the first 10 numbers"""
-        self.assertEquals({2: [4, 6, 8, 10], 3: [9], 5: [], 7: []}, sieve(10))
+        self.assertEqual({2: [4, 6, 8, 10], 3: [9], 5: [], 7: []}, sieve(10))
 
     def test_004_are_all_keys_primes(self):
         """ Making sure that all keys from the sieve are prime  """

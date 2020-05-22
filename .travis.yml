@@ -1,7 +1,5 @@
 language: python
 
-sudo: false
-
 notifications:
   email: false
 

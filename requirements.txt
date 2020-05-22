@@ -4,7 +4,7 @@ matplotlib==2.1.1
 setuptools
 pypandoc
 pytest==3.7.3
-coverage==4.1
+coverage
 pytest-cov==2.8.1
 codecov
 codacy-coverage
