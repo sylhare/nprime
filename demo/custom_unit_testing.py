@@ -10,7 +10,7 @@ from __future__ import print_function  # To make the end='' works in the print()
 from unittest import TestCase
 
 import nprime.pyprime as p
-from nprime import toolbox as tb
+from demo import toolbox as tb
 
 # Carmichael number often trigger false positive for the fermat algorithm
 CARMICHAEL = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341]

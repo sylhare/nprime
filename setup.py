@@ -2,7 +2,19 @@
 from setuptools import setup, find_packages
 
 import nprime
-from nprime.toolbox import convert
+
+
+def convert(markdown_path):
+    """Convert a Markdown file to a reStructuredText file with the pypandoc"""
+    try:
+        import pypandoc
+        output = pypandoc.convert(markdown_path, 'rst')
+        # pypandoc.convert(markdown_path, 'rst', outputfile="README.rst") # Create the rst file
+    except(IOError, ImportError):
+        output = open(markdown_path).read()
+
+    return output
+
 
 LONG_DESCRIPTION = convert("README.md")
 
