@@ -137,6 +137,104 @@ def generate_primes(upper=0):
     return primes
 
 
+def postponed_sieve_eratosthenes(start=0):
+    """
+    An infinite generator for primes using a "sliding sieve" of erathostenes
+    based on a starting value.
+
+    Algorithm from Will Ness and Tim Peters [SO2211990]_, based on ActiveState
+    code from David Eppstein and Alex Martelli [ASR117119]_, with ideas used by
+    Guy Blelloch [CMUCACM8]_ and likely others. Adjustment for including a
+    starting point adapted from [SO69336435]_.
+
+    References:
+        .. [SO2211990] https://stackoverflow.com/questions/2211990/efficient-infinite-generator-prime/10733621#10733621
+        .. [ASR117119] https://code.activestate.com/recipes/117119-sieve-of-eratosthenes/
+        .. [CMUCACM8] https://www.cs.cmu.edu/%7Escandal/cacm/node8.html
+        .. [SO69336435] https://stackoverflow.com/a/69345662/887074
+
+    Args:
+        start (int): start generating primes greater than this number.
+
+    Yields:
+        int
+
+    Example:
+        >>> from nprime.pyprime import *  # NOQA
+        >>> from itertools import islice
+        >>> generator = postponed_sieve_eratosthenes()
+        >>> list(islice(generator, 0, 5))
+        [2, 3, 5, 7, 11]
+        >>> list(islice(generator, 0, 5))
+        [13, 17, 19, 23, 29]
+
+    Example:
+        >>> from nprime.pyprime import *  # NOQA
+        >>> from itertools import islice
+        >>> # Generate larger primes in the billions
+        >>> generator = postponed_sieve_eratosthenes(start=500_000_000)
+        >>> list(islice(generator, 0, 5))
+        [500000101, 500000117, 500000183, 500000201, 500000227]
+
+    Example:
+        >>> # xdoctest: +SKIP("can stress older hardware")
+        >>> from nprime.pyprime import *  # NOQA
+        >>> from itertools import islice
+        >>> # Generate large primes in the quadrillions
+        >>> generator = postponed_sieve_eratosthenes(start=20_000_000_000_000_000)
+        >>> next(generator)
+        20000000000000003
+    """
+    import itertools
+    yield from (p for p in (2, 3, 5, 7) if p >= start)
+    # holds current multiples of each base prime (i.e. below the sqrt of the
+    # current production point), together with their step values
+    multiples = {}
+    ps = postponed_sieve_eratosthenes()
+    next(ps)  # skip 2
+    p = next(ps)  # start at p=3
+    psq = p * p   # track the square of the prime (starts at 9)
+
+    first_cand = psq
+
+    # Adjust the initial state
+    while psq < start:
+        s = 2 * p
+        # Avoid using math.ceil due to precision loss
+        # m = p + s * math.ceil((start - p) / s)   # multiple of p
+        if (start - p) % s == 0:
+            m = start
+        else:
+            m = start + s - ((start - p) % s)
+        while m in multiples:
+            m += s
+        multiples[m] = s
+        p = next(ps)
+        psq = p * p
+
+    if start > first_cand:
+        first_cand = start + (1 - start % 2)  # ensure first candidate is odd
+
+    for cand in itertools.count(first_cand, 2):
+        if cand in multiples:
+            # candidate is composite
+            step = multiples.pop(cand)
+        elif cand < psq:
+            # candiates is prime
+            yield cand
+            continue
+        else:
+            # candidate reached the square of the base prime
+            # move to next base prime
+            step = 2 * p
+            p = next(ps)
+            psq = p * p
+        cand += step
+        while cand in multiples:
+            cand += step
+        multiples[cand] = step
+
+
 def sieve_eratosthenes(upper):
     """
     Implementation of the sieve of erathostenes that discover the primes and their composite up to a limit.
