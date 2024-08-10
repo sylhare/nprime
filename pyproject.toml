@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+addopts = "--xdoctest --xdoctest-style=google --ignore-glob=setup.py --ignore-glob=docs --ignore-glob=demo"
+norecursedirs = ".git build __pycache__ demo docs"
+filterwarnings = [
+    "default",
+]

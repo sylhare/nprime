@@ -174,7 +174,7 @@ def postponed_sieve_eratosthenes(start=0):
         >>> # Generate larger primes in the billions
         >>> generator = postponed_sieve_eratosthenes(start=500_000_000)
         >>> list(islice(generator, 0, 5))
-        [500000101, 500000117, 500000183, 500000201, 500000227]
+        [500000003, 500000009, 500000041, 500000057, 500000069]
 
     Example:
         >>> # xdoctest: +SKIP("can stress older hardware")
