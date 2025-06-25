@@ -25,7 +25,8 @@ def is_prime(n):
         >>> is_prime(103)
         True
     """
-    for i in range(2, int(pow(n, 0.5)) + 1):
+    max_value = math.isqrt(n) + 1
+    for i in range(2, max_value):
         if n % i == 0:
             return False
     return True
@@ -121,7 +122,7 @@ def generate_primes(upper=0):
 
         for n in range(3, upper + 1):
             # We only check if n is divided by the previous primes
-            sqrt_n = pow(n, 0.5)
+            sqrt_n = math.isqrt(n)
             divisor = None
             for p in primes:
                 if sqrt_n < p:
