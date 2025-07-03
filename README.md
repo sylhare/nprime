@@ -26,10 +26,10 @@ Algorithm developed :
 
 ## Specifications
 
-- Language: Python **3.5.2** 
+- Language: Python **3.9+** (supports Python 3.9, 3.10, 3.11, 3.12, 3.13)
 - Package:
 	- Basic python packages were preferred
-	- Matplotlib v2.1 - graph and math
+	- Matplotlib >=3.5.0 - graph and math
 
 ### Integration and pipeline
 

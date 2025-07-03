@@ -1,6 +1,57 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nprime"
+dynamic = ["version"]
+description = "Python library for primes algorithms"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "GNU General Public License v3.0"}
+authors = [
+    {name = "sylhare", email = "sylhare@outlook.com"},
+]
+keywords = ["prime", "fermat", "miller rabin", "math"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "Environment :: Other Environment",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "matplotlib>=3.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Sylhare/nprime"
+Repository = "https://github.com/Sylhare/nprime"
+Issues = "https://github.com/Sylhare/nprime/issues"
+
 [tool.pytest.ini_options]
 addopts = "--xdoctest --xdoctest-style=google --ignore-glob=setup.py --ignore-glob=docs --ignore-glob=demo"
 norecursedirs = ".git build __pycache__ demo docs"
 filterwarnings = [
     "default",
 ]
+
+[tool.setuptools]
+packages = ["nprime"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nprime.__version__"}
