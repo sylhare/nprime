@@ -52,20 +52,12 @@ jobs:
         pytest --xdoctest --cov=nprime.pyprime --cov-report xml nprime tests
 
     - name: Upload coverage to Codecov
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12' && github.ref == 'refs/heads/master'
       uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
-        fail_ci_if_error: true
+        fail_ci_if_error: false
         token: ${{ secrets.CODECOV_TOKEN }}
-
-    - name: Upload coverage to Codacy
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-      run: |
-        pip install codacy-coverage
-        python-codacy-coverage -r coverage.xml
-      env:
-        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
   deploy:
     needs: test
