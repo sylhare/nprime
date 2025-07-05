@@ -5,7 +5,6 @@
  [![PyPI version](https://badge.fury.io/py/nprime.svg)](https://badge.fury.io/py/nprime) 
  [![Build Status](https://travis-ci.org/sylhare/nprime.svg?branch=master)](https://travis-ci.org/sylhare/nprime) 
  [![codecov](https://codecov.io/gh/sylhare/nprime/branch/master/graph/badge.svg)](https://codecov.io/gh/sylhare/nprime) 
- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3f1889b9069645faa6ec38cb4b117b1d)](https://www.codacy.com/app/sylhare/nprime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sylhare/nprime&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
@@ -27,14 +26,13 @@ Algorithm developed :
 
 ## Specifications
 
-- Language: Python **3.5.2** 
+- Language: Python **3.9+** (supports Python 3.9, 3.10, 3.11, 3.12, 3.13)
 - Package:
 	- Basic python packages were preferred
-	- Matplotlib v2.1 - graph and math
+	- Matplotlib >=3.5.0 - graph and math
 
 ### Integration and pipeline
 
-Code quality is monitored through [codacity](https://www.codacy.com/app/Sylhare/nprime/dashboard).
 For the tests coverage, there's [codecov](https://codecov.io/gh/Sylhare/nprime) which is run during the [Travis CI](https://travis-ci.org/Sylhare/nprime) pipeline.
 
 ## Math
