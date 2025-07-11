@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jan  6 17:16:46 2017
-
-@author: sylhare
-
-"""
-
 import math
 import random
 

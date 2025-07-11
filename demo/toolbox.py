@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon 27 17:43:39 2017
-
-@author: sylhare
-
-"""
 import codecs
 import io
 import os

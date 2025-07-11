@@ -1,9 +1,6 @@
 """
-__author__=Sylhare
-
 Make prime test case that can be reusable for any prime finding function
 """
-
 import unittest
 
 # First primes that the function should succeed at finding
