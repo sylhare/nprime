@@ -28,7 +28,7 @@ class TestFindPrimes(unittest.TestCase):
         output = find_primes(2, 70)
         for n in range(0, len(output)):
             self.assertEqual(FIRST_PRIMES[n], output[n],
-                             msg='Missing - {} - in generated prime list '.format(FIRST_PRIMES[n]))
+                             msg=f'Missing - {FIRST_PRIMES[n]} - in generated prime list ')
 
     def test_006_are_primes_found_in_interval(self):
         """ Test that primes are found in a different interval """

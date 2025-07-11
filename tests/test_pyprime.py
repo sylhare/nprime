@@ -25,7 +25,7 @@ class TestPyPrime(unittest.TestCase):
     def test_004_negative_number_not_prime(self):
         """Is a negative number correctly determined not to be prime?"""
         for index in range(-1, -10, -1):
-            self.assertFalse(pyprime(index), msg='{} should not be determined to be prime'.format(index))
+            self.assertFalse(pyprime(index), msg=f'{index} should not be determined to be prime')
 
     def test_004_float_return_error_message(self):
         """ An error message is raised for a float """

@@ -19,7 +19,7 @@ class TestGeneratesPrimes(unittest.TestCase):
         output = generate_primes(70)
         for n in range(0, len(output)):
             self.assertEqual(FIRST_PRIMES[n], output[n],
-                              msg='Missing - {} - in generated prime list '.format(FIRST_PRIMES[n]))
+                              msg=f'Missing - {FIRST_PRIMES[n]} - in generated prime list ')
 
 
 if __name__ == '__main__':
