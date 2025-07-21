@@ -4,16 +4,19 @@ nprime main application package
 Auto generate command:
     mkinit nprime/__init__.py --nomods -w
 """
+from nprime.coprime import (are_coprime, coprime_pairs, coprimes, euler_totient,
+                            gcd, )
 from nprime.pyprime import (fermat, find_primes, generate_primes, is_prime,
                             miller_rabin, pyprime, sacks, sieve_eratosthenes,
                             trial_division, ulam, )
 
 __submodules__ = [
+    'coprime',
     'pyprime',
 ]
 
 __version__ = '1.2.1'
 
-__all__ = ['fermat', 'find_primes', 'generate_primes', 'is_prime',
-           'miller_rabin', 'pyprime', 'sacks', 'sieve_eratosthenes',
-           'trial_division', 'ulam']
+__all__ = ['are_coprime', 'coprime_pairs', 'coprimes', 'euler_totient', 'fermat', 
+           'find_primes', 'gcd', 'generate_primes', 'is_prime', 'miller_rabin', 
+           'pyprime', 'sacks', 'sieve_eratosthenes', 'trial_division', 'ulam']
