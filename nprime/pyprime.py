@@ -395,18 +395,19 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
         >>> assert len(prime_coord) == 25
         >>> assert len(coord) == 75
     """
-    theta = 0  # Keep track of the spiral rotation
-    psi = math.radians(360 / edge)  # Angle of the polygone's corner
+    # Use more precise angle calculation to avoid accumulation errors
+    angle_turns = 0  # Keep track of how many turns we've made (integer)
+    psi = 2 * math.pi / edge 
 
     turn = 3  # Threshold that indicates to turn at the end of each edge's length
     length = 0  # length of the edge, gets bigger as it spirals
     spiral = 2  # Threshold that indicates when to increase the length of an edge
-    spiral_increment = int(edge / 2)  # when the edge length has to go up to spiral
+    spiral_increment = int(edge / (2 + edge % 2))  # when the edge length has to go up to spiral
 
-    coord = [(0, 0)]  # Other numbers' coordinates
+    coord = [(0.0, 0.0)]  # Other numbers' coordinates
     prime_coord = []  # Primes' coordinates
-    x = 0
-    y = 0
+    x = 0.0
+    y = 0.0
 
     for i in range(2, upper):
         if i == spiral:
@@ -414,9 +415,11 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
             spiral = length * spiral_increment + i
 
         if i == turn:
-            theta += psi
+            angle_turns += 1
             turn = i + length
 
+        theta = angle_turns * psi
+        
         x += math.cos(theta)
         y += math.sin(theta)
 
