@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jan  6 17:16:46 2017
-
-@author: sylhare
-
-"""
-
 import math
 import random
 
@@ -25,7 +17,7 @@ def is_prime(n):
         >>> is_prime(103)
         True
     """
-    for i in range(2, int(pow(n, 0.5)) + 1):
+    for i in range(2, math.isqrt(n) + 1):
         if n % i == 0:
             return False
     return True
@@ -121,7 +113,7 @@ def generate_primes(upper=0):
 
         for n in range(3, upper + 1):
             # We only check if n is divided by the previous primes
-            sqrt_n = pow(n, 0.5)
+            sqrt_n = math.isqrt(n)
             divisor = None
             for p in primes:
                 if sqrt_n < p:

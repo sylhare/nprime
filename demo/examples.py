@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 21 17:23:52 2017
-
-@author: sylhare
-
-"""
-
 from demo import custom_unit_testing as ut
 import nprime.pyprime as p      # import from pyprime file
 from nprime import is_prime     # import from main package

@@ -1,9 +1,6 @@
 """
-__author__=Sylhare
-
 Make prime test case that can be reusable for any prime finding function
 """
-
 import unittest
 
 # First primes that the function should succeed at finding
@@ -46,18 +43,18 @@ def make_test_case(prime_function):
         def test_004_first_non_primes_not_prime(self):
             """ test false for the first non primes """
             for n in FIRST_NOT_PRIMES:
-                self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
+                self.assertFalse(prime_function(n), msg=f'{n} should not be determined to be prime')
 
         def test_005_pseudoprimes_numbers_not_prime(self):
             """ test False for pseudo primes """
             for _, value in PSEUDO_PRIMES.items():
                 for n in value:
-                    self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
+                    self.assertFalse(prime_function(n), msg=f'{n} should not be determined to be prime')
 
         def test_006_carmichael_numbers_not_prime(self):
             """ Test false for carmichael numbers """
             for n in CARMICHAEL:
-                self.assertFalse(prime_function(n), msg='{} should not be determined to be prime'.format(n))
+                self.assertFalse(prime_function(n), msg=f'{n} should not be determined to be prime')
 
     return PrimeTestCase
 
