@@ -15,7 +15,7 @@ __submodules__ = [
     'pyprime',
 ]
 
-__version__ = '1.2.1'
+__version__ = '1.3.1'
 
 __all__ = ['are_coprime', 'coprime_pairs', 'coprimes', 'euler_totient', 'fermat', 
            'find_primes', 'gcd', 'generate_primes', 'is_prime', 'miller_rabin', 
