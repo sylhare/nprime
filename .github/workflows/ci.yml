@@ -20,10 +20,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        version: "latest"
+
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
 
     - name: Install system dependencies (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
@@ -41,18 +44,20 @@ jobs:
       run: |
         choco install pandoc
 
-    - name: Install Python dependencies
+    - name: Create virtual environment
+      run: uv venv
+
+    - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -e .
+        uv sync --extra dev --extra test --extra coverage
+        uv pip install -e .
 
     - name: Run tests with coverage
       run: |
-        pytest --xdoctest --cov=nprime.pyprime --cov-report xml nprime tests
+        uv run pytest --xdoctest --cov=nprime.pyprime --cov-report xml nprime tests
 
     - name: Upload coverage to Codecov
-      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12' && github.ref == 'refs/heads/master'
+      if: matrix.os == 'ubuntu-24.04' && matrix.python-version == '3.12' && github.ref == 'refs/heads/master'
       uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
@@ -61,7 +66,7 @@ jobs:
 
   deploy:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: github.event_name == 'release' && github.event.action == 'published'
     
     environment:
@@ -74,24 +79,26 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: '3.12'
+        version: "latest"
+
+    - name: Set up Python
+      run: uv python install 3.12
 
     - name: Install system dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y pandoc
 
-    - name: Install build dependencies
+    - name: Create virtual environment and install build dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install build wheel setuptools
-        pip install pypandoc
+        uv venv
+        uv sync --extra build
 
     - name: Build package
-      run: python -m build
+      run: uv build
 
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1 

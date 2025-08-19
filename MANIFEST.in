@@ -1,4 +1,10 @@
-include LICENSE README.rst requirements.txt
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+recursive-include nprime *.py
+
+# Exclude compiled Python files and cache directories
 recursive-exclude * __pycache__
 recursive-exclude * *.pyc
 recursive-exclude * *.pyo
