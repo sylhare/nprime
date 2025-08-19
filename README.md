@@ -8,10 +8,21 @@
 
 ## Installation
 
+### Using pip
+
 To install the package use pip:
 
     pip install nprime
 
+### Using uv (recommended for development)
+
+[uv](https://docs.astral.sh/uv/) is a fast Python package manager. To install nprime with uv:
+
+    uv add nprime
+
+## Contributing
+
+Interested in contributing? See our [Contributing Guide](CONTRIBUTING.md) for development setup instructions, testing guidelines, and contribution workflows.
 
 ## Introduction
 

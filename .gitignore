@@ -58,6 +58,10 @@ htmlcov/
 # virtualenv
 venv/
 ENV/
+.venv/
+
+# uv
+.uv_cache/
 
 # Spyder project settings
 .spyderproject

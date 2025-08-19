@@ -2,64 +2,60 @@
 
 Thank you for your interest in contributing to nprime! This guide will help you set up your development environment and understand the contribution process.
 
-## 🚀 Quick Start
+## 🚀 Development Setup
+
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management and development workflows.
 
 ### Prerequisites
 
 - Python 3.9 or higher
 - Git
+- [uv](https://docs.astral.sh/uv/) (Python package manager)
 
-### Development Setup
+### Setup Development Environment
 
-1. **Clone the repository**
+1. **Install uv** if you haven't already:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/Sylhare/nprime.git
    cd nprime
    ```
 
-2. **Create and activate a virtual environment**
+3. **Set up the development environment**:
    ```bash
-   # Create virtual environment
-   python -m venv venv
-   
-   # Activate virtual environment
-   # On macOS/Linux:
-   source venv/bin/activate
-   
-   # On Windows:
-   venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   # Install the package in development mode
-   pip install -e .
-   
-   # Install development dependencies
-   pip install -r requirements.txt
+   uv sync --extra dev --extra test --extra coverage
    ```
 
 ## 🧪 Running Tests
 
-### Run all tests
+### Basic Testing
 ```bash
-# Using unittest (recommended)
-python -m unittest discover tests/ -v
+# Run all tests
+uv run pytest
 
 # Run specific test file
-python -m unittest tests.test_pyprime -v
+uv run pytest tests/test_pyprime.py
 
-# Run specific test
-python -m unittest tests.test_pyprime.TestPyPrime.test_001_is_zero_not_prime -v
+# Run with verbose output
+uv run pytest -v
+
+# Run tests matching a pattern
+uv run pytest -k "test_prime"
 ```
 
 ### Test Coverage
 ```bash
-# Run tests with coverage
-python -m pytest tests/ --cov=nprime --cov-report=html --cov-report=term-missing
+# Generate coverage report
+uv run pytest --cov=nprime.pyprime --cov-report=term-missing
 
-# View coverage report
+# Generate HTML coverage report
+uv run pytest --cov=nprime.pyprime --cov-report=html
+
+# View coverage report (HTML)
 open htmlcov/index.html  # macOS
-# or
 start htmlcov/index.html  # Windows
 ```
