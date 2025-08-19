@@ -3,7 +3,7 @@
  [![Generic badge](https://img.shields.io/badge/github-nprime-blue.svg)](https://github.com/sylhare/nprime) 
  [![PyPI downloads](https://img.shields.io/pypi/dm/nprime.svg)](https://pypistats.org/packages/nprime)
  [![PyPI version](https://badge.fury.io/py/nprime.svg)](https://badge.fury.io/py/nprime) 
- [![Build Status](https://travis-ci.org/sylhare/nprime.svg?branch=master)](https://travis-ci.org/sylhare/nprime) 
+ [![CI](https://github.com/Sylhare/nprime/workflows/CI/badge.svg)](https://github.com/Sylhare/nprime/actions)
  [![codecov](https://codecov.io/gh/sylhare/nprime/branch/master/graph/badge.svg)](https://codecov.io/gh/sylhare/nprime) 
 
 ## Installation
@@ -33,7 +33,7 @@ Algorithm developed :
 
 ### Integration and pipeline
 
-For the tests coverage, there's [codecov](https://codecov.io/gh/Sylhare/nprime) which is run during the [Travis CI](https://travis-ci.org/Sylhare/nprime) pipeline.
+For the tests coverage, there's [codecov](https://codecov.io/gh/Sylhare/nprime) which is run during the [GitHub Actions CI](https://github.com/Sylhare/nprime/actions) pipeline.
 
 ## Math
 
