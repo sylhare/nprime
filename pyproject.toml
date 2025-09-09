@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "nprime"
@@ -38,10 +38,49 @@ dependencies = [
     "matplotlib>=3.5.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "coverage>=6.0",
+    "xdoctest",
+    "pypandoc",
+]
+build = [
+    "hatchling",
+    "pypandoc",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "xdoctest",
+]
+coverage = [
+    "codecov",
+    "codacy-coverage",
+    "coverage>=6.0",
+]
+
 [project.urls]
 Homepage = "https://github.com/Sylhare/nprime"
 Repository = "https://github.com/Sylhare/nprime"
 Issues = "https://github.com/Sylhare/nprime/issues"
+Documentation = "https://github.com/Sylhare/nprime"
+
+[tool.hatch.version]
+path = "nprime/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["nprime"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/nprime",
+    "/tests",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
+]
 
 [tool.pytest.ini_options]
 addopts = "--xdoctest --xdoctest-style=google --ignore-glob=setup.py --ignore-glob=docs --ignore-glob=demo"
@@ -49,9 +88,32 @@ norecursedirs = ".git build __pycache__ demo docs"
 filterwarnings = [
     "default",
 ]
+testpaths = ["tests", "nprime"]
 
-[tool.setuptools]
-packages = ["nprime"]
+[tool.coverage.run]
+source = ["nprime"]
+omit = [
+    "*/tests/*",
+    "*/demo/*",
+    "*/docs/*",
+]
 
-[tool.setuptools.dynamic]
-version = {attr = "nprime.__version__"}
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "coverage>=6.0",
+    "xdoctest",
+    "pypandoc",
+    "codecov",
+    "codacy-coverage",
+]
