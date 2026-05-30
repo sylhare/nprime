@@ -7,7 +7,7 @@ name = "nprime"
 dynamic = ["version"]
 description = "Python library for primes algorithms"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {text = "GNU General Public License v3.0"}
 authors = [
     {name = "sylhare", email = "sylhare@outlook.com"},
@@ -17,11 +17,11 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
     "Environment :: Other Environment",
     "Intended Audience :: Developers",
@@ -35,30 +35,30 @@ classifiers = [
     "Topic :: Utilities"
 ]
 dependencies = [
-    "matplotlib>=3.5.0",
+    "matplotlib>=3.9.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "coverage>=6.0",
-    "xdoctest",
-    "pypandoc",
+    "pytest>=8.0.0",
+    "pytest-cov>=6.0.0",
+    "coverage>=7.0",
+    "xdoctest>=1.3.0",
+    "pypandoc>=1.14",
 ]
 build = [
-    "hatchling",
-    "pypandoc",
+    "hatchling>=1.25.0",
+    "pypandoc>=1.14",
 ]
 test = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "xdoctest",
+    "pytest>=8.0.0",
+    "pytest-cov>=6.0.0",
+    "xdoctest>=1.3.0",
 ]
 coverage = [
     "codecov",
     "codacy-coverage",
-    "coverage>=6.0",
+    "coverage>=7.0",
 ]
 
 [project.urls]
@@ -107,13 +107,13 @@ exclude_lines = [
     "if __name__ == .__main__.:",
 ]
 
-[tool.uv]
-dev-dependencies = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "coverage>=6.0",
-    "xdoctest",
-    "pypandoc",
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=6.0.0",
+    "coverage>=7.0",
+    "xdoctest>=1.3.0",
+    "pypandoc>=1.14",
     "codecov",
     "codacy-coverage",
 ]
