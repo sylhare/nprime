@@ -34,6 +34,8 @@ Algorithm developed :
 - Fermat's test (based on Fermat's theorem)
 - Prime generating functions
 - Miller Rabin predictive algorithm
+- Prime factorization
+- Perfect number check
 
 ## Specifications
 
@@ -138,3 +140,72 @@ Then `n` is prime.
 
 The test output is false of 1/4 of the "a values" possible in `n`, 
 so the test is repeated t times.
+
+### Prime Factorization
+
+#### How to use
+
+Return the prime factorization of a positive integer `n` as a sorted list.
+Each prime factor appears as many times as it divides `n`.
+
+```python
+from nprime import prime_factors
+
+prime_factors(12)
+>> [2, 2, 3]
+prime_factors(100)
+>> [2, 2, 5, 5]
+```
+
+#### Theory
+
+The [fundamental theorem of arithmetic](https://en.wikipedia.org/wiki/Fundamental_theorem_of_arithmetic) states that every integer `n > 1` can be represented uniquely as a product of prime powers:
+
+```
+n = p1^a1 * p2^a2 * ... * pk^ak
+```
+
+Where `p1 < p2 < ... < pk` are primes and `a1, a2, ..., ak` are positive integers.
+
+For example `360 = 2^3 × 3^2 × 5`, so `prime_factors(360)` returns `[2, 2, 2, 3, 3, 5]`.
+
+The algorithm uses trial division: divide `n` by each candidate divisor `d` starting from `2` up to `√n`. 
+If `n` is still greater than `1` after exhausting all candidates, then `n` itself is prime.
+
+### Perfect Numbers
+
+#### How to use
+
+Check if a positive integer `n` is a [perfect number](https://en.wikipedia.org/wiki/Perfect_number).
+Returns a boolean: True if `n` is perfect.
+
+```python
+from nprime import is_perfect
+
+is_perfect(6)
+>> True
+is_perfect(28)
+>> True
+is_perfect(12)
+>> False
+```
+
+#### Theory
+
+A perfect number is a positive integer that is equal to the sum of its proper positive divisors (excluding itself):
+
+```
+σ(n) - n = n  ⇔  σ(n) = 2n
+```
+
+Where `σ(n)` is the [sum of divisors function](https://en.wikipedia.org/wiki/Divisor_function).
+
+The first four perfect numbers are `6`, `28`, `496`, and `8128`:
+
+```
+ 6 = 1 + 2 + 3
+28 = 1 + 2 + 4 + 7 + 14
+```
+
+Euler proved that all even perfect numbers have the form `2^(p-1) * (2^p - 1)` where `2^p - 1` is a [Mersenne prime](https://en.wikipedia.org/wiki/Mersenne_prime).
+Whether any odd perfect numbers exist remains an open problem in mathematics.
