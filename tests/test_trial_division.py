@@ -1,30 +1,22 @@
-import unittest
+"""Tests for the trial division algorithm."""
+import pytest
 
-from nprime.pyprime import trial_division as trial_division
+from nprime.pyprime import trial_division
 from tests.prime_testcase import FIRST_PRIMES
 
 
-class TestTrialDivision(unittest.TestCase):
-    """ Tests for generate prime function """
-
-    def test_001_is_not_integer_return_error(self):
-        """ there should only be 2 in the list, if limit is set to 2 """
-        self.assertRaises(ValueError, trial_division, 3.8)
-
-    def test_002_is_inferior_to_two_return_error(self):
-        """ there should only be 2 in the list, if limit is set to 2 """
-        self.assertRaises(ValueError, trial_division, -1)
-
-    def test_003_is_trial_division_showing_primes_and_composite(self):
-        """ The trial_division should work for the first 10 numbers"""
-        self.assertEqual({2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}, trial_division(10))
-
-    def test_004_are_all_keys_primes(self):
-        """ Making sure that all keys from the trial_division are prime  """
-        primes = list(trial_division(70).keys())
-        primes.sort()
-        self.assertEqual(FIRST_PRIMES, primes)
+@pytest.mark.parametrize("n", [3.8, -1])
+def test_invalid_input_raises(n):
+    """Float and negative inputs raise ValueError."""
+    with pytest.raises(ValueError):
+        trial_division(n)
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_trial_division_up_to_ten():
+    """Trial division of 10 returns known primes and their composites."""
+    assert trial_division(10) == {2: [4, 6, 8], 3: [6, 9], 5: [], 7: []}
+
+
+def test_all_keys_are_primes():
+    """All dictionary keys up to 70 match the known first primes."""
+    assert sorted(trial_division(70)) == FIRST_PRIMES
