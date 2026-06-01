@@ -312,6 +312,41 @@ def find_primes(lower, upper, prime_test_function=is_prime):
     return primes
 
 
+# Prime factorization and number theory functions #
+def prime_factors(n):
+    """
+    Return the prime factorization of a positive integer n as a sorted list.
+    Each prime factor appears as many times as it divides n.
+
+    Example:
+        >>> prime_factors(1)
+        []
+        >>> prime_factors(2)
+        [2]
+        >>> prime_factors(6)
+        [2, 3]
+        >>> prime_factors(12)
+        [2, 2, 3]
+        >>> prime_factors(100)
+        [2, 2, 5, 5]
+        >>> prime_factors(97)
+        [97]
+    """
+    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
+        raise ValueError("n must be a positive integer")
+
+    factors = []
+    d = 2
+    while d * d <= n:
+        while n % d == 0:
+            factors.append(d)
+            n //= d
+        d += 1
+    if n > 1:
+        factors.append(n)
+    return factors
+
+
 def is_perfect(n):
     """
     Check if a positive integer n is a perfect number.
