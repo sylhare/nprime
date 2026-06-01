@@ -312,6 +312,40 @@ def find_primes(lower, upper, prime_test_function=is_prime):
     return primes
 
 
+def is_perfect(n):
+    """
+    Check if a positive integer n is a perfect number.
+    A perfect number equals the sum of its proper positive divisors.
+
+    Example:
+        >>> is_perfect(6)
+        True
+        >>> is_perfect(28)
+        True
+        >>> is_perfect(12)
+        False
+        >>> is_perfect(496)
+        True
+        >>> is_perfect(1)
+        False
+    """
+    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
+        raise ValueError("n must be a positive integer")
+
+    if n == 1:
+        return False
+
+    divisor_sum = 1
+    d = 2
+    while d * d <= n:
+        if n % d == 0:
+            divisor_sum += d
+            if d != n // d:
+                divisor_sum += n // d
+        d += 1
+    return divisor_sum == n
+
+
 # Other functions #
 def pyprime(n, func=is_prime):
     """
