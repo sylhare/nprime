@@ -1,143 +1,112 @@
-import unittest
-from nprime.coprime import gcd, are_coprime, coprimes, coprime_pairs, euler_totient
+"""Tests for coprime functions: gcd, are_coprime, coprimes, coprime_pairs, euler_totient."""
+import pytest
+
+from nprime.coprime import are_coprime, coprime_pairs, coprimes, euler_totient, gcd
+
+GCD_CASES = [
+    (12, 8, 4),
+    (17, 13, 1),
+    (25, 15, 5),
+    (48, 18, 6),
+    (0, 5, 5),
+    (5, 0, 5),
+    (1, 1, 1),
+    (7, 7, 7),
+    (-12, 8, 4),
+    (12, -8, 4),
+    (-12, -8, 4),
+]
+
+COPRIME_PAIRS = [(9, 16), (17, 13), (15, 8), (1, 5), (5, 1), (1, 1)]
+NOT_COPRIME_PAIRS = [(12, 8), (15, 9), (6, 9)]
+
+COPRIMES_CASES = [
+    (12, 20, [1, 5, 7, 11, 13, 17, 19]),
+    (10, 10, [1, 3, 7, 9]),
+    (15, 20, [1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19]),
+    (1, 5, [1, 2, 3, 4, 5]),
+    (7, 7, [1, 2, 3, 4, 5, 6]),
+]
+
+EULER_TOTIENT_CASES = [
+    (1, 1),
+    (2, 1),
+    (3, 2),
+    (4, 2),
+    (5, 4),
+    (7, 6),
+    (8, 4),
+    (9, 6),
+    (11, 10),
+    (12, 4),
+    (17, 16),
+]
 
 
-class TestCoprimes(unittest.TestCase):
-    """Test cases for coprime functions"""
-
-    def test_gcd_basic(self):
-        """Test basic GCD calculations"""
-        self.assertEqual(gcd(12, 8), 4)
-        self.assertEqual(gcd(17, 13), 1)
-        self.assertEqual(gcd(25, 15), 5)
-        self.assertEqual(gcd(48, 18), 6)
-        self.assertEqual(gcd(0, 5), 5)
-        self.assertEqual(gcd(5, 0), 5)
-
-    def test_gcd_edge_cases(self):
-        """Test GCD edge cases"""
-        self.assertEqual(gcd(1, 1), 1)
-        self.assertEqual(gcd(7, 7), 7)
-        self.assertEqual(gcd(-12, 8), 4)
-        self.assertEqual(gcd(12, -8), 4)
-        self.assertEqual(gcd(-12, -8), 4)
-
-    def test_are_coprime_basic(self):
-        """Test basic coprime checks"""
-        self.assertTrue(are_coprime(9, 16))
-        self.assertFalse(are_coprime(12, 8))
-        self.assertTrue(are_coprime(17, 13))
-        self.assertTrue(are_coprime(15, 8))
-        self.assertFalse(are_coprime(15, 9))
-
-    def test_are_coprime_edge_cases(self):
-        """Test coprime edge cases"""
-        self.assertTrue(are_coprime(1, 5))
-        self.assertTrue(are_coprime(5, 1))
-        self.assertTrue(are_coprime(1, 1))
-        self.assertFalse(are_coprime(6, 9))
-
-    def test_coprimes_basic(self):
-        """Test finding coprimes of a number"""
-        # Test coprimes of 12 up to 20
-        result = coprimes(12, 20)
-        expected = [1, 5, 7, 11, 13, 17, 19]
-        self.assertEqual(result, expected)
-        
-        # Test coprimes of 10 up to 10
-        result = coprimes(10)
-        expected = [1, 3, 7, 9]
-        self.assertEqual(result, expected)
-        
-        # Test coprimes of 15 up to 20
-        result = coprimes(15, 20)
-        expected = [1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19]
-        self.assertEqual(result, expected)
-
-    def test_coprimes_small_numbers(self):
-        """Test coprimes for small numbers"""
-        # Coprimes of 1
-        self.assertEqual(coprimes(1, 5), [1, 2, 3, 4, 5])
-        
-        # Coprimes of prime numbers should be all numbers less than them
-        prime_7_coprimes = coprimes(7)
-        self.assertEqual(prime_7_coprimes, [1, 2, 3, 4, 5, 6])
-
-    def test_coprimes_error_handling(self):
-        """Test error handling in coprimes function"""
-        with self.assertRaises(ValueError):
-            coprimes(0)
-        with self.assertRaises(ValueError):
-            coprimes(-5)
-        with self.assertRaises(ValueError):
-            coprimes(5, 0)
-        with self.assertRaises(ValueError):
-            coprimes(5, -3)
-
-    def test_coprime_pairs_basic(self):
-        """Test finding coprime pairs"""
-        pairs = coprime_pairs(5)
-        self.assertEqual(len(pairs), 10)
-        self.assertIn((1, 1), pairs)
-        self.assertIn((1, 2), pairs)
-        self.assertIn((1, 3), pairs)
-        self.assertIn((1, 4), pairs)
-        self.assertIn((1, 5), pairs)
-        self.assertIn((2, 3), pairs)
-        self.assertIn((2, 5), pairs)
-        self.assertIn((3, 4), pairs)
-        self.assertIn((3, 5), pairs)
-        self.assertIn((4, 5), pairs)
-        
-        # These should NOT be in pairs
-        self.assertNotIn((2, 4), pairs)
-        self.assertNotIn((3, 6), pairs)
-
-    def test_coprime_pairs_small(self):
-        """Test coprime pairs for small numbers"""
-        pairs = coprime_pairs(3)
-        expected = [(1, 1), (1, 2), (1, 3), (2, 3)]
-        self.assertEqual(pairs, expected)
-
-    def test_coprime_pairs_error_handling(self):
-        """Test error handling in coprime_pairs function"""
-        with self.assertRaises(ValueError):
-            coprime_pairs(0)
-        with self.assertRaises(ValueError):
-            coprime_pairs(-5)
-
-    def test_euler_totient_basic(self):
-        """Test Euler's totient function"""
-        self.assertEqual(euler_totient(1), 1)
-        self.assertEqual(euler_totient(9), 6)  # coprimes: 1,2,4,5,7,8
-        self.assertEqual(euler_totient(12), 4)  # coprimes: 1,5,7,11
-        self.assertEqual(euler_totient(17), 16)  # prime, so all numbers 1-16
-
-    def test_euler_totient_primes(self):
-        """Test Euler's totient for prime numbers"""
-        # For prime p, φ(p) = p - 1
-        self.assertEqual(euler_totient(2), 1)
-        self.assertEqual(euler_totient(3), 2)
-        self.assertEqual(euler_totient(5), 4)
-        self.assertEqual(euler_totient(7), 6)
-        self.assertEqual(euler_totient(11), 10)
-
-    def test_euler_totient_powers_of_primes(self):
-        """Test Euler's totient for powers of primes"""
-        # φ(4) = φ(2²) should be 2
-        self.assertEqual(euler_totient(4), 2)  # coprimes: 1,3
-        # φ(8) = φ(2³) should be 4
-        self.assertEqual(euler_totient(8), 4)  # coprimes: 1,3,5,7
-        # φ(9) = φ(3²) should be 6
-        self.assertEqual(euler_totient(9), 6)  # coprimes: 1,2,4,5,7,8
-
-    def test_euler_totient_error_handling(self):
-        """Test error handling in euler_totient function"""
-        with self.assertRaises(ValueError):
-            euler_totient(0)
-        with self.assertRaises(ValueError):
-            euler_totient(-5)
+@pytest.mark.parametrize("a, b, expected", GCD_CASES)
+def test_gcd(a, b, expected):
+    """Greatest common divisor for positive, zero, and negative inputs."""
+    assert gcd(a, b) == expected
 
 
-if __name__ == '__main__':
-    unittest.main() 
+@pytest.mark.parametrize("a, b", COPRIME_PAIRS)
+def test_are_coprime(a, b):
+    """Pairs with gcd 1 are coprime."""
+    assert are_coprime(a, b) is True
+
+
+@pytest.mark.parametrize("a, b", NOT_COPRIME_PAIRS)
+def test_are_not_coprime(a, b):
+    """Pairs sharing a common factor are not coprime."""
+    assert are_coprime(a, b) is False
+
+
+@pytest.mark.parametrize("n, upper, expected", COPRIMES_CASES)
+def test_coprimes(n, upper, expected):
+    """List of integers coprime to n up to upper."""
+    assert coprimes(n, upper) == expected
+
+
+@pytest.mark.parametrize("n, upper", [(0, None), (-5, None), (5, 0), (5, -3)])
+def test_coprimes_invalid(n, upper):
+    """Zero, negative n or upper raises ValueError."""
+    with pytest.raises(ValueError):
+        if upper is None:
+            coprimes(n)
+        else:
+            coprimes(n, upper)
+
+
+def test_coprime_pairs_basic():
+    """All coprime pairs up to 5, verifying inclusions and exclusions."""
+    pairs = coprime_pairs(5)
+    assert len(pairs) == 10
+    for p in [(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 5), (3, 4), (3, 5), (4, 5)]:
+        assert p in pairs
+    assert (2, 4) not in pairs
+    assert (3, 6) not in pairs
+
+
+def test_coprime_pairs_small():
+    """Coprime pairs up to 3 returns exact expected list."""
+    assert coprime_pairs(3) == [(1, 1), (1, 2), (1, 3), (2, 3)]
+
+
+@pytest.mark.parametrize("n", [0, -5])
+def test_coprime_pairs_invalid(n):
+    """Zero or negative input raises ValueError."""
+    with pytest.raises(ValueError):
+        coprime_pairs(n)
+
+
+@pytest.mark.parametrize("n, expected", EULER_TOTIENT_CASES)
+def test_euler_totient(n, expected):
+    """Euler's totient for small values, primes, and prime powers."""
+    assert euler_totient(n) == expected
+
+
+@pytest.mark.parametrize("n", [0, -5])
+def test_euler_totient_invalid(n):
+    """Zero or negative input raises ValueError."""
+    with pytest.raises(ValueError):
+        euler_totient(n)
