@@ -36,6 +36,7 @@ Algorithm developed :
 - Miller Rabin predictive algorithm
 - Prime factorization
 - Perfect number check
+- AKS deterministic primality test
 
 ## Specifications
 
@@ -209,3 +210,30 @@ The first four perfect numbers are `6`, `28`, `496`, and `8128`:
 
 Euler proved that all even perfect numbers have the form `2^(p-1) * (2^p - 1)` where `2^p - 1` is a [Mersenne prime](https://en.wikipedia.org/wiki/Mersenne_prime).
 Whether any odd perfect numbers exist remains an open problem in mathematics.
+
+### AKS
+
+#### How to use
+
+A deterministic algorithm which determines whether a given number (n > 1) is prime or not.
+Unlike Fermat and Miller-Rabin it is not probabilistic, but it is much slower, so it is mostly
+of theoretical interest. Returns a boolean: True if `n` is prime.
+
+```python
+from nprime import aks
+
+# With n the number you want to test
+aks(n)
+```
+
+#### Theory
+
+The AKS test relies on the polynomial generalisation of Fermat's little theorem: for `gcd(a, n) = 1`,
+`n` is prime if and only if
+
+```
+    (X + a)^n ≡ X^n + a (mod n)
+```
+
+Checking this directly is too expensive, so AKS works in the ring `(ℤ/nℤ)[X] / (X^r - 1)` for a small
+`r`, which keeps the test polynomial in the number of digits of `n`.
