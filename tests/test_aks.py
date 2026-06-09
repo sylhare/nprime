@@ -5,8 +5,7 @@ algorithms, plus an exhaustive agreement check against is_prime.
 """
 import pytest
 
-from nprime.aks_primality import (aks, find_r, int_root, perfect_power,
-                                  poly_mod_exp, poly_mult_mod_ring)
+from nprime.aks_primality import aks, find_r, int_root, perfect_power, poly_mod_exp, poly_mult_mod_ring
 from nprime.pyprime import is_prime
 from tests.prime_testcase import CARMICHAEL, FIRST_NOT_PRIMES, FIRST_PRIMES, PSEUDO_PRIMES
 

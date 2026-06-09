@@ -1,4 +1,4 @@
-from nprime.pyprime import sacks, pyprime, ulam
+from nprime.pyprime import pyprime, sacks, ulam
 
 
 def sacks_plot(upper=10000, prime_test_function=pyprime):  # pragma: no cover

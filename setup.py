@@ -1,5 +1,5 @@
 """ nprime package """
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 
 def convert(markdown_path):
@@ -7,8 +7,8 @@ def convert(markdown_path):
     try:
         import pypandoc
         output = pypandoc.convert_file(markdown_path, 'rst')
-    except(IOError, ImportError, OSError):
-        with open(markdown_path, 'r', encoding='utf-8') as f:
+    except (ImportError, OSError):
+        with open(markdown_path, encoding='utf-8') as f:
             output = f.read()
     return output
 
