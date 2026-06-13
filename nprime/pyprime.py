@@ -458,7 +458,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
     # Use more precise angle calculation to avoid accumulation errors
     angle_turns = 0  # Keep track of how many turns we've made (integer)
-    psi = 2 * math.pi / edge 
+    psi = 2 * math.pi / edge
 
     turn = 3  # Threshold that indicates to turn at the end of each edge's length
     length = 0  # length of the edge, gets bigger as it spirals
@@ -480,7 +480,7 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
             turn = i + length
 
         theta = angle_turns * psi
-        
+
         x += math.cos(theta)
         y += math.sin(theta)
 
