@@ -407,6 +407,56 @@ def pyprime(n, func=is_prime):
 
 
 # Graphical Prime functions #
+def sacks_points(upper, prime_test_function=pyprime):  # pragma: no cover
+    """
+    Yield ``(polar_coordinate, is_prime)`` for each integer below upper, in spiral order.
+
+    Keeping the points in order (rather than split into two lists) lets callers
+    draw the underlying spiral path as a continuous line.
+    """
+    for i in range(0, upper):  # A rotation is made for each perfect square,
+        theta = math.sqrt(i) * 2 * math.pi  # i=1 theta= 2pi for a given i, angle=(i*theta)/1
+        r = math.sqrt(i)
+        yield (theta, r), bool(prime_test_function(i))
+
+
+def ulam_points(upper, edge=4, prime_test_function=pyprime):  # pragma: no cover
+    """
+    Yield ``((x, y), is_prime)`` for each integer below upper, in spiral order.
+
+    edge (edge>3) determines the polygone size by the number of edges, 3 triangle, 4 rectangle, 5 Pentagone ...
+    Keeping the points in order lets callers draw the spiral path as a continuous line.
+    """
+    # Use more precise angle calculation to avoid accumulation errors
+    angle_turns = 0  # Keep track of how many turns we've made (integer)
+    psi = 2 * math.pi / edge
+
+    turn = 3  # Threshold that indicates to turn at the end of each edge's length
+    length = 0  # length of the edge, gets bigger as it spirals
+    spiral = 2  # Threshold that indicates when to increase the length of an edge
+    spiral_increment = int(edge / (2 + edge % 2))  # when the edge length has to go up to spiral
+
+    x = 0.0
+    y = 0.0
+    yield (0.0, 0.0), False
+
+    for i in range(2, upper):
+        if i == spiral:
+            length += 1
+            spiral = length * spiral_increment + i
+
+        if i == turn:
+            angle_turns += 1
+            turn = i + length
+
+        theta = angle_turns * psi
+
+        x += math.cos(theta)
+        y += math.sin(theta)
+
+        yield (x, y), bool(prime_test_function(i))
+
+
 def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
     """
     Generate the sack diagram values up to a set limit (upper)
@@ -425,15 +475,8 @@ def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
     """
     coord = []  # Normal numbers' polar value
     prime_coord = []  # Prime numbers' polar value
-
-    for i in range(0, upper):  # A rotation is made for each perfect square,
-        theta = math.sqrt(i) * 2 * math.pi  # i=1 theta= 2pi for a given i, angle=(i*theta)/1
-        r = math.sqrt(i)
-
-        if prime_test_function(i):
-            prime_coord.append((theta, r))
-        else:
-            coord.append((theta, r))
+    for point, prime in sacks_points(upper, prime_test_function):
+        (prime_coord if prime else coord).append(point)
     return coord, prime_coord
 
 
@@ -456,37 +499,8 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
         >>> assert len(prime_coord) == 25
         >>> assert len(coord) == 75
     """
-    # Use more precise angle calculation to avoid accumulation errors
-    angle_turns = 0  # Keep track of how many turns we've made (integer)
-    psi = 2 * math.pi / edge
-
-    turn = 3  # Threshold that indicates to turn at the end of each edge's length
-    length = 0  # length of the edge, gets bigger as it spirals
-    spiral = 2  # Threshold that indicates when to increase the length of an edge
-    spiral_increment = int(edge / (2 + edge % 2))  # when the edge length has to go up to spiral
-
-    coord = [(0.0, 0.0)]  # Other numbers' coordinates
+    coord = []  # Other numbers' coordinates
     prime_coord = []  # Primes' coordinates
-    x = 0.0
-    y = 0.0
-
-    for i in range(2, upper):
-        if i == spiral:
-            length += 1
-            spiral = length * spiral_increment + i
-
-        if i == turn:
-            angle_turns += 1
-            turn = i + length
-
-        theta = angle_turns * psi
-
-        x += math.cos(theta)
-        y += math.sin(theta)
-
-        if prime_test_function(i):
-            prime_coord.append((x, y))
-        else:
-            coord.append((x, y))
-
+    for point, prime in ulam_points(upper, edge, prime_test_function):
+        (prime_coord if prime else coord).append(point)
     return coord, prime_coord
