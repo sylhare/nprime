@@ -495,9 +495,9 @@ def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
         2- The prime polar coordinates: prime_coord
 
     Example:
-        >>> coord, prime_coord = sacks(100)
+        >>> coord, prime_coord = ulam(100)
         >>> assert len(prime_coord) == 25
-        >>> assert len(coord) == 75
+        >>> assert len(coord) == 74
     """
     coord = []  # Other numbers' coordinates
     prime_coord = []  # Primes' coordinates
