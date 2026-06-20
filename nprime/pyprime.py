@@ -131,7 +131,7 @@ def generate_primes(upper=0):
 
 def postponed_sieve_eratosthenes(start=0):
     """
-    An infinite generator for primes using a "sliding sieve" of erathostenes
+    An infinite generator for primes using a "sliding sieve" of eratosthenes
     based on a starting value.
 
     Algorithm from Will Ness and Tim Peters [SO2211990]_, based on ActiveState
@@ -212,7 +212,7 @@ def postponed_sieve_eratosthenes(start=0):
             # candidate is composite
             step = multiples.pop(cand)
         elif cand < psq:
-            # candiates is prime
+            # candidate is prime
             yield cand
             continue
         else:
@@ -229,7 +229,7 @@ def postponed_sieve_eratosthenes(start=0):
 
 def sieve_eratosthenes(upper):
     """
-    Implementation of the sieve of erathostenes that discover the primes and their composite up to a limit.
+    Implementation of the sieve of eratosthenes that discover the primes and their composite up to a limit.
 
     :return: a dictionary,
                 the key are the primes up to n
@@ -424,7 +424,7 @@ def ulam_points(upper, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
     Yield ``((x, y), is_prime)`` for each integer below upper, in spiral order.
 
-    edge (edge>3) determines the polygone size by the number of edges, 3 triangle, 4 rectangle, 5 Pentagone ...
+    edge (edge>3) determines the polygon size by the number of edges, 3 triangle, 4 rectangle, 5 pentagon ...
     Keeping the points in order lets callers draw the spiral path as a continuous line.
     """
     # Use more precise angle calculation to avoid accumulation errors
@@ -464,8 +464,8 @@ def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
     primeTest determines the function used to tests the primality of the number
     primeTest is by default is_prime() and should return a boolean
 
-    Returns tho lists:
-        1- The none prime polar coordinates: coord
+    Returns two lists:
+        1- The non-prime polar coordinates: coord
         2- The prime polar coordinates: prime_coord
 
     Example:
@@ -482,22 +482,22 @@ def sacks(upper=1000, prime_test_function=pyprime):  # pragma: no cover
 
 def ulam(upper=1000, edge=4, prime_test_function=pyprime):  # pragma: no cover
     """
-    Ulam's spiral aim to represent the primes and none primes in a spiral way
+    Ulam's spiral aim to represent the primes and non-primes in a spiral way
 
-    edge (edge>3) determines the polygone size by the number of edges, 3 triangle, 4 rectangle, 5 Pentagone ...
+    edge (edge>3) determines the polygon size by the number of edges, 3 triangle, 4 rectangle, 5 pentagon ...
     For odd number of edge, the spiral gets misaligned
 
     primeTest determines the function used to tests the primality of the number
     primeTest is by default is_prime() and should return a boolean
 
-    Returns tho lists:
-        1- The none prime polar coordinates: coord
+    Returns two lists:
+        1- The non-prime polar coordinates: coord
         2- The prime polar coordinates: prime_coord
 
     Example:
-        >>> coord, prime_coord = sacks(100)
+        >>> coord, prime_coord = ulam(100)
         >>> assert len(prime_coord) == 25
-        >>> assert len(coord) == 75
+        >>> assert len(coord) == 74
     """
     coord = []  # Other numbers' coordinates
     prime_coord = []  # Primes' coordinates
