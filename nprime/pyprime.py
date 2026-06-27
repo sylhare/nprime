@@ -68,29 +68,32 @@ def miller_rabin(n, t=100):
         >>> miller_rabin(103)
         True
     """
-    if n == 2:
-        prime = True  # To normalize and make the algorythm works with 2
-    else:
-        prime = False  # All other even number will output false
+    if n < 4:
+        return n in (2, 3)  # 2 and 3 are prime, anything below is not
+    if n % 2 == 0:
+        return False  # All other even numbers are not prime
 
-    # Step 1: Have n-1 = 2^s * m (with m odd, and s number of twos factored)
+    # Step 1: Have n-1 = 2^s * d (with d odd, and s the number of twos factored)
     d = n - 1
     s = 0
     while d % 2 == 0:
-        d //= 2  # d equals to quotient of d divided 2
-        s += 1  # s > 1 when n is odd
+        d //= 2
+        s += 1
 
-    for _ in range(0, t):
-        #  Step 2: test (a^d)^2^r ≡ 1 mod n for all r
-        a = random.randrange(1, n)
-        for _ in range(0, s):
-            x = pow(a, d * pow(2, s), n)
-            if x == 1 or x == -1:
-                prime = True  # Should be true for all a
-            else:
-                return False  # When not true, it's not prime for sure
+    for _ in range(t):
+        # Step 2: test a^(d*2^r) mod n for r = 0 .. s-1 with a random witness a
+        a = random.randrange(2, n - 1)
+        x = pow(a, d, n)  # r = 0: a^d mod n
+        if x == 1 or x == n - 1:
+            continue  # a is not a witness, n is a probable prime for this round
+        for _ in range(s - 1):
+            x = pow(x, 2, n)  # square to reach a^(d*2^r) mod n
+            if x == n - 1:
+                break
+        else:
+            return False  # no r yields n-1: a proves n is composite
 
-    return prime  # /!\ Probable prime
+    return True  # /!\ Probable prime
 
 
 # Prime generating functions #
