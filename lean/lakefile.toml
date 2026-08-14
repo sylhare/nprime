@@ -1,0 +1,9 @@
+name = "nprime"
+defaultTargets = ["Nprime"]
+
+[[lean_lib]]
+name = "Nprime"
+
+[[lean_exe]]
+name = "codegen"
+root = "Generate"
