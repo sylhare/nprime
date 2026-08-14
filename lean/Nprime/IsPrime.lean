@@ -1,21 +1,10 @@
 import Nprime.Spec
 
 /-
-Verification of the trial-division primality test (`nprime/pyprime.py::is_prime`).
-
-The Python implementation loops candidate divisors `i` from 2 up to and including
-`isqrt(n)`, returning `False` on the first divisor found:
-
-    def is_prime(n):
-        for i in range(2, math.isqrt(n) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-`isPrime` below is a faithful port. `isPrime_iff` proves it computes exactly the
-mathematical `IsPrime` specification for every `n ≥ 2`, and `isPrime_one` records
-the (real) edge case: like the Python code, it answers `true` for `1`, which is
-*not* prime -- the sort of gap formal verification makes explicit.
+Trial-division primality test (`nprime/pyprime.py::is_prime`): loop divisors `i` from
+2 to `isqrt n`, `False` on the first that divides. `isPrime_iff_nat_prime` proves it
+decides `Nat.Prime` for every `n ≥ 2`; `isPrime_one` records that, like the Python, it
+answers `true` for the non-prime `1`.
 -/
 
 namespace Nprime
@@ -104,9 +93,13 @@ theorem isPrime_iff (n : Nat) (hn : 2 ≤ n) : isPrime n = true ↔ IsPrime n :=
     have hilt : i < n := Nat.lt_of_le_of_lt hle (sqrt_lt_self hn)
     exact hforall i hilt h2
 
+/-- `is_prime` decides Mathlib's canonical `Nat.Prime` for every `n ≥ 2`. -/
+theorem isPrime_iff_nat_prime (n : Nat) (hn : 2 ≤ n) : isPrime n = true ↔ Nat.Prime n :=
+  (isPrime_iff n hn).trans (isPrime_iff_prime n)
+
 /-- The documented edge case, now a theorem: `isPrime` agrees with Python in
-answering `true` for `1`, even though `1` is not prime. Verification pins the
-exact boundary where the algorithm and the specification part ways. -/
+answering `true` for `1`, even though `1` is not prime -- the exact boundary where
+the algorithm and the specification part ways. -/
 theorem isPrime_one : isPrime 1 = true := by native_decide
 
 theorem not_isPrime_one : ¬ IsPrime 1 := by decide

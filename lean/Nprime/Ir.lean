@@ -1,22 +1,10 @@
 /-
-A tiny deeply-embedded IR for the "trial-search" family of primality algorithms:
-a single bounded loop that returns `False` on the first candidate satisfying a
-condition, and `True` otherwise.
-
-    def f(n):
-        for i in range(<lo>, <hiExcl>):
-            if <cond>:
-                return False
-        return True
-
-Every node has two interpretations that must agree:
-  * `eval` / `denote` -- its meaning in Lean (used to prove correctness);
-  * `toPython`        -- its rendering as Python source (used to emit code).
-
-Because the emitted program is generated from the *same* IR whose `denote` is
-proven to meet the specification, the Python is correct by construction. The only
-unverified link is the `toPython` pretty-printer, exactly the trusted boundary of
-any extraction pipeline.
+Deeply-embedded IR for the "trial-search" primality algorithms: one bounded loop
+returning `False` on the first `i` meeting a condition, `True` otherwise. Each node
+has two interpretations that must agree -- `denote` (Lean meaning, used in proofs)
+and `toPython` (emitted source). Emitting from the *same* IR whose `denote` is
+proven correct makes the Python correct by construction; the only unverified link
+is the `toPython` printer, the usual trusted boundary of extraction.
 -/
 
 namespace Nprime
@@ -53,14 +41,10 @@ def Expr.eval (n i : Nat) : Expr → Nat
 def BExpr.eval (n i : Nat) : BExpr → Bool
   | .modEqZero a b => a.eval n i % b.eval n i == 0
 
-/-- Lean semantics of a loop: `True` unless some `i ∈ [lo, hiExcl)` meets `cond`.
-
-The bounds `lo`/`hiExcl` are evaluated at `i = 0`, matching Python's `range(...)`
-which fixes the bounds once before iterating. This coincides with the emitted
-`toPython` code only for loop-independent bounds (true of every program here,
-e.g. `isPrimeProg`). A bound that referenced `.loop` would make `denote` and the
-emitted `range(...)` diverge -- so keep loop bounds independent of `i`, or extend
-`denote`/`toPython` together and prove they agree. -/
+/-- Lean semantics: `True` unless some `i ∈ [lo, hiExcl)` meets `cond`. Bounds are
+evaluated at `i = 0`, matching Python's `range(...)`; this agrees with the emitted
+code only for loop-independent bounds (true of every program here). Keep loop
+bounds independent of `i`. -/
 def TrialLoop.denote (L : TrialLoop) (n : Nat) : Bool :=
   (List.range (L.hiExcl.eval n 0)).all
     (fun i => i < L.lo.eval n 0 || !(L.cond.eval n i))

@@ -1,119 +1,74 @@
-# Lean verification (prototype)
+# Lean verification
 
-Formal, machine-checked correctness proofs for the algorithms in `nprime/`.
+Machine-checked correctness proofs for the algorithms in `nprime/`, stated against
+Mathlib's canonical `Nat.Prime`. Each claim below is proved for **all** integers by
+Lean's kernel, so `lake build` *is* the proof. The primality results are real
+theorems, not bounded/exhaustive checks over a range.
 
-Each Python algorithm is mirrored as an executable Lean 4 function, then proven
-to compute exactly the textbook mathematical specification. A successful build
-(`lake build`) *is* the proof: Lean's kernel checks every step, so nothing can be
-"green" unless the algorithm is provably correct.
+## What is proved (unbounded, kernel-checked)
 
-## Why
+| Theorem | Statement |
+| --- | --- |
+| `isPrime_iff_nat_prime` | trial-division `is_prime n` decides `Nat.Prime n`, for `n ≥ 2` |
+| `millerRabinDet_complete` | a prime always passes Miller-Rabin, for any bases (Fermat's little theorem + `ℤ/nℤ` a field) |
+| `factorTwos_spec` | the `n - 1 = 2^s · d` decomposition is correct |
+| `intRoot_exact` | `int_root n b` is the exact floor `b`-th root |
+| `perfectPower_sound` | a reported perfect power is composite (AKS step 1) |
 
-Tests check finitely many inputs. A Lean proof of `isPrime n = true ↔ IsPrime n`
-covers **all** `n` at once. It also pins down edge cases precisely -- this
-prototype proves, for example, that the trial-division `is_prime` returns `true`
-for `1` even though `1` is not prime (`isPrime_one` / `not_isPrime_one`), the
-exact boundary where the Python code and the specification diverge.
+`IsPrime`, the elementary specification, is itself proved equal to `Nat.Prime`
+(`isPrime_iff_prime`), so no algorithm is validated against a definition tailored to
+match its own code.
 
-## Two proof strategies
+## What is not proved
 
-Different algorithms admit different depths of guarantee:
-
-- **Unbounded proofs** cover *all* inputs. `isPrime_iff` (trial division) and
-  `factorTwos_spec` (the Miller-Rabin `n-1 = 2^s·d` decomposition) are of this
-  kind -- kernel-checked, no bound.
-
-- **Bounded exhaustive proofs** cover every input below a limit via `native_decide`,
-  which compiles the check to native code and certifies the result. Used where a
-  full proof needs heavy number theory: the deterministic Miller-Rabin/spec
-  equivalence (`< 2000`) and the AKS helpers. These are genuine theorems, but only
-  about the checked range, and they trust the Lean compiler (the `native_decide`
-  boundary) rather than only the kernel.
-
-Where an unbounded proof is out of reach without Mathlib, that limit is stated
-explicitly rather than papered over -- e.g. Miller-Rabin's unbounded soundness
-rests on Fermat's little theorem and the structure of `(ℤ/nℤ)ˣ`, so it is called
-out in `MillerRabin.lean` and left for a Mathlib-backed follow-up.
+Deterministic Miller-Rabin *soundness* -- that passing fixed bases `[2, 3]` forces
+primality -- is **false** for general `n` (strong pseudoprimes exist) and holds only
+below a bound established by computation. `millerRabinDet_sound_below_2000` records it
+as a `native_decide` check over `n < 2000`: a machine check, not a theorem for all `n`.
+Full AKS correctness (the ring `(ℤ/nℤ)[X]/(Xʳ - 1)`, `find_r`) and Rabin's ¾-witness
+soundness are out of scope.
 
 ## Layout
 
 | File | Contents |
 | --- | --- |
-| `Nprime/Spec.lean` | `IsPrime` -- the reference definition of primality (dependency-free). |
-| `Nprime/IsPrime.lean` | Port of `pyprime.py::is_prime` (trial division) + `isPrime_iff`, its full correctness proof. |
-| `Nprime/MillerRabin.lean` | Deterministic Miller-Rabin: unbounded proof of the `2^s·d` decomposition + exhaustive `[2,3]`-base equivalence with the spec below 2000. |
-| `Nprime/Aks.lean` | AKS arithmetic core: `intRoot` (exact floor b-th root) and `perfectPower`, each verified against a spec over a bounded range. |
-| `Nprime/Ir.lean` | Tiny deeply-embedded IR for trial-search algorithms, with a Lean semantics (`denote`) and a Python emitter (`toPython`). |
-| `Nprime/Codegen.lean` | `isPrimeProg` (the algorithm as IR) + `isPrimeProg_correct`: the emitted code meets the spec. |
-| `Generate.lean` | `lake exe codegen` entry point that writes `generated/is_prime.py`. |
-| `Nprime.lean` | Library root importing every module. |
-
-No Mathlib dependency: the whole project builds in a few seconds on the stock
-Lean toolchain pinned in `lean-toolchain`.
+| `Nprime/Spec.lean` | `IsPrime` and its equivalence with `Nat.Prime`. |
+| `Nprime/IsPrime.lean` | Trial division (`is_prime`) and its full correctness. |
+| `Nprime/MillerRabin.lean` | Deterministic Miller-Rabin: unbounded completeness + bounded soundness check. |
+| `Nprime/Aks.lean` | AKS arithmetic core: `intRoot_exact`, `perfectPower_sound`. |
+| `Nprime/Ir.lean` | Deeply-embedded IR for trial-search algorithms (`denote` + `toPython`). |
+| `Nprime/Codegen.lean` | `is_prime` as IR + `isPrimeProg_correct`. |
+| `Generate.lean` | `lake exe codegen`, emits `generated/is_prime.py`. |
 
 ## Build
 
 ```bash
 cd lean
-lake build          # verifies every proof
+lake exe cache get   # first time only: downloads prebuilt Mathlib
+lake build           # verifies every proof
 ```
 
-Requires [`elan`](https://github.com/leanprover/elan) (Lean toolchain manager);
-the exact Lean version is pinned in `lean-toolchain`.
+Requires [`elan`](https://github.com/leanprover/elan); the Lean version is pinned in
+`lean-toolchain` and matched by the Mathlib revision in `lakefile.toml`.
 
-## The correctness statement
+## Verify-then-generate
 
-```lean
--- Nprime/IsPrime.lean
-theorem isPrime_iff (n : Nat) (hn : 2 ≤ n) : isPrime n = true ↔ IsPrime n
+Rather than checking hand-written Python against Lean, the verified Lean is the
+*source*: `is_prime` is written once as an IR program (`isPrimeProg`) whose Lean
+semantics is proved to meet the spec (`isPrimeProg_correct`), and the same IR is
+rendered to Python by `toPython`:
+
+```bash
+lake exe codegen     # writes generated/is_prime.py
 ```
 
-The proof relies on the classic square-root bound (`exists_small_divisor`): any
-composite `n` has a divisor `≤ √n`, which is why trial division only needs to
-reach `math.isqrt(n)`.
+The generated file matches the hand-written `nprime/is_prime` and agrees with it on
+every `n` in `0..20000`. The only unverified link is the `toPython` printer, the usual
+trusted boundary of code extraction. Only proven-correct deciders are emitted, so
+Miller-Rabin and AKS are not generated: their primality correctness is not proved for
+all `n` (see above).
 
-## Verify-then-generate: Lean as the source of truth
+## Adding an algorithm
 
-Rather than checking hand-written Python against Lean, we can make the verified
-Lean the *source* and generate the Python from it, so the shipped code is correct
-by construction. This is how verified software ships (CompCert, seL4, Fiat-Crypto).
-
-The pipeline:
-
-1. The algorithm is written once as an IR program `isPrimeProg` (`Codegen.lean`).
-2. `denote_isPrimeProg` proves its Lean semantics *is* the verified `isPrime`
-   (definitionally -- `rfl`), so `isPrimeProg_correct` gives, for all `n ≥ 2`:
-   ```lean
-   isPrimeProg.denote n = true ↔ IsPrime n
-   ```
-3. The *same* IR is rendered to Python by `toPython` and written out:
-   ```bash
-   lake exe codegen        # writes generated/is_prime.py
-   ```
-
-The generated `generated/is_prime.py` is checked to match the hand-written
-`nprime/is_prime`: it passes the library's own primality test data and agrees
-with it on every `n` in `0..20000`. The only unverified link is the `toPython`
-pretty-printer -- the standard trusted boundary of any extraction pipeline.
-
-Note the generator faithfully carries the proof's precondition: like the original,
-`generated is_prime(1)` returns `True`, and the correctness theorem only claims
-`n ≥ 2` -- the gap is explicit, not hidden.
-
-## Extending to the other algorithms
-
-The pattern for each new algorithm:
-
-1. Port the Python function to an executable Lean `def` in a new `Nprime/<Name>.lean`.
-2. State a theorem relating it to `IsPrime` (or another spec in `Spec.lean`).
-3. Prove it, and add `import Nprime.<Name>` to `Nprime.lean`.
-
-Covered so far: `is_prime`, `miller_rabin` (deterministic variant), and the AKS
-helpers `int_root` / `perfect_power`.
-
-Good next candidates: `generate_primes` / `sieve_eratosthenes` (every element is
-prime and none are missed), `prime_factors` (product equals `n`, each factor
-prime), and `is_perfect` (sum of proper divisors equals `n`). Remaining AKS work:
-the polynomial ring `(ℤ/nℤ)[X]/(Xʳ-1)`, `find_r`, and a bounded full-`aks`/spec
-equivalence. A Mathlib-backed track could then prove the unbounded Miller-Rabin
-and AKS soundness that the dependency-free prototype checks only over a range.
+Port the Python to an executable Lean `def`, state a theorem relating it to `Nat.Prime`
+(or `IsPrime`), prove it, and add `import Nprime.<Name>` to `Nprime.lean`.
