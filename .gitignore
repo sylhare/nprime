@@ -73,3 +73,6 @@ ENV/
 .DS_Store
 /nprime/to_groom.py
 demo/to_groom.py
+
+# Lean
+/lean/.lake/
